@@ -1,15 +1,17 @@
 # Documento de visão
 
+Tecnologia escolhida: Django
+
 ## Equipe e definição de papéis
 
-| Membro                              | Papel | Email                           |
-| ----------------------------------- | ----- | ------------------------------- |
-| Adriel Faria dos Santos             |       | adriel.fsantos@outlook.com      |
-| Alef Luciano Silva                  |       | alef.silva.123@ufrn.edu.br      |
-| Bianca Laise Medeiros Cassiano      |       | bianca.medeiros.098@ufrn.edu.br |
-| Cintia Campos de Queiroz            |       | cintia.campos.109@ufrn.edu.br   |
-| Guilherme Angelo de Medeiros        |       | guilhermeangelo2001@gmail.com   |
-| Hilário Petronio de Medeiros Dantas |       | hilariod94@gmail.com            |
+| Membro                              | Papel             | Email                           |
+| ----------------------------------- | ----------------- | ------------------------------- |
+| Adriel Faria dos Santos             | Gerente, Analista | adriel.fsantos@outlook.com      |
+| Alef Luciano Silva                  | Analista          | alef.silva.123@ufrn.edu.br      |
+| Bianca Laise Medeiros Cassiano      | Analista          | bianca.medeiros.098@ufrn.edu.br |
+| Cintia Campos de Queiroz            | Analista          | cintia.campos.109@ufrn.edu.br   |
+| Guilherme Angelo de Medeiros        | Analista          | guilhermeangelo2001@gmail.com   |
+| Hilário Petronio de Medeiros Dantas | Analista          | hilariod94@gmail.com            |
 
 ## Matriz de copetências
 
