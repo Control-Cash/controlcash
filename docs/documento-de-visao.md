@@ -95,21 +95,40 @@ Ator:
 
 #### RF08 - Manter prestação
 
-Descrição:
+Descrição: O Sistema deve permitir que os usuários do sistema insiram, atualizem
+e consultem as informações de prestação de contas do caixa, incluindo o saldo inicial,
+as entradas e saídas de dinheiro, o saldo final e o responsável pela movimentação do caixa.
+Os usuários devem ser capazes de realizar essas ações de forma segura e protegida.
+Além disso, a funcionalidade deve permitir a geração de relatórios de prestação de contas
+para fins de auditoria e monitoramento. A precisão e integridade das informações de
+prestação de contas devem ser mantidas em todos os momentos para garantir a confiabilidade
+do sistema de controle de caixa.
 
-Ator:
+Ator: Analista
 
 #### RF09 - Manter cliente
 
-Descrição:
+Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem e consultem
+as informações dos clientes do sistema de controle de caixa, incluindo o nome, endereço,
+telefone, e-mail e outras informações relevantes. Os usuários devem ser capazes de criar,
+excluir e modificar os registros de clientes conforme necessário, além de visualizar um
+histórico das transações de cada cliente com o caixa. A funcionalidade deve garantir
+a segurança dos dados do cliente por meio de medidas de proteção. A precisão e integridade
+das informações do cliente devem ser mantidas em todos os momentos para garantir a
+confiabilidade do sistema de controle de caixa e a satisfação do cliente.
 
-Ator:
+Ator: Analista
 
 #### RF10 - Manter telefone
 
-Descrição:
+Descrição: O sistema deve permitir que os usuários insiram, atualizem e consultem as
+informações dos telefones relacionados aos clientes do sistema de controle de caixa,
+incluindo o número de telefone, o tipo de telefone e o nome do cliente associado. Os
+usuários devem ser capazes de visualizar todas as informações do telefone de um cliente
+em uma única tela, sem a necessidade de navegar por várias telas. A funcionalidade deve
+garantir a segurança dos dados de telefone por meio de medidas de proteção.
 
-Ator:
+Ator: Analista
 
 #### RF11 - Manter endereço
 
