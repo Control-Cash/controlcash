@@ -45,11 +45,11 @@ controle de prestações pendentes, formas de pagamento, e gestão de clientes.
 
 #### Perfil Administrador
 
-Este usuário terá acesso as 
+Este usuário terá acesso ao controle de pagamentos e manter despesas.
 
 ### Requisitos funcionais
 
-#### RF01 - Manter usuário terá acesso ao controle de pagamentos e manter despesas.
+#### RF01 - Manter usuário
 
 Descrição: O sistema deve permitir o cadastro, listagem, visualização e edição
 de novos usuários no sistema. Um usuário tem CPF, nome completo, email, data de
