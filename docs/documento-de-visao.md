@@ -108,7 +108,7 @@ para fins de auditoria e monitoramento. A precisão e integridade das informaç�
 prestação de contas devem ser mantidas em todos os momentos para garantir a confiabilidade
 do sistema de controle de caixa.
 
-Ator: Analista
+Ator: Gerente
 
 #### RF09 - Manter cliente
 
@@ -121,7 +121,7 @@ a segurança dos dados do cliente por meio de medidas de proteção. A precisão
 das informações do cliente devem ser mantidas em todos os momentos para garantir a
 confiabilidade do sistema de controle de caixa e a satisfação do cliente.
 
-Ator: Analista
+Ator: Gerente
 
 #### RF10 - Manter telefone
 
@@ -132,7 +132,7 @@ usuários devem ser capazes de visualizar todas as informações do telefone de 
 em uma única tela, sem a necessidade de navegar por várias telas. A funcionalidade deve
 garantir a segurança dos dados de telefone por meio de medidas de proteção.
 
-Ator: Analista
+Ator: Gerente
 
 #### RF11 - Manter endereço
 
