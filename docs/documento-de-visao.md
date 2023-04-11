@@ -32,7 +32,7 @@ operacional e do controle das operações financeiras.
 
 ### Perfis dos usuários
 
-O sistema poderá ser utilizado por dois tipos de usuário.
+O sistema poderá ser utilizado por três tipos de usuário.
 
 #### Perfil Gerente
 
@@ -43,9 +43,13 @@ Este usuário tem permissão a todas as áreas do sistema.
 Este usuário terá acesso ao controle de venda, controle de pagamentos,
 controle de prestações pendentes, formas de pagamento, e gestão de clientes.
 
+#### Perfil Administrador
+
+Este usuário terá acesso as 
+
 ### Requisitos funcionais
 
-#### RF01 - Manter usuário
+#### RF01 - Manter usuário terá acesso ao controle de pagamentos e manter despesas.
 
 Descrição: O sistema deve permitir o cadastro, listagem, visualização e edição
 de novos usuários no sistema. Um usuário tem CPF, nome completo, email, data de
@@ -150,15 +154,15 @@ Ator:
 
 #### RF14 - Manter despesa
 
-Descrição:
+Descrição:  O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir despesas.
 
-Ator:
+Ator: Administrador/Gerente.
 
 #### RF15 - Manter categoria de produto
 
-Descrição:
+Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir categorias de produtos.
 
-Ator:
+Ator: Gerente.
 
 #### RF16 - Relatar movimentação
 
