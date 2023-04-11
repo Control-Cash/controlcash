@@ -108,9 +108,16 @@ Ator: Analista
 
 #### RF09 - Manter cliente
 
-Descrição:
+Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem e consultem
+as informações dos clientes do sistema de controle de caixa, incluindo o nome, endereço,
+telefone, e-mail e outras informações relevantes. Os usuários devem ser capazes de criar,
+excluir e modificar os registros de clientes conforme necessário, além de visualizar um
+histórico das transações de cada cliente com o caixa. A funcionalidade deve garantir
+a segurança dos dados do cliente por meio de medidas de proteção. A precisão e integridade
+das informações do cliente devem ser mantidas em todos os momentos para garantir a
+confiabilidade do sistema de controle de caixa e a satisfação do cliente.
 
-Ator:
+Ator: Analista
 
 #### RF10 - Manter telefone
 
