@@ -121,9 +121,14 @@ Ator: Analista
 
 #### RF10 - Manter telefone
 
-Descrição:
+Descrição: O sistema deve permitir que os usuários insiram, atualizem e consultem as
+informações dos telefones relacionados aos clientes do sistema de controle de caixa,
+incluindo o número de telefone, o tipo de telefone e o nome do cliente associado. Os
+usuários devem ser capazes de visualizar todas as informações do telefone de um cliente
+em uma única tela, sem a necessidade de navegar por várias telas. A funcionalidade deve
+garantir a segurança dos dados de telefone por meio de medidas de proteção.
 
-Ator:
+Ator: Analista
 
 #### RF11 - Manter endereço
 
