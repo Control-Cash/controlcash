@@ -146,15 +146,18 @@ Ator: Gerente
 
 #### RF12 - Manter fornecedor
 
-Descrição:
+Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas aos seus fornecedores isso inclui o registro de detalhes como nome, endereço, número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
+a funcionalidade deve possuir a capacidade de casdatrar, atualizar, deletar e armazenar  tais informações, assim também como deve possibilitar a vizualização das informações cadastradas.  
 
-Ator:
+Ator: Gerente 
 
 #### RF13 - Manter pedido
 
 Descrição:
 
-Ator:
+Os requisitos funcionais descritos são relacionados a um sistema de controle de estoque e incluem manter informações sobre email, fornecedores e pedidos. O sistema deve ser capaz de armazenar e gerenciar essas informações de forma eficiente, permitindo a comunicação efetiva com os usuários do sistema, gerenciamento de fornecedores e gerenciamento de pedidos, desde a colocação até a entrega final. O objetivo geral é garantir uma gestão eficiente e precisa do controle de estoque, melhorando a experiência do cliente e facilitando a resolução de problemas e questões relacionadas.
+
+Ator: Gerente
 
 #### RF14 - Manter despesa
 
