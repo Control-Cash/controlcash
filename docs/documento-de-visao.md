@@ -136,11 +136,7 @@ Ator: Gerente
 
 #### RF11 - Manter endereço
 
-Descrição: O sistema deve permitir que os emails dos usuários possam ser adicionados, editados ou excluidos,
- além disso, os usuários devem ser capazes de vizualizar todas as informações relacionadas ao seu email.
- Os email pertencentes aos usuários devem ser armazenados, sendo possível sua recuperação. A funcionalidade
- também deve ser capaz  enviar mensagens de email diretamente do sistema. O objetivo geral da funcionalidade
- é garantir uma gestão de relacionamento eficiente com clientes e fornecedores.
+Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários possam ser inseridas,atualizadas,editadas ou excluidas. Isso pode incluir campos para inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país e CEP além disso, os usuários devem ser capazes de vizualizar todas as informações relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem ser armazenados, sendo possível sua recuperação.
 
 Ator: Gerente
 
