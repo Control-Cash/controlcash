@@ -43,7 +43,7 @@ Este usuário tem permissão a todas as áreas do sistema.
 Este usuário terá acesso ao controle de venda, controle de pagamentos,
 controle de prestações pendentes, formas de pagamento, e gestão de clientes.
 
-#### Perfil Administrador
+#### Perfil Administrador Financeiro
 
 Este usuário terá acesso ao controle de pagamentos e manter despesas.
 
@@ -63,125 +63,128 @@ Ator: Gerente
 
 #### RF02 - Manter venda
 
-Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas realizadas. Cada venda deve conter infromação como data, hora, cliente, produto(s), quantidade, valor unitário, valor total, forma de pagamento e status. Na listagem, apenas informação básicas da venda (data, cliente, valor total e status) devem ser exibidas 
+Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas
+realizadas. Cada venda deve conter infromação como data, hora, cliente, itens de
+venda, valor total, pagamento e status. Na listagem, apenas informações básicas da venda (data, cliente, valor total e status) devem ser exibidas.
 
-Ator: Vendedor 
+Ator: Vendedor
 
 #### RF03 - Manter produto
 
-Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de produtos comercializados pela empresa. Cada produto deve conter informações como nome, código, descrição, preço de venda e quantidade em estoque. Na listagem, apenas as informações básicas do produto (nome, código, praço de venda e status) devem ser exibidas.
+Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de
+produtos comercializados pela empresa. Cada produto deve conter informações como
+nome, código, descrição, preço de venda e quantidade em estoque. Na listagem,
+apenas as informações básicas do produto (nome, código, praço de venda)
+devem ser exibidas.
 
 Ator: Gerente
 
 #### RF04 - Pesquisar produto
 
-Descrição: O sistema deve permitir a pesquisa de produtos cadastrados, com a possibilidade de filtar por nome, código e status. Os resultados da pesquisa devem exibir as informações básicas dos produtos (nome, código, preço de venda e status). 
+Descrição: O sistema deve permitir a pesquisa de produtos cadastrados, com a
+possibilidade de filtar por nome e categoria. Os resultados da pesquisa devem
+exibir as informações básicas dos produtos (nome, código, e preço de venda).
 
-Ator: Gerente ou vendedor
+Ator: Gerente, Vendedor
 
 #### RF05 - Manter item de venda
 
-Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um 
-item de venda em uma transação. Cada item deve ter informações como nome, 
-descrição, preço unitário e quantidade disponível em estoque.
+Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um
+item de venda em uma venda. Cada item deve ter informações como produto,
+quantidade, e preço unitário.
 
 Ator: Vendedor
 
 #### RF06 - Manter pagamento de venda
 
-Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o 
-pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento 
-(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento 
+Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o
+pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento
+(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento
 recebido. O sistema deve calcular o troco em caso de pagamento em dinheiro.
 
 Ator: Vendedor
 
 #### RF07 - Manter forma de pagamento
 
-Descrição:  O sistema deve permitir ao perfil de administrador adicionar, editar 
-ou remover formas de pagamento aceitas pela loja, como cartões de crédito, débito, 
-dinheiro, transferência bancária, entre outros. As informações de cada forma de 
-pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
+Descrição: O sistema deve permitir ao perfil de administrador adicionar, editar
+ou remover formas de pagamento aceitas pela loja, como cartões de crédito,
+débito, dinheiro, transferência bancária, entre outros. As informações de cada
+forma de pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
 
-Ator: Administrador
+Ator: Administrador financeiro
 
 #### RF08 - Manter prestação
 
-Descrição: O Sistema deve permitir que os usuários do sistema insiram, atualizem
-e consultem as informações de prestação de contas do caixa, incluindo o saldo inicial,
-as entradas e saídas de dinheiro, o saldo final e o responsável pela movimentação do caixa.
-Os usuários devem ser capazes de realizar essas ações de forma segura e protegida.
-Além disso, a funcionalidade deve permitir a geração de relatórios de prestação de contas
-para fins de auditoria e monitoramento. A precisão e integridade das informações de
-prestação de contas devem ser mantidas em todos os momentos para garantir a confiabilidade
-do sistema de controle de caixa.
+Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem
+e consultem as informações de prestação de contas do caixa, incluindo o
+saldo inicial, as entradas e saídas de dinheiro, o saldo final e o responsável
+pela movimentação do caixa.
 
-Ator: Gerente
+Ator: Gerente, Vendedor
 
 #### RF09 - Manter cliente
 
-Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem e consultem
-as informações dos clientes do sistema de controle de caixa, incluindo o nome, endereço,
-telefone, e-mail e outras informações relevantes. Os usuários devem ser capazes de criar,
-excluir e modificar os registros de clientes conforme necessário, além de visualizar um
-histórico das transações de cada cliente com o caixa. A funcionalidade deve garantir
-a segurança dos dados do cliente por meio de medidas de proteção. A precisão e integridade
-das informações do cliente devem ser mantidas em todos os momentos para garantir a
-confiabilidade do sistema de controle de caixa e a satisfação do cliente.
+Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem
+e consultem as informações dos clientes, incluindo o nome, endereço, telefone,
+e-mail. Os usuários devem ser capazes de criar, excluir e modificar os registros
+de clientes conforme necessário, além de visualizar um histórico das transações
+de cada cliente com o caixa.
 
-Ator: Gerente
+Ator: Gerente, Vendedor
 
 #### RF10 - Manter telefone
 
-Descrição: O sistema deve permitir que os usuários insiram, atualizem e consultem as
-informações dos telefones relacionados aos clientes do sistema de controle de caixa,
-incluindo o número de telefone, o tipo de telefone e o nome do cliente associado. Os
-usuários devem ser capazes de visualizar todas as informações do telefone de um cliente
-em uma única tela, sem a necessidade de navegar por várias telas. A funcionalidade deve
-garantir a segurança dos dados de telefone por meio de medidas de proteção.
+Descrição: O sistema deve permitir que os usuários insiram, atualizem e
+consultem as informações dos telefones relacionados aos clientes, incluindo o
+número de telefone, o tipo de telefone, e o cliente associado. Os usuários devem
+ser capazes de visualizar todas as informações do telefone de um cliente em uma
+única tela, sem a necessidade de navegar por várias telas.
 
-Ator: Gerente
+Ator: Gerente, Vendedor
 
 #### RF11 - Manter endereço
 
-Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários
-possam ser inseridas, atualizadas, editadas ou excluidas. Isso pode incluir campos para
-inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país
-e CEP. Além disso, os usuários devem ser capazes de vizualizar todas as informações
-relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem
-ser armazenados, sendo possível sua recuperação.
+Descrição: O sistema deve permitir que informações associadas ao endereço dos
+usuários possam ser inseridas, atualizadas, editadas ou excluidas. Isso inclui
+campos para inserir o nome da rua, número da residência, complemento, bairro,
+cidade, estado e CEP. Os endereços registrados devem ser possíveis de
+recuperação.
 
 Ator: Gerente, Vendedor
 
 #### RF12 - Manter fornecedor
 
-Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas
-aos seus fornecedores, isso inclui o registro de detalhes como nome, endereço,
-número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
-a funcionalidade deve possuir a capacidade de casdatrar, atualizar e deletar tais informações,
-assim também como deve possibilitar a vizualização das informações cadastradas.
+Descrição: O sistema controle de caixa deve ser capaz de manter informações
+relacionadas aos seus fornecedores, isso inclui o registro de detalhes como
+nome, endereço, número de telefone, e endereço de e-mail. Com isso, a
+funcionalidade deve possuir a capacidade de casdatrar, atualizar e deletar tais
+informações, assim também como deve possibilitar a vizualização das informações
+cadastradas.
 
-Ator: Gerente 
+Ator: Gerente
 
 #### RF13 - Manter pedido
 
-Descrição: O sistema deve ser capaz de armazenar e gerenciar os pedidos realizados, possuindo
-a capacidade de inserir, atualizar, exibir os pedidos realizados, assim com excluir pedidos.
-As informações relacionadas ao pedido são quatidade, produto, fornecedor, usuário, endereço,
-data prevista de entrega, data de realização do pedido. Os campos possuem o intuito de possuir
-as informações necessárias para realização do pedido. 
+Descrição: O sistema deve ser capaz de armazenar e gerenciar os pedidos
+realizados, possuindo a capacidade de inserir, atualizar, exibir os pedidos
+realizados, assim com excluir pedidos. As informações relacionadas ao pedido são
+quatidade, produto, fornecedor, usuário, data prevista de entrega,
+data de realização do pedido. Os campos possuem o intuito de possuir
+as informações necessárias para realização do pedido.
 
 Ator: Gerente
 
 #### RF14 - Manter despesa
 
-Descrição:  O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir despesas.
+Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
+excluir despesas. Uma despesa tem nome, valor e se a despesa é periódica.
 
-Ator: Administrador/Gerente.
+Ator: Administrador financeiro, Gerente.
 
 #### RF15 - Manter categoria de produto
 
-Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir categorias de produtos.
+Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
+excluir categorias de produtos. A categoria possui nome e status.
 
 Ator: Gerente.
 
