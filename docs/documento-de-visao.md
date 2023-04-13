@@ -71,7 +71,11 @@ Ator: Vendedor
 
 #### RF03 - Manter produto
 
-Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de produtos comercializados pela empresa. Cada produto deve conter informações como nome, código, descrição, preço de venda e quantidade em estoque. Na listagem, apenas as informações básicas do produto (nome, código, praço de venda e status) devem ser exibidas.
+Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de
+produtos comercializados pela empresa. Cada produto deve conter informações como
+nome, código, descrição, preço de venda e quantidade em estoque. Na listagem,
+apenas as informações básicas do produto (nome, código, praço de venda)
+devem ser exibidas.
 
 Ator: Gerente
 
