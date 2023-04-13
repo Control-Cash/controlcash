@@ -115,16 +115,12 @@ Ator: Administrador financeiro
 
 #### RF08 - Manter prestação
 
-Descrição: O Sistema deve permitir que os usuários do sistema insiram, atualizem
-e consultem as informações de prestação de contas do caixa, incluindo o saldo inicial,
-as entradas e saídas de dinheiro, o saldo final e o responsável pela movimentação do caixa.
-Os usuários devem ser capazes de realizar essas ações de forma segura e protegida.
-Além disso, a funcionalidade deve permitir a geração de relatórios de prestação de contas
-para fins de auditoria e monitoramento. A precisão e integridade das informações de
-prestação de contas devem ser mantidas em todos os momentos para garantir a confiabilidade
-do sistema de controle de caixa.
+Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem
+e consultem as informações de prestação de contas do caixa, incluindo o
+saldo inicial, as entradas e saídas de dinheiro, o saldo final e o responsável
+pela movimentação do caixa.
 
-Ator: Gerente
+Ator: Gerente, Vendedor
 
 #### RF09 - Manter cliente
 
