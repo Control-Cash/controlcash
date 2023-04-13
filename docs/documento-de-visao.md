@@ -63,21 +63,21 @@ Ator: Gerente
 
 #### RF02 - Manter venda
 
-Descrição: 
+Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas realizadas. Cada venda deve conter infromação como data, hora, cliente, produto(s), quantidade, valor unitário, valor total, forma de pagamento e status. Na listagem, apenas informação básicas da venda (data, cliente, valor total e status) devem ser exibidas 
 
-Ator:
+Ator: Vendedor 
 
 #### RF03 - Manter produto
 
-Descrição:
+Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de produtos comercializados pela empresa. Cada produto deve conter informações como nome, código, descrição, preço de venda e quantidade em estoque. Na listagem, apenas as informações básicas do produto (nome, código, praço de venda e status) devem ser exibidas.
 
-Ator:
+Ator: Gerente
 
 #### RF04 - Pesquisar produto
 
-Descrição:
+Descrição: O sistema deve permitir a pesquisa de produtos cadastrados, com a possibilidade de filtar por nome, código e status. Os resultados da pesquisa devem exibir as informações básicas dos produtos (nome, código, preço de venda e status). 
 
-Ator:
+Ator: Gerente ou vendedor
 
 #### RF05 - Manter item de venda
 
