@@ -144,12 +144,11 @@ Ator: Gerente, Vendedor
 
 #### RF11 - Manter endereço
 
-Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários
-possam ser inseridas, atualizadas, editadas ou excluidas. Isso pode incluir campos para
-inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país
-e CEP. Além disso, os usuários devem ser capazes de vizualizar todas as informações
-relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem
-ser armazenados, sendo possível sua recuperação.
+Descrição: O sistema deve permitir que informações associadas ao endereço dos
+usuários possam ser inseridas, atualizadas, editadas ou excluidas. Isso inclui
+campos para inserir o nome da rua, número da residência, complemento, bairro,
+cidade, estado e CEP. Os endereços registrados devem ser possíveis de
+recuperação.
 
 Ator: Gerente, Vendedor
 
