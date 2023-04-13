@@ -183,7 +183,8 @@ Ator: Administrador financeiro, Gerente.
 
 #### RF15 - Manter categoria de produto
 
-Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir categorias de produtos.
+Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
+excluir categorias de produtos. A categoria possui nome e status.
 
 Ator: Gerente.
 
