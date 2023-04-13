@@ -176,9 +176,10 @@ Ator: Gerente
 
 #### RF14 - Manter despesa
 
-Descrição:  O sistema deve permitir ao usuário cadastrar, visualizar, editar e excluir despesas.
+Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
+excluir despesas. Uma despesa tem nome, valor e se a despesa é periódica.
 
-Ator: Administrador/Gerente.
+Ator: Administrador financeiro, Gerente.
 
 #### RF15 - Manter categoria de produto
 
