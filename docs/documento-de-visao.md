@@ -154,13 +154,14 @@ Ator: Gerente, Vendedor
 
 #### RF12 - Manter fornecedor
 
-Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas
-aos seus fornecedores, isso inclui o registro de detalhes como nome, endereço,
-número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
-a funcionalidade deve possuir a capacidade de casdatrar, atualizar e deletar tais informações,
-assim também como deve possibilitar a vizualização das informações cadastradas.
+Descrição: O sistema controle de caixa deve ser capaz de manter informações
+relacionadas aos seus fornecedores, isso inclui o registro de detalhes como
+nome, endereço, número de telefone, e endereço de e-mail. Com isso, a
+funcionalidade deve possuir a capacidade de casdatrar, atualizar e deletar tais
+informações, assim também como deve possibilitar a vizualização das informações
+cadastradas.
 
-Ator: Gerente 
+Ator: Gerente
 
 #### RF13 - Manter pedido
 
