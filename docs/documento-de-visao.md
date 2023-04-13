@@ -63,9 +63,11 @@ Ator: Gerente
 
 #### RF02 - Manter venda
 
-Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas realizadas. Cada venda deve conter infromação como data, hora, cliente, produto(s), quantidade, valor unitário, valor total, forma de pagamento e status. Na listagem, apenas informação básicas da venda (data, cliente, valor total e status) devem ser exibidas 
+Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas
+realizadas. Cada venda deve conter infromação como data, hora, cliente, itens de
+venda, valor total, pagamento e status. Na listagem, apenas informações básicas da venda (data, cliente, valor total e status) devem ser exibidas.
 
-Ator: Vendedor 
+Ator: Vendedor
 
 #### RF03 - Manter produto
 
