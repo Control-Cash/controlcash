@@ -89,9 +89,9 @@ Ator: Gerente, Vendedor
 
 #### RF05 - Manter item de venda
 
-Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um 
-item de venda em uma transação. Cada item deve ter informações como nome, 
-descrição, preço unitário e quantidade disponível em estoque.
+Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um
+item de venda em uma venda. Cada item deve ter informações como produto,
+quantidade, e preço unitário.
 
 Ator: Vendedor
 
