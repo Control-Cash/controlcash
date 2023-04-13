@@ -136,13 +136,13 @@ Ator: Gerente
 
 #### RF11 - Manter endereço
 
-Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários possam ser inseridas,atualizadas,editadas ou excluidas. Isso pode incluir campos para inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país e CEP além disso, os usuários devem ser capazes de vizualizar todas as informações relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem ser armazenados, sendo possível sua recuperação.
+Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários possam ser inseridas, atualizadas, editadas ou excluidas. Isso pode incluir campos para inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país e CEP além disso, os usuários devem ser capazes de vizualizar todas as informações relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem ser armazenados, sendo possível sua recuperação.
 
 Ator: Gerente
 
 #### RF12 - Manter fornecedor
 
-Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas aos seus fornecedores isso inclui o registro de detalhes como nome, endereço, número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
+Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas aos seus fornecedores, isso inclui o registro de detalhes como nome, endereço, número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
 a funcionalidade deve possuir a capacidade de casdatrar, atualizar, deletar e armazenar  tais informações, assim também como deve possibilitar a vizualização das informações cadastradas.  
 
 Ator: Gerente 
@@ -151,7 +151,7 @@ Ator: Gerente
 
 Descrição:
 
-Os requisitos funcionais descritos são relacionados a um sistema de controle de estoque e incluem manter informações sobre email, fornecedores e pedidos. O sistema deve ser capaz de armazenar e gerenciar essas informações de forma eficiente, permitindo a comunicação efetiva com os usuários do sistema, gerenciamento de fornecedores e gerenciamento de pedidos, desde a colocação até a entrega final. O objetivo geral é garantir uma gestão eficiente e precisa do controle de estoque, melhorando a experiência do cliente e facilitando a resolução de problemas e questões relacionadas.
+Os requisitos funcionais descritos são relacionados a um sistema de controle de estoque e incluem manter informações sobre fornecedores e pedidos. O sistema deve ser capaz de armazenar e gerenciar os pedidos realizados, possuindo a capacidade de inserir, atulizar, exibir os pedidos realizados, assim com excluir pedidos. As informações relacionadas ao pedido devem possuir quatidade, produto, fornecedor, usuário, endereço, data prevista de entrega, data de realização do pedido. Com os campos possuem o intuito de possuir as informações necessárias para realização do pedido. 
 
 Ator: Gerente
 
