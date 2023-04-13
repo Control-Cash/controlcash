@@ -165,11 +165,12 @@ Ator: Gerente
 
 #### RF13 - Manter pedido
 
-Descrição: O sistema deve ser capaz de armazenar e gerenciar os pedidos realizados, possuindo
-a capacidade de inserir, atualizar, exibir os pedidos realizados, assim com excluir pedidos.
-As informações relacionadas ao pedido são quatidade, produto, fornecedor, usuário, endereço,
-data prevista de entrega, data de realização do pedido. Os campos possuem o intuito de possuir
-as informações necessárias para realização do pedido. 
+Descrição: O sistema deve ser capaz de armazenar e gerenciar os pedidos
+realizados, possuindo a capacidade de inserir, atualizar, exibir os pedidos
+realizados, assim com excluir pedidos. As informações relacionadas ao pedido são
+quatidade, produto, fornecedor, usuário, data prevista de entrega,
+data de realização do pedido. Os campos possuem o intuito de possuir
+as informações necessárias para realização do pedido.
 
 Ator: Gerente
 
