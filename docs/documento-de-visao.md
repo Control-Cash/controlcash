@@ -106,12 +106,12 @@ Ator: Vendedor
 
 #### RF07 - Manter forma de pagamento
 
-Descrição:  O sistema deve permitir ao perfil de administrador adicionar, editar 
-ou remover formas de pagamento aceitas pela loja, como cartões de crédito, débito, 
-dinheiro, transferência bancária, entre outros. As informações de cada forma de 
-pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
+Descrição: O sistema deve permitir ao perfil de administrador adicionar, editar
+ou remover formas de pagamento aceitas pela loja, como cartões de crédito,
+débito, dinheiro, transferência bancária, entre outros. As informações de cada
+forma de pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
 
-Ator: Administrador
+Ator: Administrador financeiro
 
 #### RF08 - Manter prestação
 
