@@ -97,9 +97,9 @@ Ator: Vendedor
 
 #### RF06 - Manter pagamento de venda
 
-Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o 
-pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento 
-(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento 
+Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o
+pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento
+(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento
 recebido. O sistema deve calcular o troco em caso de pagamento em dinheiro.
 
 Ator: Vendedor
