@@ -81,9 +81,11 @@ Ator: Gerente
 
 #### RF04 - Pesquisar produto
 
-Descrição: O sistema deve permitir a pesquisa de produtos cadastrados, com a possibilidade de filtar por nome, código e status. Os resultados da pesquisa devem exibir as informações básicas dos produtos (nome, código, preço de venda e status). 
+Descrição: O sistema deve permitir a pesquisa de produtos cadastrados, com a
+possibilidade de filtar por nome e categoria. Os resultados da pesquisa devem
+exibir as informações básicas dos produtos (nome, código, e preço de venda).
 
-Ator: Gerente ou vendedor
+Ator: Gerente, Vendedor
 
 #### RF05 - Manter item de venda
 
