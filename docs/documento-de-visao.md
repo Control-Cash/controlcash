@@ -43,7 +43,7 @@ Este usuário tem permissão a todas as áreas do sistema.
 Este usuário terá acesso ao controle de venda, controle de pagamentos,
 controle de prestações pendentes, formas de pagamento, e gestão de clientes.
 
-#### Perfil Administrador
+#### Perfil Administrador Financeiro
 
 Este usuário terá acesso ao controle de pagamentos e manter despesas.
 
