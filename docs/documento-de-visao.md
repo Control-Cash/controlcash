@@ -63,7 +63,7 @@ Ator: Gerente
 
 #### RF02 - Manter venda
 
-Descrição:
+Descrição: 
 
 Ator:
 
@@ -81,21 +81,29 @@ Ator:
 
 #### RF05 - Manter item de venda
 
-Descrição:
+Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um 
+item de venda em uma transação. Cada item deve ter informações como nome, 
+descrição, preço unitário e quantidade disponível em estoque.
 
-Ator:
+Ator: Vendedor
 
 #### RF06 - Manter pagamento de venda
 
-Descrição:
+Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o 
+pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento 
+(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento 
+recebido. O sistema deve calcular o troco em caso de pagamento em dinheiro.
 
-Ator:
+Ator: Vendedor
 
 #### RF07 - Manter forma de pagamento
 
-Descrição:
+Descrição:  O sistema deve permitir ao perfil de administrador adicionar, editar 
+ou remover formas de pagamento aceitas pela loja, como cartões de crédito, débito, 
+dinheiro, transferência bancária, entre outros. As informações de cada forma de 
+pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
 
-Ator:
+Ator: Administrador
 
 #### RF08 - Manter prestação
 
@@ -136,24 +144,21 @@ Ator: Gerente
 
 #### RF11 - Manter endereço
 
-Descrição: O sistema deve permitir que informações associadas ao endereço dos usuários possam ser inseridas, atualizadas, editadas ou excluidas. Isso pode incluir campos para inserir o nome da rua, número da residência, complemento, bairro, cidade, estado, país e CEP além disso, os usuários devem ser capazes de vizualizar todas as informações relacionadas ao seu endereço. Os endereços registrados pertencentes aos usuários devem ser armazenados, sendo possível sua recuperação.
+Descrição:
 
-Ator: Gerente
+Ator:
 
 #### RF12 - Manter fornecedor
 
-Descrição: O sistema controle de caixa deve ser capaz de manter informações relacionadas aos seus fornecedores, isso inclui o registro de detalhes como nome, endereço, número de telefone, endereço de e-mail e outras informações relevantes de contato. Com isso,
-a funcionalidade deve possuir a capacidade de casdatrar, atualizar, deletar e armazenar  tais informações, assim também como deve possibilitar a vizualização das informações cadastradas.  
+Descrição:
 
-Ator: Gerente 
+Ator:
 
 #### RF13 - Manter pedido
 
 Descrição:
 
-Os requisitos funcionais descritos são relacionados a um sistema de controle de estoque e incluem manter informações sobre fornecedores e pedidos. O sistema deve ser capaz de armazenar e gerenciar os pedidos realizados, possuindo a capacidade de inserir, atulizar, exibir os pedidos realizados, assim com excluir pedidos. As informações relacionadas ao pedido devem possuir quatidade, produto, fornecedor, usuário, endereço, data prevista de entrega, data de realização do pedido. Com os campos possuem o intuito de possuir as informações necessárias para realização do pedido. 
-
-Ator: Gerente
+Ator:
 
 #### RF14 - Manter despesa
 
