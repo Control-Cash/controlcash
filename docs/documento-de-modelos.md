@@ -90,3 +90,13 @@ A tabela Pagamento guarda informações à respeito do pagamento de uma venda.
 | -------- | --------- | ------- | --------------------- |
 | id       | Identificador unico do pagamento | - | Gerado automaticamente pelo banco de dados |
 | pendente | Define se o pagamento já foi efetivado | - | O valor default é `true` |
+
+#### Tabela FormaPagamento
+
+A tabela FormaPagamento guarda informações à respeito das formas de pagamento
+adotadas nas vendas.
+
+| Atributo | Descrição | Tamanho | Restrições de domínio |
+| -------- | --------- | ------- | --------------------- |
+| id       | Identificador unico da forma de pagameto | - | Gerado automaticamente pelo banco de dados |
+| descricao | Descreve em mais detalhes a forma de pagamento | 250 | Pode ser deixado em branco |
