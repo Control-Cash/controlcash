@@ -4,6 +4,7 @@
 
 ```mermaid
 erDiagram
+  %% tabelas
   Despesa {
     int id PK
     string nome
@@ -38,6 +39,15 @@ erDiagram
     boolean porcentagem
   }
 
+  %% conexões
+  Pagamento }o--|| FormaPagamento : ""
+  FormaPagamento ||--o{ TaxaFormaPagamento : ""
+  Taxa ||--o{ TaxaFormaPagamento : ""
+
+
+
+  %% daqui para baixo são só exemplos, a pessoa que vai implementar essas
+  %% tabelas pode excluir essas linhas para implementar sua própria versão
   PRODUTO {
     int id PK
     int categoria FK
