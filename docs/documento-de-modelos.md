@@ -16,7 +16,7 @@ erDiagram
     int id PK
     int tipo FK "FormaPagamento (id)"
     int venda FK "Venda (id)"
-    boolean relizado
+    boolean pendente
   }
 
   FormaPagamento {
