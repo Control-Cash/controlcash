@@ -82,7 +82,8 @@ ItemVenda {
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
   Taxa ||--o{ TaxaFormaPagamento : ""
-
+  
+   Usuario |{--|{ Endereco : possui
 
 
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
