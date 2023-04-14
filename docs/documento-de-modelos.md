@@ -100,3 +100,12 @@ adotadas nas vendas.
 | -------- | --------- | ------- | --------------------- |
 | id       | Identificador unico da forma de pagameto | - | Gerado automaticamente pelo banco de dados |
 | descricao | Descreve em mais detalhes a forma de pagamento | 250 | Pode ser deixado em branco |
+
+#### Tabela TaxaFormaPagamento
+
+A tabela TaxaFormaPagamento guarda informações à respeito de cada taxa cobrada
+em cada forma de pagamento.
+
+| Atributo | Descrição | Tamanho | Restrições de domínio |
+| -------- | --------- | ------- | --------------------- |
+| id       | Identificador unico da forma de pagameto | - | Gerado automaticamente pelo banco de dados |
