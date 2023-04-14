@@ -48,6 +48,7 @@ erDiagram
     string estado
     string pais
     string cep
+    string complemento
   }
   
   Usuario {
@@ -60,6 +61,13 @@ erDiagram
     int tipo_usuario
     string url_foto_perfil
     int EnderecoUsuario FK "Endereco (IdEndereco)"
+  }
+  
+  Venda {
+    int id PK
+    string dataVenda
+    float valorTotal
+    id usuario FK "Usuario (id)"
   }
  
   %% conexões
@@ -75,6 +83,7 @@ erDiagram
   PRODUTO {
     int id PK
     int categoria FK
+    float preco
   }
 
   CATEGORIA_PRODUTO {
