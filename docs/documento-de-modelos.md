@@ -109,3 +109,15 @@ em cada forma de pagamento.
 | Atributo | Descrição | Tamanho | Restrições de domínio |
 | -------- | --------- | ------- | --------------------- |
 | id       | Identificador unico da taxa de forma de pagameto | - | Gerado automaticamente pelo banco de dados |
+
+#### Taxa
+
+A tabela Taxa guarda informações à respeito das taxas cobradas nas formas de
+pagamento.
+
+| Atributo | Descrição | Tamanho | Restrições de domínio |
+| -------- | --------- | ------- | --------------------- |
+| id       | Identificador unico da taxa | - | Gerado automaticamente pelo banco de dados |
+| descricao | Descreve em mais detalhes a taxa | 250 | Pode ser deixado em branco |
+| valor    | Descreve o valor da taxa | - | Não deve aceitar valor menor ou igual a zero |
+| porcentagem | Define se o valor deve ser considerado como número absoluto ou porcentagem na hora de calcular a dedução de taxas | - | O valor default é `false` |
