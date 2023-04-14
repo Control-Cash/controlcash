@@ -38,7 +38,30 @@ erDiagram
     float valor
     boolean porcentagem
   }
-
+  
+  Endereco 
+  {
+    int IdEndereco PK
+    string rua
+    string bairro
+    string cidade
+    string estado
+    string pais
+    string cep
+  }
+  
+  Usuario {
+    int id PK
+    string nome
+    string senha
+    int idade
+    string dataNascimento
+    string email
+    int tipo_usuario
+    string url_foto_perfil
+    int EnderecoUsuario FK "Endereco (IdEndereco)"
+  }
+ 
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
