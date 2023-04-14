@@ -11,6 +11,13 @@ erDiagram
     boolean periodica
   }
 
+  Pagamento {
+    int id PK
+    int tipo FK "FormaPagamento (id)"
+    int venda FK "Venda (id)"
+    boolean relizado
+  }
+
   PRODUTO {
     int id PK
     int categoria FK
