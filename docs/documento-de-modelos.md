@@ -18,6 +18,12 @@ erDiagram
     boolean relizado
   }
 
+  FormaPagamento {
+    int id PK
+    string nome
+    string descricao
+  }
+
   PRODUTO {
     int id PK
     int categoria FK
