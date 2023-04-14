@@ -81,3 +81,12 @@ pagar.
 | nome     | Descreve o nome da despesa | 150 | - |
 | periodica | Define se aquela despesa se repete mensalmente | - | O valor default é `false` |
 | valor    | Descreve o valor da despesa | - | Não deve aceitar valor menor ou igual a zero |
+
+#### Tabela Pagamento
+
+A tabela Pagamento guarda informações à respeito do pagamento de uma venda.
+
+| Atributo | Descrição | Tamanho | Restrições de domínio |
+| -------- | --------- | ------- | --------------------- |
+| id       | Identificador unico do pagamento | - | Gerado automaticamente pelo banco de dados |
+| pendente | Define se o pagamento já foi efetivado | - | O valor default é `true` |
