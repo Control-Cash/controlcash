@@ -110,7 +110,7 @@ em cada forma de pagamento.
 | -------- | --------- | ------- | --------------------- |
 | id       | Identificador unico da taxa de forma de pagameto | - | Gerado automaticamente pelo banco de dados |
 
-#### Taxa
+#### Tabela Taxa
 
 A tabela Taxa guarda informações à respeito das taxas cobradas nas formas de
 pagamento.
