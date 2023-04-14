@@ -108,4 +108,4 @@ em cada forma de pagamento.
 
 | Atributo | Descrição | Tamanho | Restrições de domínio |
 | -------- | --------- | ------- | --------------------- |
-| id       | Identificador unico da forma de pagameto | - | Gerado automaticamente pelo banco de dados |
+| id       | Identificador unico da taxa de forma de pagameto | - | Gerado automaticamente pelo banco de dados |
