@@ -24,6 +24,12 @@ erDiagram
     string descricao
   }
 
+  TaxaFormaPagamento {
+    int id PK
+    int formaPagamento FK "FormaPagamento (id)"
+    int taxa FK "Taxa (id)"
+  }
+
   Taxa {
     int id PK
     stirng nome
