@@ -46,8 +46,9 @@ erDiagram
 
 
 
-  %% daqui para baixo são só exemplos, a pessoa que vai implementar essas
-  %% tabelas pode excluir essas linhas para implementar sua própria versão
+  %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
+  %% implementar essas tabelas pode excluir essas linhas para implementar sua
+  %% própria versão
   PRODUTO {
     int id PK
     int categoria FK
