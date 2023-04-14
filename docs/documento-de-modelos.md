@@ -4,6 +4,13 @@
 
 ```mermaid
 erDiagram
+  Despesa {
+    int id PK
+    string nome
+    float valor
+    boolean periodica
+  }
+
   PRODUTO {
     int id PK
     int categoria FK
