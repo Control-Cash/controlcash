@@ -69,7 +69,15 @@ erDiagram
     float valorTotal
     id usuario FK "Usuario (id)"
   }
- 
+  
+ItemVenda {
+    int id PK
+    int venda FK "Venda (id)"
+    int produto FK "Produto (id)"
+    int quantidade
+    float valorUnidade
+  } 
+  
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
