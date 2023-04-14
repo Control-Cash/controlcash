@@ -24,6 +24,14 @@ erDiagram
     string descricao
   }
 
+  Taxa {
+    int id PK
+    stirng nome
+    string descricao
+    float valor
+    boolean porcentagem
+  }
+
   PRODUTO {
     int id PK
     int categoria FK
