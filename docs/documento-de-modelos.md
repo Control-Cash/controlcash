@@ -108,7 +108,7 @@ ItemVenda {
     boolean status
   }
 
-  PRODUTO ||--o{ CATEGORIA_PRODUTO : ""
+  Produto ||--o{ CATEGORIA_PRODUTO : ""
   CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
 ```
 
