@@ -55,7 +55,7 @@ erDiagram
     int id PK
     string nome
     string senha
-    string dataNascimento
+    date dataNascimento
     string email
     int tipoUsuario
     string urlFotoPerfil
