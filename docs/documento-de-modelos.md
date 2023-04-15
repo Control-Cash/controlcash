@@ -86,7 +86,7 @@ ItemVenda {
    Usuario |{--|{ Endereco : ""
    Venda ||--|{ ItemVenda : ""
    Produto ||--|| ItemVenda: ""
-   Usuario ||--o{ Venda:
+   Usuario ||--o{ Venda: ""
 
 
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
