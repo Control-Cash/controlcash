@@ -58,8 +58,8 @@ erDiagram
     int idade
     string dataNascimento
     string email
-    int tipo_usuario
-    string url_foto_perfil
+    int tipoUsuario
+    string urlFotoPerfil
     int EnderecoUsuario FK "Endereco (IdEndereco)"
   }
   
