@@ -38,20 +38,63 @@ erDiagram
     float valor
     boolean porcentagem
   }
-
+  
+  Endereco 
+  {
+    int IdEndereco PK
+    string rua
+    string bairro
+    string cidade
+    string estado
+    string pais
+    string cep
+    string complemento
+  }
+  
+  Usuario {
+    int id PK
+    string nome
+    string senha
+    date dataNascimento
+    string email
+    int tipoUsuario
+    string urlFotoPerfil
+    int EnderecoUsuario FK "Endereco (IdEndereco)"
+  }
+  
+  Venda {
+    int id PK
+    date dataVenda
+    float valorTotal
+    id usuario FK "Usuario (id)"
+  }
+  
+ItemVenda {
+    int id PK
+    int venda FK "Venda (id)"
+    int produto FK "Produto (id)"
+    int quantidade
+    float valorUnidade
+  } 
+  
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
   Taxa ||--o{ TaxaFormaPagamento : ""
-
+  
+   Usuario }|--|{ Endereco : ""
+   Venda ||--|{ ItemVenda : ""
+   Produto ||--|| ItemVenda: ""
+   Usuario ||--o{ Venda: ""
 
 
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-  PRODUTO {
+  Produto {
     int id PK
     int categoria FK
+    float preco
   }
 
   CATEGORIA_PRODUTO {
@@ -64,7 +107,7 @@ erDiagram
     boolean status
   }
 
-  PRODUTO ||--o{ CATEGORIA_PRODUTO : ""
+  Produto ||--o{ CATEGORIA_PRODUTO : ""
   CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
 ```
 
