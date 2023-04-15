@@ -55,7 +55,6 @@ erDiagram
     int id PK
     string nome
     string senha
-    int idade
     string dataNascimento
     string email
     int tipoUsuario
@@ -65,7 +64,7 @@ erDiagram
   
   Venda {
     int id PK
-    string dataVenda
+    date dataVenda
     float valorTotal
     id usuario FK "Usuario (id)"
   }
@@ -83,7 +82,7 @@ ItemVenda {
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
   Taxa ||--o{ TaxaFormaPagamento : ""
   
-   Usuario |{--|{ Endereco : ""
+   Usuario }|--|{ Endereco : ""
    Venda ||--|{ ItemVenda : ""
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
