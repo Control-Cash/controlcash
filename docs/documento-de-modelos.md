@@ -117,8 +117,6 @@ Categoria {
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
 
-  Produto ||--o{ CATEGORIA_PRODUTO : ""
-  CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
 ```
 
 ### Dicionário de dados
