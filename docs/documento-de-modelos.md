@@ -107,6 +107,11 @@ Categoria {
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
 
+  CategoriaProduto ||--| Produto: ""
+  Produto ||--o{ ItemVenda: ""
+  Produto ||--||{ pedido: ""
+  Categoria ||--o{ CategoriaProduto: ""
+
 
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
