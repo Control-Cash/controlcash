@@ -28,11 +28,12 @@ Descrição:
 
 ## US02 - Pesquisar produto
 
-Descrição:
+Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu nome ou código para obter informações detalhadas sobre o produto, como preço, quantidade em estoque e categoria, para que possa selecionar o produto certo e realizar compras de forma eficiente.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF03                  | Manter produto    |
+| RF04                  | Pesquisar produto    |
 
 |                    |     |
 | ------------------ | --- |
