@@ -91,7 +91,12 @@ CategoriaProduto {
   int produto FK "Produto (id)"
   int categoria FK "Categoria (id)"
 }
-  
+
+Categoria {
+  int id PK
+  string nome
+  boolean status
+}
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
@@ -106,11 +111,6 @@ CategoriaProduto {
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-
-  CATEGORIA {
-    int id PK
-    boolean status
-  }
 
   Produto ||--o{ CATEGORIA_PRODUTO : ""
   CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
