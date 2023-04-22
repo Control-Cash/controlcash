@@ -76,6 +76,16 @@ ItemVenda {
     int quantidade
     float valorUnidade
   } 
+
+Produto {
+  int id PK
+  int categoria FK "Categoria (id)"
+  float precoVenda
+  string nome
+  string descricao
+  int quantidadeEstoque
+  date dataRegistro
+}
   
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
@@ -91,11 +101,7 @@ ItemVenda {
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-  Produto {
-    int id PK
-    int categoria FK
-    float preco
-  }
+  
 
   CATEGORIA_PRODUTO {
     int produto PK, FK
