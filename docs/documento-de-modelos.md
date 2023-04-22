@@ -86,6 +86,11 @@ Produto {
   int quantidadeEstoque
   date dataRegistro
 }
+
+CategoriaProduto {
+  int produto FK "Produto (id)"
+  int categoria FK "Categoria (id)"
+}
   
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
@@ -101,12 +106,6 @@ Produto {
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-  
-
-  CATEGORIA_PRODUTO {
-    int produto PK, FK
-    int categoria PK, FK
-  }
 
   CATEGORIA {
     int id PK
