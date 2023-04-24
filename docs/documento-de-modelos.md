@@ -109,6 +109,14 @@ ItemVenda {
 
   Produto ||--o{ CATEGORIA_PRODUTO : ""
   CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
+
+
+  Cliente {
+    int id PK
+    string nome
+    string email
+    int EnderecoCliente FK "Endereco (IdEndereco)"
+  }
 ```
 
 ### Dicionário de dados
