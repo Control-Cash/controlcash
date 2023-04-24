@@ -130,6 +130,11 @@ ItemVenda {
     int cliente FK "Cliente (id)"
   }
 
+  TelefoneUsuario {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int usuario FK "Usuario (id)"
+  }
   
 ```
 
