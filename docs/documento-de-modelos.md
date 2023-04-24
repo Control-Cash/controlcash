@@ -123,6 +123,14 @@ ItemVenda {
     string numero
     string tipo
   }
+
+  TelefoneCliente {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int cliente FK "Cliente (id)"
+  }
+
+  
 ```
 
 ### Dicionário de dados
