@@ -135,6 +135,11 @@ ItemVenda {
     int telefone FK "Telefone (id)"
     int usuario FK "Usuario (id)"
   }
+
+  Cliente ||--o{ TelefoneCliente : ""
+  Telefone ||--o{ TelefoneCliente : ""
+  Cliente ||--o{ TelefoneUsuario : ""
+  Telefone ||--o{ TelefoneUsuario : ""
   
 ```
 
