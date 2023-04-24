@@ -117,6 +117,12 @@ ItemVenda {
     string email
     int EnderecoCliente FK "Endereco (IdEndereco)"
   }
+
+  Telefone {
+    int id PK
+    string numero
+    string tipo
+  }
 ```
 
 ### Dicionário de dados
