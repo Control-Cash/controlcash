@@ -108,8 +108,7 @@ Categoria {
    Usuario ||--o{ Venda: ""
 
   CategoriaProduto ||--| Produto: ""
-  Produto ||--o{ ItemVenda: ""
-  Produto ||--||{ pedido: ""
+  Produto ||--o{ Categoria: ""
   Categoria ||--o{ CategoriaProduto: ""
 
 
