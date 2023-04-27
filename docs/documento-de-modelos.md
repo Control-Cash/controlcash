@@ -106,20 +106,13 @@ Categoria {
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
 
-    CategoriaProduto }|--|| Produto: ""
-    CategoriaProduto }o--|| Categoria: ""
+   CategoriaProduto }|--|| Produto: ""
+   CategoriaProduto }o--|| Categoria: ""
     
- 
-  
-
-
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
 
-
-  Produto ||--o{ CATEGORIA_PRODUTO : ""
-  CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
 
   Cliente {
     int id PK
