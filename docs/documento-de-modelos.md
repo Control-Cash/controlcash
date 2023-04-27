@@ -109,6 +109,38 @@ ItemVenda {
 
   Produto ||--o{ CATEGORIA_PRODUTO : ""
   CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
+
+
+  Cliente {
+    int id PK
+    string nome
+    string email
+    int EnderecoCliente FK "Endereco (IdEndereco)"
+  }
+
+  Telefone {
+    int id PK
+    string numero
+    string tipo
+  }
+
+  TelefoneCliente {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int cliente FK "Cliente (id)"
+  }
+
+  TelefoneUsuario {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int usuario FK "Usuario (id)"
+  }
+
+  Cliente ||--o{ TelefoneCliente : ""
+  Telefone ||--o{ TelefoneCliente : ""
+  Cliente ||--o{ TelefoneUsuario : ""
+  Telefone ||--o{ TelefoneUsuario : ""
+  
 ```
 
 ### Dicionário de dados
