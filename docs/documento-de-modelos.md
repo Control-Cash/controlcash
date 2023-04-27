@@ -81,12 +81,14 @@ ItemVenda {
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
   Taxa ||--o{ TaxaFormaPagamento : ""
   
-   Usuario }|--|{ Endereco : ""
+   Usuario ||--|| Endereco : ""
    Venda ||--|{ ItemVenda : ""
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
 
 
+   
+  
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
