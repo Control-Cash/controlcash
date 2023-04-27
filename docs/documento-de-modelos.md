@@ -79,7 +79,6 @@ ItemVenda {
 
 Produto {
   int id PK
-  int categoria FK "Categoria (id)"
   float precoVenda
   string nome
   string descricao
