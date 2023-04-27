@@ -87,8 +87,8 @@ Produto {
 }
 
 CategoriaProduto {
-  int produto FK "Produto (id)"
-  int categoria FK "Categoria (id)"
+  int produto PK FK "Produto (id)"
+  int categoria PK FK "Categoria (id)"
 }
 
 Categoria {
