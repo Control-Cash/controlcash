@@ -59,7 +59,7 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 
 ## US03 - Manter venda
 
-Descrição:
+Descrição: O sistema deve permitir o registro de  vendas. Manter vendas contém os seguintes atributos: data, hora, cliente, itens de venda, valor total, pagamento e status.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
