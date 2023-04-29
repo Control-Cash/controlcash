@@ -59,6 +59,7 @@ erDiagram
     string email
     int tipoUsuario
     string urlFotoPerfil
+    int EnderecoUsuario FK "Endereco (IdEndereco)"
   }
   
   Venda {
@@ -105,15 +106,9 @@ Categoria {
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
 
-
-
-   
-  
-=======
    CategoriaProduto }|--|| Produto: ""
    CategoriaProduto }o--|| Categoria: ""
     
-
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
@@ -123,6 +118,7 @@ Categoria {
     int id PK
     string nome
     string email
+    int EnderecoCliente FK "Endereco (IdEndereco)"
   }
 
   Telefone {
@@ -142,17 +138,6 @@ Categoria {
     int telefone FK "Telefone (id)"
     int usuario FK "Usuario (id)"
   }
-  
-  EnderecoUsuario {
-    int idEnderecoUsuario PK, FK "Endereco (IdEndereco)"
-    int idEndereco PK, FK "Endereco (IdEndereco)"
-  }
-  
-  EnderecoCliente {
-    int idEnderecoCliente PK, FK "Endereco (IdEndereco)"
-    int idEndereco PK, FK "Endereco (IdEndereco)"
-  }
-   
 
   Cliente ||--o{ TelefoneCliente : ""
   Telefone ||--o{ TelefoneCliente : ""
