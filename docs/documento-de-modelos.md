@@ -76,6 +76,13 @@ ItemVenda {
     int quantidade
     float valorUnidade
   } 
+
+Funcionario{
+  int id PK
+  string nome
+  string email
+  int endereco FK "EnderecoFuncionario (id)"
+}
   
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
