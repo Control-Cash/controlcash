@@ -77,11 +77,11 @@ ItemVenda {
     float valorUnidade
   } 
 
-Funcionario{
+Fornecedor{
   int id PK
   string nome
   string email
-  int endereco FK "EnderecoFuncionario (id)"
+  int endereco FK "EnderecoFornecedor (id)"
 }
   
   %% conexões
