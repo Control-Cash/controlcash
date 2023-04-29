@@ -101,7 +101,7 @@ Categoria {
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
   Taxa ||--o{ TaxaFormaPagamento : ""
   
-   Usuario }|--|{ Endereco : ""
+   Usuario ||--|| Endereco : ""
    Venda ||--|{ ItemVenda : ""
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
