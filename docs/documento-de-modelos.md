@@ -75,7 +75,26 @@ ItemVenda {
     int quantidade
     float valorUnidade
   } 
-  
+
+Produto {
+  int id PK
+  float precoVenda
+  string nome
+  string descricao
+  int quantidadeEstoque
+  date dataRegistro
+}
+
+CategoriaProduto {
+  int produto PK, FK "Produto (id)"
+  int categoria PK, FK "Categoria (id)"
+}
+
+Categoria {
+  int id PK
+  string nome
+  boolean status
+}
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
   FormaPagamento ||--o{ TaxaFormaPagamento : ""
@@ -87,29 +106,17 @@ ItemVenda {
    Usuario ||--o{ Venda: ""
 
 
+
    
   
+=======
+   CategoriaProduto }|--|| Produto: ""
+   CategoriaProduto }o--|| Categoria: ""
+    
+
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-  Produto {
-    int id PK
-    int categoria FK
-    float preco
-  }
-
-  CATEGORIA_PRODUTO {
-    int produto PK, FK
-    int categoria PK, FK
-  }
-
-  CATEGORIA {
-    int id PK
-    boolean status
-  }
-
-  Produto ||--o{ CATEGORIA_PRODUTO : ""
-  CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
 
 
   Cliente {
