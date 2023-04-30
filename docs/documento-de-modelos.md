@@ -83,6 +83,17 @@ Fornecedor{
   string email
   int endereco FK "EnderecoFornecedor (id)"
 }
+
+EnderecoFornecedor{
+  int IdEndereco PK
+  string rua
+  string bairro
+  string cidade
+  string estado
+  string pais
+  string cep
+  string complemento
+}
   
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
