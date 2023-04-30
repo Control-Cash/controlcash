@@ -84,6 +84,12 @@ Fornecedor{
   int endereco FK "EnderecoFornecedor (id)"
 }
 
+TelefoneFornecedor{
+  int id PK
+  int telefone FK "Telefone (id)"
+  int fornecedor FK "Fornecedor (id)"
+}
+
 EnderecoFornecedor{
   int IdEndereco PK
   string rua
