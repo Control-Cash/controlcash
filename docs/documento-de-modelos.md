@@ -94,6 +94,16 @@ EnderecoFornecedor{
   string cep
   string complemento
 }
+
+Pedido{
+  int id PK
+  int quantidade
+  int produto FK "Produto (id)"
+  int usuario FK "Usuario (id)"
+  int fornecedor FK "Fornecedor (id)"
+  data data_entrega
+  data data_pedido 
+}
   
   %% conexões
   Pagamento }o--|| FormaPagamento : ""
