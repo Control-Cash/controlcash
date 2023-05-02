@@ -105,7 +105,7 @@ Descrição:
 
 ## US05 - Manter forma de pagamento
 
-Descrição:
+Descrição: O sistema deve ser capaz de 
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
@@ -113,13 +113,13 @@ Descrição:
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
-| Tempo gasto (real) |     |
-| Tamanho funcional  |     |
-| Analista           |     |
+| Prioridade         |  essencial   |
+| Tempo gasto (real) |  -   |
+| Tamanho funcional  |  -   |
+| Analista           | Guilherme Angelo de Medeiros |
 | Desenvolvedor      |     |
-| Revisor            |     |
-| Testador           |     |
+| Revisor            |  -  |
+| Testador           |  -  |
 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
