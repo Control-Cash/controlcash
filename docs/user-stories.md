@@ -82,26 +82,31 @@ Descrição:
 
 ## US04 - Manter item de venda
 
-Descrição:
+Descrição: O sistema deverá permitir ao vendedor adicionar, editar ou remover um item de venda em uma venda. Cada item deve ter informações como produto, quantidade, e preço unitário.
 
-| Requisitos envolvidos |     |
-| --------------------- | --- |
-|                       |     |
+| Requisitos envolvidos |                   |
+| --------------------- | ----------------- |
+| RF02                  | Manter venda      |
+| RF03                  | Manter produto    |
 
-|                    |     |
-| ------------------ | --- |
-| Prioridade         |     |
-| Tempo gasto (real) |     |
-| Tamanho funcional  |     |
-| Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
-| Testador           |     |
+|                    |                 |
+| ------------------ | --------------- |
+| Prioridade         | Média           |
+| Tempo gasto (real) | Não iniciado    |
+| Tamanho funcional  | -               |
+| Analista           | Cíntia          |
+| Desenvolvedor      | -               |
+| Revisor            | -               |
+| Testador           | -               |
 
-| Testes de aceitação (TA) |           |
-| ------------------------ | --------- |
-| Código                   | Descrição |
-|                          |           |
+| Testes de aceitação (TA) |                                                  |
+| ------------------------ | ------------------------------------------------ |
+| Código                   | Descrição                                        |
+| TA04.01                  | O vendedor pode adicionar um item de venda com informações de produto, quantidade e preço unitário. |
+| TA04.02                  | O vendedor pode editar as informações de um item de venda já existente, incluindo produto, quantidade e preço unitário. |
+| TA04.03                  | O vendedor pode remover um item de venda existente. |
+| TA04.04                  | O sistema verifica a disponibilidade em estoque do produto adicionado ou editado pelo vendedor. |
+| TA04.05                  | O sistema atualiza o valor total da venda quando um ítem é adicionado ou editado. |
 
 ## US05 - Manter forma de pagamento
 
