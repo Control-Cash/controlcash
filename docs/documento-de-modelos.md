@@ -110,16 +110,31 @@ Pedido{
   data data_entrega
   data data_pedido 
 }
-  
+
+Produto {
+  int id PK
+  float precoVenda
+  string nome
+  string descricao
+  int quantidadeEstoque
+  date dataRegistro
+}
+
+CategoriaProduto {
+  int produto PK, FK "Produto (id)"
+  int categoria PK, FK "Categoria (id)"
+}
+
+Categoria {
+  int id PK
+  string nome
+  boolean status
+}
+
   %% conexões
   Pagamento }o--|| FormaPagamento: ""
   FormaPagamento ||--o{ TaxaFormaPagamento: ""
   Taxa ||--o{ TaxaFormaPagamento: ""
-  
-   Usuario }|--|{ Endereco: ""
-   Venda ||--|{ ItemVenda: ""
-   Produto ||--|| ItemVenda: ""
-   Usuario ||--o{ Venda: ""
 
    Pedido ||--o{ Produto: ""
    Pedido ||--|| Usuario: ""
@@ -127,29 +142,49 @@ Pedido{
 
    Fornecedor ||--|| TelefoneFornecedor: ""
    Telefone ||--o{ TelefoneFornecedor: ""
-   
+   Usuario ||--|| Endereco : ""
+   Venda ||--|{ ItemVenda : ""
+   Produto ||--|| ItemVenda: ""
+   Usuario ||--o{ Venda: ""
 
+   CategoriaProduto }|--|| Produto: ""
+   CategoriaProduto }o--|| Categoria: ""
+   
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
   %% própria versão
-  Produto {
+
+
+  Cliente {
     int id PK
-    int categoria FK
-    float preco
+    string nome
+    string email
+    int EnderecoCliente FK "Endereco (IdEndereco)"
   }
 
-  CATEGORIA_PRODUTO {
-    int produto PK, FK
-    int categoria PK, FK
-  }
-
-  CATEGORIA {
+  Telefone {
     int id PK
-    boolean status
+    string numero
+    string tipo
   }
 
-  Produto ||--o{ CATEGORIA_PRODUTO : ""
-  CATEGORIA ||--o{ CATEGORIA_PRODUTO : ""
+  TelefoneCliente {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int cliente FK "Cliente (id)"
+  }
+
+  TelefoneUsuario {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int usuario FK "Usuario (id)"
+  }
+
+  Cliente ||--o{ TelefoneCliente : ""
+  Telefone ||--o{ TelefoneCliente : ""
+  Cliente ||--o{ TelefoneUsuario : ""
+  Telefone ||--o{ TelefoneUsuario : ""
+  
 ```
 
 ### Dicionário de dados
