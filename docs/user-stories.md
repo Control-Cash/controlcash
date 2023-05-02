@@ -105,11 +105,12 @@ Descrição:
 
 ## US05 - Manter forma de pagamento
 
-Descrição: O sistema deve ser capaz de 
+Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas pelo comércio. Permitindo a inclusão, atualização e a remoção de tais formas de pagamento. Por exemplo pix, cartões de crédito e débito, boleto bancário, etc. Uma forma de pagamento deve possuir um id, nome e descrição e taxas(se houver). O responsável por realizar as operações deve ser o perfil administrador.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF02                  |     |
+| RF06                  |     |
 
 |                    |     |
 | ------------------ | --- |
