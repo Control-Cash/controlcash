@@ -102,6 +102,7 @@ Categoria {
   Taxa ||--o{ TaxaFormaPagamento : ""
   
    Usuario ||--|| Endereco : ""
+   Cliente ||--|| Endereco : ""
    Venda ||--|{ ItemVenda : ""
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
@@ -141,7 +142,7 @@ Categoria {
 
   Cliente ||--o{ TelefoneCliente : ""
   Telefone ||--o{ TelefoneCliente : ""
-  Cliente ||--o{ TelefoneUsuario : ""
+  Usuario ||--o{ TelefoneUsuario : ""
   Telefone ||--o{ TelefoneUsuario : ""
   
 ```
