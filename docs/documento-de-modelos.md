@@ -112,15 +112,22 @@ Pedido{
 }
   
   %% conexões
-  Pagamento }o--|| FormaPagamento : ""
-  FormaPagamento ||--o{ TaxaFormaPagamento : ""
-  Taxa ||--o{ TaxaFormaPagamento : ""
+  Pagamento }o--|| FormaPagamento: ""
+  FormaPagamento ||--o{ TaxaFormaPagamento: ""
+  Taxa ||--o{ TaxaFormaPagamento: ""
   
-   Usuario }|--|{ Endereco : ""
-   Venda ||--|{ ItemVenda : ""
+   Usuario }|--|{ Endereco: ""
+   Venda ||--|{ ItemVenda: ""
    Produto ||--|| ItemVenda: ""
    Usuario ||--o{ Venda: ""
 
+   Pedido ||--o{ Produto: ""
+   Pedido ||--|| Usuario: ""
+   Pedido ||--o{ Fornecedor: ""
+
+   Fornecedor ||--|| TelefoneFornecedor: ""
+   Telefone ||--o{ TelefoneFornecedor: ""
+   
 
   %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
   %% implementar essas tabelas pode excluir essas linhas para implementar sua
