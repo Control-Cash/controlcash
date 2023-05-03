@@ -130,13 +130,13 @@ número de telefone e o tipo de telefone.
 
 Ator: Gerente, Vendedor, Administrador financeiro
 
-#### RF11 - Manter endereço
+#### RF11 - Cadastrar endereço
 
 Descrição: O sistema deve permitir que informações associadas ao endereço dos
-usuários possam ser inseridas, atualizadas, editadas ou excluidas. Isso inclui
-campos para inserir o nome da rua, número da residência, complemento, bairro,
-cidade, estado e CEP. Os endereços registrados devem ser possíveis de
-recuperação.
+usuários e outras entidades possam ser inseridas. Isso inclui campos para
+inserir o nome da rua, número da residência, complemento, bairro, cidade, estado
+e CEP. Usuário vendedor pode cadastrar endereços apenas de clientes. Usuário
+gerente pode cadastrar endereços para qualquer entidade que suporte.
 
 Ator: Gerente, Vendedor
 
@@ -346,6 +346,29 @@ telefones relacionados as outras entidades. Os usuários podem editar seus
 próprios telefones. O usuário gerente pode editar qualquer telefone.
 
 Ator: Gerente, Vendedor, Administrador financeiro
+
+#### RF39 - Visualizar endereço
+
+Descrição: O sistema deve permitir que informações associadas ao endereço possam
+ser recuperadas para visualização. Isso inclui os campos nome da rua, número da
+residência, complemento, bairro, cidade, estado e CEP.
+
+Ator: Gerente, Vendedor
+
+#### RF40 - Editar endereço
+
+Descrição: O sistema deve permitir que informações associadas ao endereço possam
+ser editadas. Isso inclui campos para atualizar o nome da rua, número da
+residência, complemento, bairro, cidade, estado e CEP.
+
+Ator: Gerente, Vendedor
+
+#### RF41 - Excluir endereço
+
+Descrição: O sistema deve permitir que informações associadas ao endereço possam
+ser excluidas.
+
+Ator: Gerente, Vendedor
 
 ### Requisitos não funcionais
 
