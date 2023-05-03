@@ -66,7 +66,8 @@ erDiagram
     int id PK
     date dataVenda
     float valorTotal
-    id usuario FK "Usuario (id)"
+    int vendedor FK "Usuario (id)"
+    int cliente FK "Cliente (id)"
   }
   
   ItemVenda {
@@ -155,7 +156,9 @@ erDiagram
   FormaPagamento ||--o{ TaxaFormaPagamento: ""
   Taxa ||--o{ TaxaFormaPagamento: ""
 
-  Pagamento ||--|| Venda : ""
+  Pagamento ||--|| Venda: ""
+
+  Venda }o--|| Cliente: ""
 
   Pedido ||--o{ Produto: ""
   Pedido ||--|| Usuario: ""
