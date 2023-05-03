@@ -88,12 +88,12 @@ venda. Cada item deve ter informações como produto, quantidade, e preço unit�
 
 Ator: Vendedor
 
-#### RF06 - Manter pagamento de venda
+#### RF06 - Cadastrar pagamento de venda
 
-Descrição: O sistema deve permitir ao perfil de vendedor registrar e gerenciar o
-pagamento de uma venda. O perfil de vendedor deve selecionar o tipo de pagamento
-(dinheiro, cartão de crédito, cartão de débito, etc.) e confirmar o pagamento
-recebido. O sistema deve calcular o troco em caso de pagamento em dinheiro.
+Descrição: O sistema deve permitir o registro do pagamento de uma venda. O
+perfil de vendedor deve selecionar o tipo de pagamento (dinheiro, cartão de
+crédito, cartão de débito, etc.) e confirmar o pagamento recebido. O sistema
+deve calcular o troco em caso de pagamento em dinheiro.
 
 Ator: Vendedor
 
@@ -281,6 +281,13 @@ Ator: Vendedor
 Descrição: O sistema deve permitir que o vendedor remova itens de uma venda.
 
 Ator: Vendedor
+
+#### RF30 - Visualizar pagamento de venda
+
+Descrição: O sistema deve permitir a visualização dos dados de pagamento de uma
+venda.
+
+Ator: Vendedor, Gerente, Administrador financeiro
 
 ### Requisitos não funcionais
 
