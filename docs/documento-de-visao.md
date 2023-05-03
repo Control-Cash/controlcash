@@ -49,15 +49,11 @@ Este usuário terá acesso ao controle de pagamentos e manter despesas.
 
 ### Requisitos funcionais
 
-#### RF01 - Manter usuário
+#### RF01 - Cadastrar usuário
 
-Descrição: O sistema deve permitir o cadastro, listagem, visualização e edição
-de novos usuários no sistema. Um usuário tem CPF, nome completo, email, data de
-nascimento, endereço, salário, telefone, cargo, senha e status. Na listagem
-apenas o CPF, nome completo, cargo e status são exibidos. Na visualização de
-detalhes todos os atributos são exibidos, exceto senha. A edição de todos os
-dados é permitida, mas para alteração de senha, salário ou status o gerente
-deve fornecer sua própria senha para confirmar a ação.
+Descrição: O sistema deve permitir o cadastro de novos usuários no sistema. Um
+usuário tem CPF, nome completo, email, data de nascimento, endereço, salário,
+telefone, cargo, senha e status.
 
 Ator: Gerente
 
@@ -200,6 +196,29 @@ Ator: Gerente
 
 Descrição: O sistema contará com um dashboard de estoque onde serão exibidos os
 produtos com estoque baixo
+
+Ator: Gerente
+
+#### RF18 - Listar usuários
+
+Descrição: O sistema deve permitir a listagem dos usuáios cadastrados. Na
+listagem apenas o CPF, nome completo, cargo e status são exibidos.
+
+Ator: Gerente
+
+#### RF19 - Visualizar usuário
+
+Descrição: O sistema deve permitir a exibição das informações de um usuário do
+sistema. Na visualização de detalhes todos os atributos são exibidos, exceto
+senha.
+
+Ator: Gerente
+
+#### RF20 - Editar usuário
+
+Descrição: O sistema deve permitir a edição dos dados dos usuários. A edição de
+todos os dados é permitida, mas para alteração de senha, salário ou status o
+gerente deve fornecer sua própria senha para confirmar a ação.
 
 Ator: Gerente
 
