@@ -166,10 +166,10 @@ despesa tem nome, valor e se a despesa é periódica.
 
 Ator: Administrador financeiro, Gerente.
 
-#### RF15 - Manter categoria de produto
+#### RF15 - Cadastrar categoria de produto
 
-Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
-excluir categorias de produtos. A categoria possui nome e status.
+Descrição: O sistema deve permitir ao usuário cadastrar categorias de produtos.
+A categoria possui nome e status.
 
 Ator: Gerente.
 
@@ -444,6 +444,24 @@ Ator: Administrador financeiro, Gerente.
 Descrição: O sistema deve permitir ao usuário excluir despesas.
 
 Ator: Administrador financeiro, Gerente.
+
+#### RF53 - Listar categorias de produto
+
+Descrição: O sistema deve permitir ao usuário listar categorias de produtos.
+
+Ator: Gerente.
+
+#### RF54 - Editar categoria de produto
+
+Descrição: O sistema deve permitir ao usuário editar o nome e o status de uma
+categoria.
+
+Ator: Gerente.
+
+#### RF55 - Excluir categoria de produto
+
+Descrição: O sistema deve permitir ao usuário excluir categorias de produtos.
+Ator: Gerente.
 
 ### Requisitos não funcionais
 
