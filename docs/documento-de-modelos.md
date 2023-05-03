@@ -69,7 +69,7 @@ erDiagram
     id usuario FK "Usuario (id)"
   }
   
-ItemVenda {
+  ItemVenda {
     int id PK
     int venda FK "Venda (id)"
     int produto FK "Produto (id)"
@@ -77,53 +77,54 @@ ItemVenda {
     float valorUnidade
   } 
 
-Fornecedor{
-  int id PK
-  string nome
-  string email
-  int endereco FK "EnderecoFornecedor (id)"
-}
+  Fornecedor {
+    int id PK
+    string nome
+    string email
+    int endereco FK "EnderecoFornecedor (id)"
+  }
 
-TelefoneFornecedor{
-  int id PK
-  int telefone FK "Telefone (id)"
-  int fornecedor FK "Fornecedor (id)"
-}
+  TelefoneFornecedor {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int fornecedor FK "Fornecedor (id)"
+  }
 
-EnderecoFornecedor {
-  int endereco PK, FK "Endereco (id)"
-  int fornecedor PK, FK "Fornecedor (id)"
-}
+  EnderecoFornecedor {
+    int endereco PK, FK "Endereco (id)"
+    int fornecedor PK, FK "Fornecedor (id)"
+  }
 
-Pedido{
-  int id PK
-  int quantidade
-  int produto FK "Produto (id)"
-  int usuario FK "Usuario (id)"
-  int fornecedor FK "Fornecedor (id)"
-  data data_entrega
-  data data_pedido 
-}
+  Pedido {
+    int id PK
+    int quantidade
+    int produto FK "Produto (id)"
+    int usuario FK "Usuario (id)"
+    int fornecedor FK "Fornecedor (id)"
+    data data_entrega
+    data data_pedido 
+  }
 
-Produto {
-  int id PK
-  float precoVenda
-  string nome
-  string descricao
-  int quantidadeEstoque
-  date dataRegistro
-}
+  Produto {
+    int id PK
+    float precoVenda
+    string nome
+    string descricao
+    int quantidadeEstoque
+    date dataRegistro
+  }
 
-CategoriaProduto {
-  int produto PK, FK "Produto (id)"
-  int categoria PK, FK "Categoria (id)"
-}
+  CategoriaProduto {
+    int produto PK, FK "Produto (id)"
+    int categoria PK, FK "Categoria (id)"
+  }
 
-Categoria {
-  int id PK
-  string nome
-  boolean status
-}
+  Categoria {
+    int id PK
+    string nome
+    boolean status
+  }
+
   Cliente {
     int id PK
     string nome
@@ -154,31 +155,29 @@ Categoria {
   FormaPagamento ||--o{ TaxaFormaPagamento: ""
   Taxa ||--o{ TaxaFormaPagamento: ""
 
-   Pedido ||--o{ Produto: ""
-   Pedido ||--|| Usuario: ""
-   Pedido ||--o{ Fornecedor: ""
+  Pedido ||--o{ Produto: ""
+  Pedido ||--|| Usuario: ""
+  Pedido ||--o{ Fornecedor: ""
 
-   Fornecedor ||--|| TelefoneFornecedor: ""
-   Telefone ||--o{ TelefoneFornecedor: ""
+  Fornecedor ||--|| TelefoneFornecedor: ""
+  Telefone ||--o{ TelefoneFornecedor: ""
 
-   Fornecedor ||--|{ EnderecoFornecedor: ""
-   Endereco ||--o{ EnderecoFornecedor: ""
+  Fornecedor ||--|{ EnderecoFornecedor: ""
+  Endereco ||--o{ EnderecoFornecedor: ""
 
-   Usuario ||--|| Endereco : ""
-   Cliente ||--|| Endereco : ""
-   Venda ||--|{ ItemVenda : ""
-   Produto ||--|| ItemVenda: ""
-   Usuario ||--o{ Venda: ""
+  Usuario ||--|| Endereco : ""
+  Cliente ||--|| Endereco : ""
+  Venda ||--|{ ItemVenda : ""
+  Produto ||--|| ItemVenda: ""
+  Usuario ||--o{ Venda: ""
 
-   CategoriaProduto }|--|| Produto: ""
-   CategoriaProduto }o--|| Categoria: ""
-
+  CategoriaProduto }|--|| Produto: ""
+  CategoriaProduto }o--|| Categoria: ""
 
   Cliente ||--o{ TelefoneCliente : ""
   Telefone ||--o{ TelefoneCliente : ""
   Usuario ||--o{ TelefoneUsuario : ""
   Telefone ||--o{ TelefoneUsuario : ""
-  
 ```
 
 ### Dicionário de dados
