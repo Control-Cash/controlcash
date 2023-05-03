@@ -90,15 +90,9 @@ TelefoneFornecedor{
   int fornecedor FK "Fornecedor (id)"
 }
 
-EnderecoFornecedor{
-  int IdEndereco PK
-  string rua
-  string bairro
-  string cidade
-  string estado
-  string pais
-  string cep
-  string complemento
+EnderecoFornecedor {
+  int endereco PK, FK "Endereco (id)"
+  int fornecedor PK, FK "Fornecedor (id)"
 }
 
 Pedido{
@@ -130,32 +124,6 @@ Categoria {
   string nome
   boolean status
 }
-
-  %% conexões
-  Pagamento }o--|| FormaPagamento: ""
-  FormaPagamento ||--o{ TaxaFormaPagamento: ""
-  Taxa ||--o{ TaxaFormaPagamento: ""
-
-   Pedido ||--o{ Produto: ""
-   Pedido ||--|| Usuario: ""
-   Pedido ||--o{ Fornecedor: ""
-
-   Fornecedor ||--|| TelefoneFornecedor: ""
-   Telefone ||--o{ TelefoneFornecedor: ""
-   Usuario ||--|| Endereco : ""
-   Cliente ||--|| Endereco : ""
-   Venda ||--|{ ItemVenda : ""
-   Produto ||--|| ItemVenda: ""
-   Usuario ||--o{ Venda: ""
-
-   CategoriaProduto }|--|| Produto: ""
-   CategoriaProduto }o--|| Categoria: ""
-   
-  %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
-  %% implementar essas tabelas pode excluir essas linhas para implementar sua
-  %% própria versão
-
-
   Cliente {
     int id PK
     string nome
@@ -180,6 +148,31 @@ Categoria {
     int telefone FK "Telefone (id)"
     int usuario FK "Usuario (id)"
   }
+
+  %% conexões
+  Pagamento }o--|| FormaPagamento: ""
+  FormaPagamento ||--o{ TaxaFormaPagamento: ""
+  Taxa ||--o{ TaxaFormaPagamento: ""
+
+   Pedido ||--o{ Produto: ""
+   Pedido ||--|| Usuario: ""
+   Pedido ||--o{ Fornecedor: ""
+
+   Fornecedor ||--|| TelefoneFornecedor: ""
+   Telefone ||--o{ TelefoneFornecedor: ""
+
+   Fornecedor ||--|{ EnderecoFornecedor: ""
+   Endereco ||--o{ EnderecoFornecedor: ""
+
+   Usuario ||--|| Endereco : ""
+   Cliente ||--|| Endereco : ""
+   Venda ||--|{ ItemVenda : ""
+   Produto ||--|| ItemVenda: ""
+   Usuario ||--o{ Venda: ""
+
+   CategoriaProduto }|--|| Produto: ""
+   CategoriaProduto }o--|| Categoria: ""
+
 
   Cliente ||--o{ TelefoneCliente : ""
   Telefone ||--o{ TelefoneCliente : ""
