@@ -81,11 +81,10 @@ exibir as informações básicas dos produtos (nome, código, e preço de venda)
 
 Ator: Gerente, Vendedor
 
-#### RF05 - Manter item de venda
+#### RF05 - Cadastrar item de venda
 
-Descrição: O sistema deve permitir ao vendedor adicionar, editar ou remover um
-item de venda em uma venda. Cada item deve ter informações como produto,
-quantidade, e preço unitário.
+Descrição: O sistema deve permitir ao vendedor adicionar um item de venda em uma
+venda. Cada item deve ter informações como produto, quantidade, e preço unitário.
 
 Ator: Vendedor
 
@@ -263,6 +262,25 @@ Descrição: O sistema deve permitir a edição de produtos comercializados pela
 empresa. Todos os atributos, exceto código, são editáveis.
 
 Ator: Gerente
+
+#### RF27 - Listar itens de venda
+
+Descrição: O sistema deve permitir a visualização dos itens de um venda.
+
+Ator: Vendedor, Gerente, Administrador financeiro
+
+#### RF28 - Editar item de venda
+
+Descrição: O sistema deve permitir que o vendedor possa editar a quantidade
+de um item de venda.
+
+Ator: Vendedor
+
+#### RF29 - Remover item de venda
+
+Descrição: O sistema deve permitir que o vendedor remova itens de uma venda.
+
+Ator: Vendedor
 
 ### Requisitos não funcionais
 
