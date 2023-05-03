@@ -122,15 +122,13 @@ usuários devem ser capazes de criar os registros de clientes conforme necessár
 
 Ator: Gerente, Vendedor
 
-#### RF10 - Manter telefone
+#### RF10 - Cadastrar telefone
 
-Descrição: O sistema deve permitir que os usuários insiram, atualizem e
-consultem as informações dos telefones relacionados aos clientes, incluindo o
-número de telefone, o tipo de telefone, e o cliente associado. Os usuários devem
-ser capazes de visualizar todas as informações do telefone de um cliente em uma
-única tela, sem a necessidade de navegar por várias telas.
+Descrição: O sistema deve permitir que os usuários insiram as informações dos
+telefones relacionados aos clientes, usuários e fornecedores, incluindo o
+número de telefone e o tipo de telefone.
 
-Ator: Gerente, Vendedor
+Ator: Gerente, Vendedor, Administrador financeiro
 
 #### RF11 - Manter endereço
 
@@ -331,6 +329,23 @@ usuários devem ser capazes de modificar os registros de clientes conforme
 necessário.
 
 Ator: Gerente, Vendedor
+
+#### RF37 - Consultar telefone
+
+Descrição: O sistema deve permitir que os usuários consultem as informações dos
+telefones relacionados as outras entidades. Os usuários devem ser capazes de
+visualizar todas as informações do telefone de um cliente em uma única tela,
+sem a necessidade de navegar por várias telas.
+
+Ator: Gerente, Vendedor, Administrador financeiro
+
+#### RF38 - Atualizar telefone
+
+Descrição: O sistema deve permitir que os usuários atualizem as informações dos
+telefones relacionados as outras entidades. Os usuários podem editar seus
+próprios telefones. O usuário gerente pode editar qualquer telefone.
+
+Ator: Gerente, Vendedor, Administrador financeiro
 
 ### Requisitos não funcionais
 
