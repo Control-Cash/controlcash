@@ -65,13 +65,11 @@ pagamento e status.
 
 Ator: Vendedor
 
-#### RF03 - Manter produto
+#### RF03 - Cadastrar produto
 
-Descrição:O sistema deve permitir o cadastro, listagem, visualização e edição de
-produtos comercializados pela empresa. Cada produto deve conter informações como
-nome, código, descrição, preço de venda e quantidade em estoque. Na listagem,
-apenas as informações básicas do produto (nome, código, praço de venda)
-devem ser exibidas.
+Descrição: O sistema deve permitir o cadastro de produtos comercializados pela
+empresa. Cada produto deve conter informações como nome, código, descrição,
+preço de venda e quantidade em estoque.
 
 Ator: Gerente
 
@@ -241,6 +239,28 @@ Ator: Vendedor, Gerente, Administrador Financeiro
 
 Descrição: O sistema deve permitir que uma venda possa ter seu status alterado
 para cancelado.
+
+Ator: Gerente
+
+#### RF24 - Listar produtos
+
+Descrição: O sistema deve permitir a listagem de produtos comercializados pela
+empresa. Na listagem, apenas as informações básicas do produto (nome, código,
+praço de venda) devem ser exibidas.
+
+Ator: Gerente, Vendedor, Administrador financeiro
+
+#### RF25 - Visualizar produto
+
+Descrição: O sistema deve permitir a visualização de um produto comercializado
+pela empresa. Todos os atributos são exibidos.
+
+Ator: Gerente, Vendedor, Administrador financeiro
+
+#### RF26 - Editar produto
+
+Descrição: O sistema deve permitir a edição de produtos comercializados pela
+empresa. Todos os atributos, exceto código, são editáveis.
 
 Ator: Gerente
 
