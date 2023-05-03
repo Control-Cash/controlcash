@@ -164,7 +164,7 @@ erDiagram
   Pedido ||--|| Usuario: ""
   Pedido ||--o{ Fornecedor: ""
 
-  Fornecedor ||--|| TelefoneFornecedor: ""
+  Fornecedor ||--|{ TelefoneFornecedor: ""
   Telefone ||--o{ TelefoneFornecedor: ""
 
   Fornecedor ||--|{ EnderecoFornecedor: ""
