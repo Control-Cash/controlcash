@@ -57,11 +57,11 @@ telefone, cargo, senha e status.
 
 Ator: Gerente
 
-#### RF02 - Manter venda
+#### RF02 - Cadastrar venda
 
-Descrição: O sistema deve permitir o cadastro, listagem e visualização das vendas
-realizadas. Cada venda deve conter infromação como data, hora, cliente, itens de
-venda, valor total, pagamento e status. Na listagem, apenas informações básicas da venda (data, cliente, valor total e status) devem ser exibidas.
+Descrição: O sistema deve permitir o cadastro das vendas realizadas. Cada venda
+deve conter infromação como data, hora, cliente, itens de venda, valor total,
+pagamento e status.
 
 Ator: Vendedor
 
@@ -219,6 +219,28 @@ Ator: Gerente
 Descrição: O sistema deve permitir a edição dos dados dos usuários. A edição de
 todos os dados é permitida, mas para alteração de senha, salário ou status o
 gerente deve fornecer sua própria senha para confirmar a ação.
+
+Ator: Gerente
+
+#### RF21 - Listar vendas
+
+Descrição: O sistema deve permitir a listagem das vendas realizadas. Na
+listagem, apenas informações básicas da venda (data, cliente, valor total e
+status) devem ser exibidas.
+
+Ator: Vendedor, Gerente, Administrador Financeiro
+
+#### RF22 - Visualizar venda
+
+Descrição: O sistema deve permitir a visualização dos dados de uma vendas
+realizada. Todos os atributos são exibidos.
+
+Ator: Vendedor, Gerente, Administrador Financeiro
+
+#### RF23 - Cancelar venda
+
+Descrição: O sistema deve permitir que uma venda possa ter seu status alterado
+para cancelado.
 
 Ator: Gerente
 
