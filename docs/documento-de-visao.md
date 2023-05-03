@@ -97,12 +97,12 @@ deve calcular o troco em caso de pagamento em dinheiro.
 
 Ator: Vendedor
 
-#### RF07 - Manter forma de pagamento
+#### RF07 - Cadastrar forma de pagamento
 
-Descrição: O sistema deve permitir ao perfil de administrador adicionar, editar
-ou remover formas de pagamento aceitas pela loja, como cartões de crédito,
-débito, dinheiro, transferência bancária, entre outros. As informações de cada
-forma de pagamento devem incluir nome, descrição e taxas aplicáveis (se houver).
+Descrição: O sistema deve permitir a adição de formas de pagamento aceitas pela
+loja, como cartões de crédito, débito, dinheiro, transferência bancária, entre
+outros. As informações de cada forma de pagamento devem incluir nome, descrição
+e taxas aplicáveis (se houver).
 
 Ator: Administrador financeiro
 
@@ -288,6 +288,27 @@ Descrição: O sistema deve permitir a visualização dos dados de pagamento de 
 venda.
 
 Ator: Vendedor, Gerente, Administrador financeiro
+
+#### RF31 - Listar forma de pagamento
+
+Descrição: O sistema deve permitir a listagem de formas de pagamento aceitas
+pela loja. Nessa forma de visualização apenas o nome e a descrição aparecem.
+
+Ator: Administrador financeiro, Vendedor, Gerente
+
+#### RF32 - Editar forma de pagamento
+
+Descrição: O sistema deve permitir a edição das formas de pagamento aceitas pela
+loja. Todos os campos são editáveis.
+
+Ator: Administrador financeiro
+
+#### RF33 - Remover forma de pagamento
+
+Descrição: O sistema deve permitir a remoção lógica de formas de pagamento
+aceitas pela loja.
+
+Ator: Administrador financeiro
 
 ### Requisitos não funcionais
 
