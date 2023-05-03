@@ -114,13 +114,11 @@ de dinheiro, o saldo final e os responsáveis pela movimentação do caixa.
 
 Ator: Gerente, Administrador financeiro
 
-#### RF09 - Manter cliente
+#### RF09 - Cadastrar cliente
 
-Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem
-e consultem as informações dos clientes, incluindo o nome, endereço, telefone,
-e-mail. Os usuários devem ser capazes de criar, excluir e modificar os registros
-de clientes conforme necessário, além de visualizar um histórico das transações
-de cada cliente com o caixa.
+Descrição: O sistema deve permitir que os usuários do sistema insiram as
+informações dos clientes, incluindo o nome, endereço, telefone, e-mail. Os
+usuários devem ser capazes de criar os registros de clientes conforme necessário.
 
 Ator: Gerente, Vendedor
 
@@ -308,6 +306,31 @@ Descrição: O sistema deve permitir a remoção lógica de formas de pagamento
 aceitas pela loja.
 
 Ator: Administrador financeiro
+
+#### RF34 - Listar clientes
+
+Descrição: O sistema deve permitir que os usuários do sistema visualizem uma
+listagem dos clientes. Nessa visualização aparecem apenas os campos nome,
+telefone e e-mail.
+
+Ator: Gerente, Vendedor
+
+#### RF35 - Visualizar cliente
+
+Descrição: O sistema deve permitir que os usuários do sistema consultem as
+informações dos clientes. Todos os dados do cliente são exibidos, além de
+exibir um histórico das transações de cada cliente com o caixa.
+
+Ator: Gerente, Vendedor
+
+#### RF36 - Atualizar cliente
+
+Descrição: O sistema deve permitir que os usuários do sistema atualizem as
+informações dos clientes, incluindo o nome, endereço, telefone, e-mail. Os
+usuários devem ser capazes de modificar os registros de clientes conforme
+necessário.
+
+Ator: Gerente, Vendedor
 
 ### Requisitos não funcionais
 
