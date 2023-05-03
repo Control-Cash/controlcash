@@ -157,10 +157,12 @@ data prevista de entrega, data de realização do pedido.
 
 Ator: Gerente
 
-#### RF14 - Manter despesa
+#### RF14 - Cadastrar despesa
 
-Descrição: O sistema deve permitir ao usuário cadastrar, visualizar, editar e
-excluir despesas. Uma despesa tem nome, valor e se a despesa é periódica.
+Descrição: O sistema deve permitir ao usuário cadastrar despesas. Uma despesa é
+algo que custa valor ao caixa mas não coberto por nenhuma das outras entidades.
+Exemplos de despesa são conta de luz e o gasto com o conserto de algo. Uma
+despesa tem nome, valor e se a despesa é periódica.
 
 Ator: Administrador financeiro, Gerente.
 
@@ -423,6 +425,25 @@ Ator: Gerente
 Descrição: O sistema deve ser capaz de excluir pedidos armazenados.
 
 Ator: Gerente
+
+#### RF50 - Listar despesas
+
+Descrição: O sistema deve permitir ao usuário visualizar as despesas
+cadastradas. Todos os campos são exibidos.
+
+Ator: Administrador financeiro, Gerente.
+
+#### RF51 - Editar despesa
+
+Descrição: O sistema deve permitir ao usuário editar despesas.
+
+Ator: Administrador financeiro, Gerente.
+
+#### RF52 - Excluir despesa
+
+Descrição: O sistema deve permitir ao usuário excluir despesas.
+
+Ator: Administrador financeiro, Gerente.
 
 ### Requisitos não funcionais
 
