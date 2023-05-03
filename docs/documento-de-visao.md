@@ -148,14 +148,12 @@ nome, endereço, número de telefone, e endereço de e-mail.
 
 Ator: Gerente
 
-#### RF13 - Manter pedido
+#### RF13 - Cadastrar pedido
 
 Descrição: O sistema deve ser capaz de armazenar e gerenciar os pedidos
-realizados, possuindo a capacidade de inserir, atualizar, exibir os pedidos
-realizados, assim com excluir pedidos. As informações relacionadas ao pedido são
-quatidade, produto, fornecedor, usuário, data prevista de entrega,
-data de realização do pedido. Os campos possuem o intuito de possuir
-as informações necessárias para realização do pedido.
+realizados, possuindo a capacidade de inserir os pedidos realizados. As
+informações relacionadas ao pedido são quatidade, produto, fornecedor, usuário,
+data prevista de entrega, data de realização do pedido.
 
 Ator: Gerente
 
@@ -395,6 +393,34 @@ Ator: Gerente
 
 Descrição: O sistema controle de caixa deve ser capaz de remover logicamente
 as informações relacionadas aos seus fornecedores.
+
+Ator: Gerente
+
+#### RF46 - Listar pedidos
+
+Descrição: O sistema deve ser capaz de listar os pedidos realizados. As informações relacionadas ao pedido exibidas são quatidade, produto, fornecedor e data prevista de entrega.
+
+Ator: Gerente
+
+#### RF47 - Exibir pedido
+
+Descrição: O sistema deve ser capaz de exibir os dados de pedidos realizados. As
+informações relacionadas ao pedido exibidas são quatidade, produto, fornecedor,
+usuário, data prevista de entrega, data de realização do pedido.
+
+Ator: Gerente
+
+#### RF48 - Editar pedido
+
+Descrição: O sistema deve ser capaz de atualizar os pedidos realizados. As
+informações editáveis relacionadas ao pedido são quatidade, produto, fornecedor
+e data prevista de entrega.
+
+Ator: Gerente
+
+#### RF49 - Excluir pedido
+
+Descrição: O sistema deve ser capaz de excluir pedidos armazenados.
 
 Ator: Gerente
 
