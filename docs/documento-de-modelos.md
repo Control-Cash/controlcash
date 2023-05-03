@@ -156,7 +156,7 @@ erDiagram
   FormaPagamento ||--o{ TaxaFormaPagamento: ""
   Taxa ||--o{ TaxaFormaPagamento: ""
 
-  Pagamento ||--|| Venda: ""
+  Pagamento }|--|| Venda: ""
 
   Venda }o--|| Cliente: ""
 
