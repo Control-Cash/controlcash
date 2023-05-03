@@ -140,14 +140,11 @@ gerente pode cadastrar endereços para qualquer entidade que suporte.
 
 Ator: Gerente, Vendedor
 
-#### RF12 - Manter fornecedor
+#### RF12 - Cadastrar fornecedor
 
 Descrição: O sistema controle de caixa deve ser capaz de manter informações
 relacionadas aos seus fornecedores, isso inclui o registro de detalhes como
-nome, endereço, número de telefone, e endereço de e-mail. Com isso, a
-funcionalidade deve possuir a capacidade de casdatrar, atualizar e deletar tais
-informações, assim também como deve possibilitar a vizualização das informações
-cadastradas.
+nome, endereço, número de telefone, e endereço de e-mail.
 
 Ator: Gerente
 
@@ -369,6 +366,37 @@ Descrição: O sistema deve permitir que informações associadas ao endereço p
 ser excluidas.
 
 Ator: Gerente, Vendedor
+
+#### RF42 - Listar fornecedores
+
+Descrição: O sistema controle de caixa deve ser capaz de listar os seus
+fornecedores, isso inclui a exibição de detalhes como nome, número de telefone,
+e endereço de e-mail.
+
+Ator: Gerente
+
+#### RF43 - Visualizar fornecedor
+
+Descrição: O sistema controle de caixa deve ser capaz de exibir as informações
+relacionadas a um de seus fornecedores, isso inclui a exibição de detalhes como
+nome, endereço, número de telefone, e endereço de e-mail.
+
+Ator: Gerente
+
+#### RF44 - Editar fornecedor
+
+Descrição: O sistema controle de caixa deve ser capaz de editar as informações
+relacionadas aos seus fornecedores, isso inclui a edição de detalhes como
+nome, endereço, número de telefone, e endereço de e-mail.
+
+Ator: Gerente
+
+#### RF45 - Remover fornecedor
+
+Descrição: O sistema controle de caixa deve ser capaz de remover logicamente
+as informações relacionadas aos seus fornecedores.
+
+Ator: Gerente
 
 ### Requisitos não funcionais
 
