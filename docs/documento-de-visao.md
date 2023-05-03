@@ -106,14 +106,13 @@ e taxas aplicáveis (se houver).
 
 Ator: Administrador financeiro
 
-#### RF08 - Manter prestação
+#### RF08 - Visualizar prestação de contas
 
-Descrição: O sistema deve permitir que os usuários do sistema insiram, atualizem
-e consultem as informações de prestação de contas do caixa, incluindo o
-saldo inicial, as entradas e saídas de dinheiro, o saldo final e o responsável
-pela movimentação do caixa.
+Descrição: O sistema deve permitir que os usuários consultem as informações de
+prestação de contas do caixa, incluindo o saldo inicial, as entradas e saídas
+de dinheiro, o saldo final e os responsáveis pela movimentação do caixa.
 
-Ator: Gerente, Vendedor
+Ator: Gerente, Administrador financeiro
 
 #### RF09 - Manter cliente
 
