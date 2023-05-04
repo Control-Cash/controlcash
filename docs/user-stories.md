@@ -109,11 +109,12 @@ Descrição:
 
 ## US05 - Manter forma de pagamento
 
-Descrição: O sistema deve ser capaz de 
+Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas pelo comércio. Permitindo a inclusão, atualização e a remoção de tais formas de pagamento. Por exemplo pix, cartões de crédito e débito, boleto bancário, etc. Uma forma de pagamento deve possuir um id, nome e descrição e taxas(se houver). O responsável por realizar as operações deve ser o perfil administrador.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF02                  |     |
+| RF06                  |     |
 
 |                    |     |
 | ------------------ | --- |
@@ -128,7 +129,15 @@ Descrição: O sistema deve ser capaz de
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA05.01                         |  O perfil administrador financeiro acessa a página de formas de pagamento, ao clicar em "nova forma de pagamento", o administrador deverá preencher os campos refentes à forma de pagamento que ele deseja inserir, devendo preencher os campos nomes, descrição e caso haja taxas aplicáveis, elas também devem ser cadastradas no momento em que o administrador financeiro insere a nova forma de pagamento.          |
+| TA05.02                         |  Posteriormente ao acréscimo de todos os dados necessários para inserção de uma nova forma de pagamento, em seus respectivos campos, o perfil administrador financeiro clica em "cadastrar". Ao fim do click, todos dados inseridos devem ser armazenados e persistidos no banco de dados, no qual as informações armazenadas devem se apresentar consistentes com as informações cadastradas pelo administrador. Após os dados serem armazenados, uma menssagem de confirmação de sucesso deve ser exibida com a seguite mensagem: "A nova forma de pagamento foi inserida com sucesso."      |
+| TA05.03                         |  Posteriormente ao não preenchimento parcial ou não preenchimento total de todos os campos necessários para inserção de uma nova forma de pagamento, o perfil administrador financeiro clica em "cadastrar". Os campos totalmente não preenchidos ou parcialmente preenchidos não devem ser armazenados no banco de dados e a seguinte mensagem deve ser exibida: "Por favor, preencha todos os campos obrigatórios".           |
+| TA05.04                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, devem ser listadas todas formas de pagamento já existentes. Caso nehuma forma de pagamento tenha sido cadastrada, deve ser exibida uma lista vazia com a seguinte mensagem: "Nenhuma forma de pagamento foi cadastrada".|
+| TA05.05                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Ao realizar a modificação pretendida e clicar em salvar, os campos modificados devem ser atualizados e uma mensagem de sucesso deve ser exibida com o seguinte conteúdo: "Atualização realizada com sucesso."  |
+| TA05.06                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Caso o "usuário" não faça nehuma alteração uma mensagem deve ser exibida: "Nenhuma modificação realizada."  |
+| TA05.07                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Caso o "usuário" tente modificar um campo com um conteúdo nulo ou vazio, ao clicar em salvar, deve ser exibida a mensagem: Por favor, preencha o(s) campo(s) com informações válidas.  |
+| TA05.08                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em deletar na forma de pagamento que deseja. Ao confimar que deseja realmente excluir, a forma de pagamento deve ser removida do banco de dados.|
+
 
 ## US06 - Manter pagamento
 
