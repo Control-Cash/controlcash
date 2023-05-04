@@ -7,17 +7,21 @@ do [documento de visão](./documento-de-visao.md).
 
 Descrição: O sistema deve manter o cadastro dos produtos comercializados na
 loja. Um produto tem código de identificação, nome, descrição, preço de venda e
-quantidade em estoque. O usuário gerente terá acesso à criação e à alteração
-de produtos. Todos os usuários poderão visualizar os dados dos produtos.
+quantidade em estoque. O usuário gerente terá acesso à criação e à edição de
+produtos. Todos os usuários poderão visualizar a listagem e os dados dos
+produtos.
 
-| Requisitos envolvidos |                |
-| --------------------- | -------------- |
-| RF03                  | Manter produto |
+| Requisitos envolvidos |                    |
+| --------------------- | ------------------ |
+| RF03                  | Cadastrar produto  |
+| RF24                  | Listar produto     |
+| RF25                  | Visualizar produto |
+| RF26                  | Editar produto     |
 
 |                    |           |
 | ------------------ | --------- |
 | Prioridade         | Essencial |
-| Estimativa         | 6h        |
+| Estimativa         | 8h        |
 | Tempo gasto (real) | -         |
 | Tamanho funcional  | -         |
 | Analista           | Adriel    |
