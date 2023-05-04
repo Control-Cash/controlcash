@@ -66,10 +66,11 @@ erDiagram
     int id PK
     date dataVenda
     float valorTotal
-    id usuario FK "Usuario (id)"
+    int vendedor FK "Usuario (id)"
+    int cliente FK "Cliente (id)"
   }
   
-ItemVenda {
+  ItemVenda {
     int id PK
     int venda FK "Venda (id)"
     int produto FK "Produto (id)"
@@ -77,84 +78,53 @@ ItemVenda {
     float valorUnidade
   } 
 
-Fornecedor{
-  int id PK
-  string nome
-  string email
-  int endereco FK "EnderecoFornecedor (id)"
-}
+  Fornecedor {
+    int id PK
+    string nome
+    string email
+    int endereco FK "EnderecoFornecedor (id)"
+  }
 
-TelefoneFornecedor{
-  int id PK
-  int telefone FK "Telefone (id)"
-  int fornecedor FK "Fornecedor (id)"
-}
+  TelefoneFornecedor {
+    int id PK
+    int telefone FK "Telefone (id)"
+    int fornecedor FK "Fornecedor (id)"
+  }
 
-EnderecoFornecedor{
-  int IdEndereco PK
-  string rua
-  string bairro
-  string cidade
-  string estado
-  string pais
-  string cep
-  string complemento
-}
+  EnderecoFornecedor {
+    int endereco PK, FK "Endereco (id)"
+    int fornecedor PK, FK "Fornecedor (id)"
+  }
 
-Pedido{
-  int id PK
-  int quantidade
-  int produto FK "Produto (id)"
-  int usuario FK "Usuario (id)"
-  int fornecedor FK "Fornecedor (id)"
-  data data_entrega
-  data data_pedido 
-}
+  Pedido {
+    int id PK
+    int quantidade
+    int produto FK "Produto (id)"
+    int usuario FK "Usuario (id)"
+    int fornecedor FK "Fornecedor (id)"
+    data data_entrega
+    data data_pedido 
+  }
 
-Produto {
-  int id PK
-  float precoVenda
-  string nome
-  string descricao
-  int quantidadeEstoque
-  date dataRegistro
-}
+  Produto {
+    int id PK
+    float precoVenda
+    string nome
+    string descricao
+    int quantidadeEstoque
+    date dataRegistro
+  }
 
-CategoriaProduto {
-  int produto PK, FK "Produto (id)"
-  int categoria PK, FK "Categoria (id)"
-}
+  CategoriaProduto {
+    int produto PK, FK "Produto (id)"
+    int categoria PK, FK "Categoria (id)"
+  }
 
-Categoria {
-  int id PK
-  string nome
-  boolean status
-}
-
-  %% conexões
-  Pagamento }o--|| FormaPagamento: ""
-  FormaPagamento ||--o{ TaxaFormaPagamento: ""
-  Taxa ||--o{ TaxaFormaPagamento: ""
-
-   Pedido ||--o{ Produto: ""
-   Pedido ||--|| Usuario: ""
-   Pedido ||--o{ Fornecedor: ""
-
-   Fornecedor ||--|| TelefoneFornecedor: ""
-   Telefone ||--o{ TelefoneFornecedor: ""
-   Usuario ||--|| Endereco : ""
-   Cliente ||--|| Endereco : ""
-   Venda ||--|{ ItemVenda : ""
-   Produto ||--|| ItemVenda: ""
-   Usuario ||--o{ Venda: ""
-
-   CategoriaProduto }|--|| Produto: ""
-   CategoriaProduto }o--|| Categoria: ""
-   
-  %% daqui até a linha com as três aspas são apenas exemplos, a pessoa que vai
-  %% implementar essas tabelas pode excluir essas linhas para implementar sua
-  %% própria versão
-
+  Categoria {
+    int id PK
+    string nome
+    boolean status
+  }
 
   Cliente {
     int id PK
@@ -181,11 +151,38 @@ Categoria {
     int usuario FK "Usuario (id)"
   }
 
+  %% conexões
+  Pagamento }o--|| FormaPagamento: ""
+  FormaPagamento ||--o{ TaxaFormaPagamento: ""
+  Taxa ||--o{ TaxaFormaPagamento: ""
+
+  Pagamento }|--|| Venda: ""
+
+  Venda }o--|| Cliente: ""
+
+  Pedido ||--o{ Produto: ""
+  Pedido ||--|| Usuario: ""
+  Pedido ||--o{ Fornecedor: ""
+
+  Fornecedor ||--|{ TelefoneFornecedor: ""
+  Telefone ||--o{ TelefoneFornecedor: ""
+
+  Fornecedor ||--|{ EnderecoFornecedor: ""
+  Endereco ||--o{ EnderecoFornecedor: ""
+
+  Usuario ||--|| Endereco : ""
+  Cliente ||--|| Endereco : ""
+  Venda ||--|{ ItemVenda : ""
+  Produto ||--|| ItemVenda: ""
+  Usuario ||--o{ Venda: ""
+
+  CategoriaProduto }|--|| Produto: ""
+  CategoriaProduto }o--|| Categoria: ""
+
   Cliente ||--o{ TelefoneCliente : ""
   Telefone ||--o{ TelefoneCliente : ""
   Usuario ||--o{ TelefoneUsuario : ""
   Telefone ||--o{ TelefoneUsuario : ""
-  
 ```
 
 ### Dicionário de dados
