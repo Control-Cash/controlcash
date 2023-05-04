@@ -125,7 +125,11 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA05.01                         |  O perfil administrador financeiro acessa a página de pagamento, ao clicar em "nova forma de pagamento", o administrador deverá preencher os campos refentes à forma de pagamento que ele deseja inserir, devendo preencher os campos nomes, descrição e caso haja taxas aplicáveis, elas também devem ser cadastradas no momento em que o administrador financeiro insere a nova forma de pagamento.          |
+| TA05.02                         |  Posteriormente ao acréscimo de todos os dados necessários para inserção de uma nova forma de pagamento, em seus respectivos campos, o perfil administrador financeiro clica em "cadastrar". Ao fim do click todos dados inseridos devem ser armazenados e persistidos no banco de dados, no qual as informações armazenadas devem se apresentar consistentes com as informações cadastradas pelo administrador. Após os dados serem armazenados, uma menssagem de confirmação de sucesso deve ser exibida com a seguite messagem: "A nova forma de pagamento foi inserida com sucesso."      |
+| TA05.03                         |  Posteriormente ao não preenchimento parcial ou não preenchimento total de todos os campos necessários para inserção de uma nova forma de pagamento, o perfil administrador financeiro clica em "cadastrar". Os campos totalmente não preenchidos ou parcialmente preenchidos não devem ser armazenados no banco de dados e a seguinte messagem deve ser exibida: "Por favor, preencha todos os campos obrigatórios".           |
+|                                 |                                                                     |
+
 
 ## US06 - Manter pagamento
 
