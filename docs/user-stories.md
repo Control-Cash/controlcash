@@ -48,10 +48,10 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial    |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
+| Analista           | Alef Luciano Silva    |
 | Desenvolvedor      |     |
 | Revisor            |     |
 | Testador           |     |
