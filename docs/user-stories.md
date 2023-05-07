@@ -60,6 +60,8 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 | ------------------------ | --------- |
 | Código                   | Descrição |
 | TA02.01                  | O usuário acessa a página de pesquisa de produto e digita o nome ou código do produto desajado. O sistema exibe uma lista com os produtos correspondente à pesquisa, contendo nome, preço de venda e quatidade em estoque. O usuário pode clicar em um dos produtos para ver mais informações sobre le na página de detalhes |
+| TA02.02                  | O usuário acessa a página de detalhes de um produto encontrado na pesquisa e verifica se todas as informações sobre o produto estão corretas, incluindo preço, quantidade em estoque e categoria |
+
 
 ## US03 - Manter venda
 
