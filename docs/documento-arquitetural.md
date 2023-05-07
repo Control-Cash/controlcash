@@ -2,6 +2,14 @@
 
 ## Descrição
 
+Esse documento descreve a arquitetura do ControlCash, um sistema de
+gerenciamento de vendas e controle de caixa que permite aos usuários gerenciar
+produtos, vendas e fornecedores de uma loja.
+
+O sistema é projetado para oferecer uma experiência intuitiva aos usuários,
+fornecendo recursos de pesquisa, autenticação de usuários e geração de
+relatórios.
+
 ## Visão geral
 
 O Django segue a arquitetura de software conhecida como Model-View-Template (Modelo-Visão-Template), comumente abreviada como MTV.
