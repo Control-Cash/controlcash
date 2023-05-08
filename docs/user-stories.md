@@ -23,11 +23,11 @@ produtos.
 | Prioridade         | Essencial |
 | Estimativa         | 8h        |
 | Tempo gasto (real) | -         |
-| Tamanho funcional  | -         |
+| Tamanho funcional  | 27        |
 | Analista           | Adriel    |
-| Desenvolvedor      | -         |
-| Revisor            | -         |
-| Testador           | -         |
+| Desenvolvedor      | Guilherme |
+| Revisor            | Bianca    |
+| Testador           | Hilário   |
 
 | Testes de aceitação (TA) |                                                  |
 | ------------------------ | ------------------------------------------------ |
@@ -61,7 +61,6 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 | Código                   | Descrição |
 | TA02.01                  | O usuário acessa a página de pesquisa de produto e digita o nome ou código do produto desajado. O sistema exibe uma lista com os produtos correspondente à pesquisa, contendo nome, preço de venda e quatidade em estoque. O usuário pode clicar em um dos produtos para ver mais informações sobre ele na página de detalhes. |
 | TA02.02                  | O usuário acessa a página de detalhes de um produto encontrado na pesquisa e verifica se todas as informações sobre o produto estão corretas, incluindo preço, quantidade em estoque e categoria. |
-
 
 ## US03 - Manter venda
 
@@ -139,7 +138,6 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 | TA05.06                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Caso o "usuário" não faça nehuma alteração uma mensagem deve ser exibida: "Nenhuma modificação realizada."  |
 | TA05.07                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Caso o "usuário" tente modificar um campo com um conteúdo nulo ou vazio, ao clicar em salvar, deve ser exibida a mensagem: Por favor, preencha o(s) campo(s) com informações válidas.  |
 | TA05.08                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em deletar na forma de pagamento que deseja. Ao confimar que deseja realmente excluir, a forma de pagamento deve ser removida do banco de dados.|
-
 
 ## US06 - Manter pagamento
 
