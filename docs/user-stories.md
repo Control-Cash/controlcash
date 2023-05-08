@@ -141,7 +141,7 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 
 ## US06 - Manter pagamento
 
-Descrição:
+Descrição: O sistema deve permitir a visualização da lista de pagamentos pendentes, recebidos e cancelados. Deve ser possível atualizar o status do pagamento de pendente para recebido ou cancelado, além de pesquisar pagamentos por data, valor ou id do cliente. Essas operações devem ser realizadas pelo perfil de administrador financeiro.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
