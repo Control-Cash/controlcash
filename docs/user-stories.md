@@ -23,7 +23,7 @@ produtos.
 | Prioridade         | Essencial |
 | Estimativa         | 8h        |
 | Tempo gasto (real) | -         |
-| Tamanho funcional  | 27        |
+| Tamanho funcional  | [27](./documento-pontos-de-funcao.md#us01---manter-produto) |
 | Analista           | Adriel    |
 | Desenvolvedor      | Guilherme |
 | Revisor            | Bianca    |
