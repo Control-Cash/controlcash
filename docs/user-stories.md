@@ -161,7 +161,7 @@ Descrição: O sistema deve permitir a visualização da lista de pagamentos pen
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA06.01                  | O adminitrador financeiro acessa a página pagamentos, em seguida ele vai em visualizar pagamentos, onde mostrara um campo de filto que ele deverar selecionar que serão pendente, recebido e cancelado. Depois ele será capaz de visualizar a lista completa com todas as informações dos pagamentos, de acordo com o o filtro escolhido.     |
 
 ## US07 - Manter prestação
 
