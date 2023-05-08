@@ -161,8 +161,9 @@ Descrição: O sistema deve permitir a visualização da lista de pagamentos pen
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-| TA06.01                  | O adminitrador financeiro acessa a página pagamentos, em seguida ele vai em visualizar pagamentos, onde mostrara um campo de filto que ele deverar selecionar que serão pendente, recebido e cancelado. Depois ele será capaz de visualizar a lista completa com todas as informações dos pagamentos, de acordo com o o filtro escolhido.  |
+| TA06.01                  | O adminitrador financeiro acessa a página pagamentos, em seguida ele vai em visualizar pagamentos, onde mostrara um campo de filto que ele deverar selecionar que serão pendente, recebido e cancelado. Depois ele será capaz de visualizar a lista completa com todas as informações dos pagamentos, de acordo com o o filtro escolhido.|
 | TA06.02                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Visualizar pagamentos'. Na página, é mostrado um filtro onde ele deverá selecionar a opção de pagamentos pendentes. Em seguida, ele deve selecionar um pagamento específico, onde serão exibidos todos os detalhes do pagamento, incluindo um botão para atualização do status. Ele pode mudar o status de pendente para cancelado ou recebido.|
+| TA06.03                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Pesquisar pagamentos'. Na página, serão exibidos três campos para preenchimento: data, valor e cliente. Após preencher os campos, será mostrada uma lista de pagamentos de acordo com os critérios de pesquisa fornecidos. Caso o administrador deixe todos os campos em branco, o sistema não exibirá nenhum resultado de pesquisa.|
 
 ## US07 - Manter prestação
 
