@@ -145,14 +145,15 @@ Descrição: O sistema deve permitir a visualização da lista de pagamentos pen
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF06                  |     |
+| RF30                  |     |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
+| Analista           | Hilário |
 | Desenvolvedor      |     |
 | Revisor            |     |
 | Testador           |     |
