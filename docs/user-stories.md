@@ -49,6 +49,7 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 |                    |     |
 | ------------------ | --- |
 | Prioridade         | Essencial    |
+| Estimativa         | 7h        |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           | Alef Luciano Silva    |
