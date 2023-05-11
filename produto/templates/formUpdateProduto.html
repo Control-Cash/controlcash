@@ -12,19 +12,19 @@
    
     <form action="{% url 'atualizarProduto' produto.id %}" method="POST">
         {% csrf_token %}
-        <label for="nome">Nome: </label>
+        <label for="nome"><Strong>Nome</Strong>: </label>
         <br>
-        <input type="text" id="nome" name="nome" value="{{produto.nome}}"> <br><br>
-        <label for="precoVenda">Preço: </label>
+        <input type="text" id="nome" name="nome" value="{{produto.nome}}" required="true"> <br><br>
+        <label for="precoVenda"><Strong>Preço</Strong>: </label>
         <br>
         {% load l10n %}
-        <input type="number" id="precoVenda" name="precoVenda" value={{produto.precoVenda|unlocalize}}> <br><br>
-        <label for="quantidadeEstoque">Quantidade: </label>
+        <input type="number" id="precoVenda" name="precoVenda" value={{produto.precoVenda|unlocalize}} step="0.01" required="true"> <br><br>
+        <label for="quantidadeEstoque"><Strong>Quantidade</Strong>: </label>
         <br>
-        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" value="{{produto.quantidadeEstoque}}"> <br><br>
-        <label for="descricao">descricão: </label>
+        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" value="{{produto.quantidadeEstoque}}" step="0.01" required="true"> <br><br>
+        <label for="descricao"><Strong>Descricão</Strong>: </label>
         <br>
-        <textarea name="descricao" id="descricao" cols="60" rows="10">{{produto.descricao}}</textarea> <br><br>
+        <textarea name="descricao" id="descricao" cols="60" rows="10" required="false">{{produto.descricao}}</textarea> <br><br>
         <input type="submit" value="Salvar">
     </form>
 </body>
