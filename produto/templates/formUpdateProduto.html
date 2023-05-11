@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Editar Produto </h1>
+    <h2>Editando Produto - {{produto.nome}} - {{produto.precoVenda}}</h2>
+   
+    <form action="{% url 'atualizarProduto' produto.id %}" method="POST">
+        {% csrf_token %}
+        <label for="nome"><Strong>Nome</Strong>: </label>
+        <br>
+        <input type="text" id="nome" name="nome" value="{{produto.nome}}" required="true"> <br><br>
+        <label for="precoVenda"><Strong>Preço</Strong>: </label>
+        <br>
+        {% load l10n %}
+        <input type="number" id="precoVenda" name="precoVenda" value={{produto.precoVenda|unlocalize}} step="0.01" required="true"> <br><br>
+        <label for="quantidadeEstoque"><Strong>Quantidade</Strong>: </label>
+        <br>
+        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" value="{{produto.quantidadeEstoque}}" step="0.01" required="true"> <br><br>
+        <label for="descricao"><Strong>Descricão</Strong>: </label>
+        <br>
+        <textarea name="descricao" id="descricao" cols="60" rows="10" required="false">{{produto.descricao}}</textarea> <br><br>
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>
