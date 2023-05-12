@@ -13,3 +13,15 @@
 | Visualizar produto  | SE       |    1    |    7    |      Baixa       |         4         |
 |                     |          |         |         |                  |                   |
 | **Total**           |          |         |         |                  |        27         |
+
+
+## US03 - Manter venda
+
+| Descrição           | Tipo     |   RLR   |   DER   |   Complexidade   |   Tamanho em PF   |
+| ------------------- | -------- | :-----: | :-----: | :--------------: | :---------------: |
+| **Descrição**       | **Tipo** | **ALR** | **DER** | **Complexidade** | **Tamanho em PF** |
+| Cadastrar venda     | EE       |    0    |    4    |      Baixa       |         3         |
+| Editar venda        | EE       |    1    |    4    |      Baixa       |         3         |
+| Listar venda        | SE       |    0    |    3    |      Baixa       |         4         |
+| Visualizar venda    | SE       |    1    |    5    |      Baixa       |         4         |
+| **Total**           |          |         |         |                  |        14         |
