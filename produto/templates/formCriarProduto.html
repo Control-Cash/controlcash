@@ -12,16 +12,16 @@
         {% csrf_token %}
         <label for="nome">Nome: </label>
         <br>
-        <input type="text" id="nome" name="nome"> <br><br>
+        <input type="text" id="nome" name="nome" required="true"> <br><br>
         <label for="precoVenda">Preço: </label>
         <br>
-        <input type="number" id="precoVenda" name="precoVenda"> <br><br>
+        <input type="number" id="precoVenda" name="precoVenda" required="true"> <br><br>
         <label for="quantidadeEstoque">Quantidade: </label>
         <br>
-        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque"> <br><br>
+        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" required="true"> <br><br>
         <label for="descricao">descricão: </label>
         <br>
-        <textarea name="descricao" id="descricao" cols="60" rows="10"></textarea> <br><br>
+        <textarea name="descricao" id="descricao" cols="60" rows="10" required="true"></textarea> <br><br>
         <input type="submit" value="Salvar">
     </form>
 </body>
