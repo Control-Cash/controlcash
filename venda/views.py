@@ -35,3 +35,12 @@ def editar_venda_view(request, pk):
             form.save()
             return redirect(request, 'detalhar_produto', {'pk': pk})
     return render(request, 'venda/editar_venda.html', {'form': form})
+
+
+def desativar_venda_view(request, pk):
+    venda = get_object_or_404(Venda, id=pk)
+    if request.method == 'POST':
+        venda.status = False
+        venda.save()
+        return redirect('venda_listar', pk=pk)
+    return render(request, 'venda/desativar_venda.html', {'venda': venda})
