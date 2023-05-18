@@ -25,7 +25,7 @@ class Item(models.Model):
         MinValueValidator(Decimal('0.01'))])
 
     def __str__(self) -> str:
-        return f"{self.quantidade} {self.produto.name}"
+        return f"{self.quantidade} {self.produto.nome}"
 
     class Meta:
         verbose_name_plural = 'Itens'
