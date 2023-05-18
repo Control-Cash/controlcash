@@ -1,5 +1,6 @@
 from decimal import Decimal
 
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.signals import pre_save
@@ -26,6 +27,11 @@ class Item(models.Model):
 
     def __str__(self) -> str:
         return f"{self.quantidade} {self.produto.nome}"
+
+    def clean(self):
+        if self.quantidade > self.produto.quantidadeEstoque:
+            raise ValidationError(
+                f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque.")
 
     class Meta:
         verbose_name_plural = 'Itens'
