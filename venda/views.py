@@ -33,7 +33,7 @@ def editar_venda_view(request, pk):
         form = VendaForm(request.POST, instance=venda)
         if form.is_valid():
             form.save()
-            return redirect(request, 'detalhar_produto', {'pk': pk})
+            return redirect('detalhar_produto', pk=pk)
     return render(request, 'venda/editar_venda.html', {'form': form})
 
 
