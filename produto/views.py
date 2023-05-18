@@ -32,21 +32,16 @@ def view_editar_produto(request,id):
 
 def view_atualizar_produto(request,id):
     produto = Produto.objects.get(id=id)
+    form = CadastrarProduto(instance=produto)
 
-    nome = request.POST.get('nome')
-    precoVenda = request.POST.get('precoVenda')
-    descricao = request.POST.get('descricao')
-    quantidadeEstoque = request.POST.get('quantidadeEstoque')
-
-    produto.nome=nome
-    produto.precoVenda=precoVenda
-    produto.descricao=descricao
-    produto.quantidadeEstoque=quantidadeEstoque
-
-    produto.save()
-
-    return redirect('/produto')
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('/produto')                
+        return redirect('/produto')
     
+    return render(request,'formUpdateProduto.html', {"produto": produto, "form": form})
+        
 def view_deletar_produto(request, id):
     produto = Produto.objects.get(id=id)
     produto.delete()
