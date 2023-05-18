@@ -1,9 +1,9 @@
 from django import forms
 
-from venda.models import Venda
+from venda.models import Item
 
 
-class VendaForm(forms.ModelForm):
+class ItemVendaForm(forms.ModelForm):
     class Meta:
-        model = Venda
-        fields = []
+        model = Item
+        fields = ['produto', 'quantidade']
