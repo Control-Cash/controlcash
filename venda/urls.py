@@ -4,4 +4,5 @@ from venda.views import criar_venda_view, listar_vendas_view
 
 urlpatterns = [
     path('', listar_vendas_view, name='venda_listar'),
+    path('criar', criar_venda_view, name='venda_criar'),
 ]
