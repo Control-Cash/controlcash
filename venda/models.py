@@ -1,4 +1,9 @@
+from decimal import Decimal
+
+from django.core.validators import MinValueValidator
 from django.db import models
+
+from produto.models import Produto
 
 
 class Venda(models.Model):
@@ -7,3 +12,18 @@ class Venda(models.Model):
     status = models.BooleanField(default=True)
     # cliente = models.ForeignKey()
     # vendedor = models.ForeignKey()
+
+
+class Item(models.Model):
+    venda = models.ForeignKey(Venda, on_delete=models.PROTECT)
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT)
+    quantidade = models.PositiveBigIntegerField(
+        validators=[MinValueValidator(1)])
+    valor_unitario = models.DecimalField(max_digits=10, decimal_places=2, validators=[
+        MinValueValidator(Decimal('0.01'))])
+
+    def __str__(self) -> str:
+        return f"{self.quantidade} {self.produto.name}"
+
+    class Meta:
+        verbose_name_plural = 'Itens'
