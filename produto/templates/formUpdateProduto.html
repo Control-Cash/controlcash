@@ -21,11 +21,12 @@
         <input type="number" id="precoVenda" name="precoVenda" value={{produto.precoVenda|unlocalize}} step="0.01" required="true"> <br><br>
         <label for="quantidadeEstoque"><Strong>Quantidade</Strong>: </label>
         <br>
-        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" value="{{produto.quantidadeEstoque}}" step="0.01" required="true"> <br><br>
+        <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" value="{{produto.quantidadeEstoque}}" required="true"> <br><br>
         <label for="descricao"><Strong>Descricão</Strong>: </label>
         <br>
         <textarea name="descricao" id="descricao" cols="60" rows="10" required="false">{{produto.descricao}}</textarea> <br><br>
         <input type="submit" value="Salvar">
+        <button type="button"><a href="{% url 'homeProduto' %}">Voltar</a></button>
     </form>
 </body>
 </html>

@@ -7,10 +7,7 @@
     <title>Vizualizar Produto: {{produto.nome}}</title>
 </head>
 <body>
-    <header>
-        <a href="{% url 'homeProduto' %}">Voltar</a>
-    </header>
-
+    <header><h1>Vizualizando produto: {{produto.nome}}</h1></header>
     <table border="1px">
         <thead>
         <tr><th colspan="8">Produto</th></tr>
@@ -45,7 +42,8 @@
             </td>
         </tr>
         </tbody>
-        
     </table>
+    <br>
+    <button type="button"><a href="{% url 'homeProduto' %}">Voltar</a></button>
 </body>
 </html>
