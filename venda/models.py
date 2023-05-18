@@ -2,6 +2,8 @@ from decimal import Decimal
 
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 from produto.models import Produto
 
@@ -27,3 +29,9 @@ class Item(models.Model):
 
     class Meta:
         verbose_name_plural = 'Itens'
+
+
+@receiver(pre_save, sender=Item)
+def preencher_valor_unitario(sender, instance, **kwargs):
+    if not instance.valor_unitario:
+        instance.valor_unitario = instance.produto.precoVenda
