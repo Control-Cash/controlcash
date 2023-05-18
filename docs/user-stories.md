@@ -65,18 +65,19 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 
 ## US03 - Manter venda
 
-Descrição:
+Descrição: O sistema deve permitir o registro de  vendas. Uma venda contém os seguintes atributos: data, hora, cliente, itens de venda, valor total, pagamento, listagem, visualização de vendas e status.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF02                  | Manter venda    |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial   |
+| Estimativa         | 15h         |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
+| Analista           | Bianca    |
 | Desenvolvedor      |     |
 | Revisor            |     |
 | Testador           |     |
@@ -84,7 +85,10 @@ Descrição:
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA03.01                  |Teste de cadastro de venda bem-sucedido: ao preencher todos os campos obrigatórios de uma nova venda e clicar no botão de cadastro, o sistema deve exibir uma mensagem de confirmação indicando que a venda foi registrada com sucesso.       |
+| TA03.02                  |Teste de validação de campos obrigatórios: ao tentar cadastrar uma nova venda sem preencher algum dos campos obrigatórios, o sistema deve exibir uma mensagem de erro indicando quais campos estão faltando e impedir o cadastro da venda. |
+| TA03.03                  |Teste de edição de venda: ao selecionar uma venda já registrada e clicar no botão de edição, o sistema deve permitir a alteração dos campos desejados e exibir uma mensagem de confirmação quando a venda for salva com sucesso.                |
+| TA03.04                  |Teste de exclusão de venda: ao selecionar uma venda já registrada e clicar no botão de exclusão, o sistema deve exibir uma mensagem de confirmação e excluir a venda do sistema sem afetar outros dados do sistema.                             |
 
 ## US04 - Manter item de venda
 
