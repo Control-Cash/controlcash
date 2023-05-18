@@ -26,7 +26,33 @@ def listar_vendas_view(request):
 
 def detalhar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
-    return render(request, 'venda/detalhar.html', {'venda': venda})
+    item_form = ItemVendaForm()
+
+    if request.method == 'POST':
+        item_form = ItemVendaForm(request.POST)
+        if (item_form.is_valid()):
+            novo_item = item_form.save(commit=False)
+
+            # verifica se o item já existe na venda
+            item_ja_cadastrado = Item.objects.filter(
+                venda=venda.id, produto=novo_item.produto).exists()
+
+            if (item_ja_cadastrado):
+                item_existente = Item.objects.get(
+                    venda=venda.id, produto=novo_item.produto)
+                item_existente.quantidade = item_existente.quantidade + novo_item.quantidade
+                item_existente.save()
+
+            else:
+                novo_item.venda = venda
+                novo_item.save()
+            return redirect('venda_detalhar', pk=pk)
+
+    context = {
+        'venda': venda,
+        'form': item_form
+    }
+    return render(request, 'venda/detalhar.html', context)
 
 
 def editar_venda_view(request, pk):
