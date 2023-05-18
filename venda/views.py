@@ -1,18 +1,22 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from venda.forms import VendaForm
-from venda.models import Venda
+from venda.forms import ItemVendaForm
+from venda.models import Item, Venda
 
 
 def criar_venda_view(request):
-    form = VendaForm()
+    item_form = ItemVendaForm()
 
     if request.method == 'POST':
-        form = VendaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('venda_listar')
-    return render(request, 'venda/criar.html', {'form': form})
+        item_form = ItemVendaForm(request.POST)
+        if item_form.is_valid():
+            nova_venda = Venda.objects.create()
+
+            novo_item = item_form.save(commit=False)
+            novo_item.venda = nova_venda
+            novo_item.save()
+            return redirect('venda_detalhar', pk=nova_venda.id)
+    return render(request, 'venda/criar.html', {'form': item_form})
 
 
 def listar_vendas_view(request):
