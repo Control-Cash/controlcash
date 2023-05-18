@@ -146,18 +146,19 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 
 ## US06 - Manter pagamento
 
-Descrição:
+Descrição: O sistema deve permitir a visualização da lista de pagamentos pendentes, recebidos e cancelados. Deve ser possível atualizar o status do pagamento de pendente para recebido ou cancelado, além de pesquisar pagamentos por data, valor ou id do cliente. Essas operações devem ser realizadas pelo perfil de administrador financeiro.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF06                  |     |
+| RF30                  |     |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
+| Analista           | Hilário |
 | Desenvolvedor      |     |
 | Revisor            |     |
 | Testador           |     |
@@ -165,7 +166,9 @@ Descrição:
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA06.01                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Visualizar pagamentos', onde será exibido um campo de filtro que permitirá que ele selecione entre as opções de pagamentos pendentes, recebidos ou cancelados. Em seguida, ele poderá visualizar a lista completa de pagamentos, com todas as informações relacionadas, de acordo com o filtro selecionado.|
+| TA06.02                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Visualizar pagamentos'. Na página, é mostrado um filtro onde ele deverá selecionar a opção de pagamentos pendentes. Em seguida, ele deve selecionar um pagamento específico, onde serão exibidos todos os detalhes do pagamento, incluindo um botão para atualização do status. Ele pode mudar o status de pendente para cancelado ou recebido.|
+| TA06.03                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Pesquisar pagamentos'. Na página, serão exibidos três campos para preenchimento: data, valor e cliente. Após preencher os campos, será mostrada uma lista de pagamentos de acordo com os critérios de pesquisa fornecidos. Caso o administrador deixe todos os campos em branco, o sistema não exibirá nenhum resultado de pesquisa.|
 
 ## US07 - Manter prestação
 
