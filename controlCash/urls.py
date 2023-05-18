@@ -22,4 +22,5 @@ from produto.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('produto/', include('produto.urls')),
+    path('venda/', include('venda.urls')),
 ]
