@@ -8,9 +8,16 @@ from produto.models import Produto
 
 
 class Venda(models.Model):
+    STATUS_CHOICES = (
+        ('ativa', 'Ativa'),
+        ('inativa', 'Inativa'),
+        ('finalizada', 'Finalizada')
+    )
+
     data = models.DateField(auto_now_add=True)
     hora = models.TimeField(auto_now_add=True)
-    status = models.BooleanField(default=True)
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default='ativa')
     # cliente = models.ForeignKey()
     # vendedor = models.ForeignKey()
 
