@@ -8,6 +8,41 @@
 </head>
 <body>
   <h1>Venda #{{ venda.id }}</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço unitário</th>
+        <th>Preço total</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in venda.item_set.all %}
+      <tr>
+        <td>{{ item.produto.nome }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>R$ {{ item.valor_unitario }}</td>
+        <td>R$ {{ item.valor_total }}</td>
+        <td><a href="#">Remover item</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>Adicionar item</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <hr>
+
   <a href="{% url 'venda_editar' venda.id %}">Editar</a>
   <a href="{% url 'venda_desativar' venda.id %}">Desativar</a>
 </body>
