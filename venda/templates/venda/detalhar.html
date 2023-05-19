@@ -16,7 +16,7 @@
         <th>Quantidade</th>
         <th>Preço unitário</th>
         <th>Preço total</th>
-        <th>Ações</th>
+        <th colspan="2">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +26,7 @@
         <td>{{ item.quantidade }}</td>
         <td>R$ {{ item.valor_unitario }}</td>
         <td>R$ {{ item.valor_total }}</td>
+        <td><a href="{% url 'item_editar' pk=item.id %}">Editar quantidade</a></td>
         <td><a href="#">Remover item</a></td>
       </tr>
       {% endfor %}
