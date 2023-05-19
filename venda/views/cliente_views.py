@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from venda.forms import ClienteForm
 from venda.models import Cliente
@@ -19,3 +19,8 @@ def criar_cliente_view(request):
 def listar_clientes_view(request):
     clientes = Cliente.objects.all()
     return render(request, 'venda/cliente/listar.html', {'clientes': clientes})
+
+
+def detalhar_cliente_view(request, pk):
+    cliente = get_object_or_404(Cliente, id=pk)
+    return render(request, 'venda/cliente/detalhar.html', {'cliente': cliente})
