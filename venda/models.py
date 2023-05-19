@@ -33,6 +33,9 @@ class Item(models.Model):
             raise ValidationError(
                 f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque.")
 
+    def valor_total(self):
+        return self.quantidade * self.valor_unitario
+
     class Meta:
         verbose_name_plural = 'Itens'
 
