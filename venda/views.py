@@ -55,18 +55,6 @@ def detalhar_venda_view(request, pk):
     return render(request, 'venda/detalhar.html', context)
 
 
-def editar_venda_view(request, pk):
-    venda = get_object_or_404(Venda, id=pk)
-    form = VendaForm(instance=venda)
-
-    if request.method == 'POST':
-        form = VendaForm(request.POST, instance=venda)
-        if form.is_valid():
-            form.save()
-            return redirect('detalhar_produto', pk=pk)
-    return render(request, 'venda/editar.html', {'form': form})
-
-
 def desativar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     if request.method == 'POST':
