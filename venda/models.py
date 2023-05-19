@@ -18,7 +18,7 @@ class Venda(models.Model):
 class Item(models.Model):
     venda = models.ForeignKey(Venda, on_delete=models.PROTECT)
     produto = models.ForeignKey(Produto, on_delete=models.PROTECT)
-    quantidade = models.PositiveBigIntegerField(
+    quantidade = models.PositiveIntegerField(
         validators=[MinValueValidator(1)])
     valor_unitario = models.DecimalField(max_digits=10, decimal_places=2, validators=[
         MinValueValidator(Decimal('0.01'))])
