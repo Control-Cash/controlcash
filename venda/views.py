@@ -60,7 +60,7 @@ def desativar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[1][0]
         venda.save()
-        return redirect('venda_listar', pk=pk)
+        return redirect('venda_listar')
     return render(request, 'venda/desativar.html', {'venda': venda})
 
 
