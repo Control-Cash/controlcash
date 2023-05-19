@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listar clientes | ControlCash</title>
+  </head>
+  <body>
+    <h1>Listar clientes</h1>
+
+    <a href="{% url 'cliente_criar' %}">Cadastrar cliente</a>
+
+    <ul>
+      {% for cliente in clientes %}
+      <li>
+        <a href="#">
+          {{ cliente.nome }} {{ cliente.email | default_if_none:"" }} ({{ cliente.venda_set.count }} {{ cliente.venda_set.count | pluralize:"compra,compras" }})
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
