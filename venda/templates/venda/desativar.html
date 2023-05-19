@@ -9,6 +9,7 @@
 <body>
   <h1>Tem certeza que deseja desativar a venda #{{venda.id}}?</h1>
   <form method="post">
+    {% csrf_token %}
     <button type="submit">Desativar</button>
     <a href="{% url 'venda_detalhar' pk=venda.id %}">Cancelar</a>
   </form>
