@@ -30,6 +30,9 @@ class Venda(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     # vendedor = models.ForeignKey()
 
+    def __str__(self) -> str:
+        return f"{self.item_set.count} itens vendidos para {self.cliente} ({self.status})"
+
 
 class Item(models.Model):
     venda = models.ForeignKey(Venda, on_delete=models.PROTECT)
