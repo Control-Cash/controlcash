@@ -7,6 +7,15 @@ from django.db import models
 from produto.models import Produto
 
 
+class Cliente(models.Model):
+    nome = models.CharField(max_length=150)
+    email = models.EmailField(blank=True, null=True)
+    # endereco = models.ForeignKey
+
+    def __str__(self) -> str:
+        return f"{self.nome}"
+
+
 class Venda(models.Model):
     STATUS_CHOICES = (
         ('ativa', 'Ativa'),
@@ -18,7 +27,7 @@ class Venda(models.Model):
     hora = models.TimeField(auto_now_add=True)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='ativa')
-    # cliente = models.ForeignKey()
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     # vendedor = models.ForeignKey()
 
 
