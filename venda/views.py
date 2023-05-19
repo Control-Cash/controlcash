@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from venda.forms import ItemVendaForm
+from venda.forms import EditarItemVendaForm, ItemVendaForm
 from venda.models import Item, Venda
 
 
@@ -62,3 +62,15 @@ def desativar_venda_view(request, pk):
         venda.save()
         return redirect('venda_listar', pk=pk)
     return render(request, 'venda/desativar.html', {'venda': venda})
+
+
+def editar_quatidade_item_view(request, pk):
+    item = get_object_or_404(Item, id=pk)
+    form = EditarItemVendaForm(instance=item)
+
+    if request.method == 'POST':
+        form = EditarItemVendaForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('venda_detalhar', pk=item.venda.id)
+    return render(request, 'venda/item/editar.html', {'form': form, 'item': item})
