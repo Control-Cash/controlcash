@@ -1,4 +1,4 @@
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch import receiver
 from produto.models import Produto
 
@@ -19,4 +19,11 @@ def restaurar_estoque(sender, instance, **kwargs):
 def atualizar_estoque(sender, instance, **kwargs):
     produto = Produto.objects.get(id=instance.produto.id)
     produto.quantidadeEstoque = produto.quantidadeEstoque - instance.quantidade
+    produto.save()
+
+
+@receiver(pre_delete, sender=Item)
+def restaurar_estoque(sender, instance, **kwargs):
+    produto = Produto.objects.get(id=instance.produto.id)
+    produto.quantidadeEstoque = produto.quantidadeEstoque + instance.quantidade
     produto.save()
