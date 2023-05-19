@@ -7,7 +7,7 @@
   <title>Editar quantidade de item | ControlCash</title>
 </head>
 <body>
-  <h1>Editando quantidade de item "{{ item.nome }}" na venda #{{ item.venda.id }}</h1>
+  <h1>Editando quantidade de item "{{ item.produto.nome }}" na venda #{{ item.venda.id }}</h1>
 
   <form method="post">
     {% csrf_token %}
