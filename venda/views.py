@@ -58,7 +58,7 @@ def detalhar_venda_view(request, pk):
 def desativar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     if request.method == 'POST':
-        venda.status = False
+        venda.status = Venda.STATUS_CHOICES[1][0]
         venda.save()
         return redirect('venda_listar', pk=pk)
     return render(request, 'venda/desativar.html', {'venda': venda})
