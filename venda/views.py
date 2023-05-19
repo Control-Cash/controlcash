@@ -64,6 +64,15 @@ def desativar_venda_view(request, pk):
     return render(request, 'venda/desativar.html', {'venda': venda})
 
 
+def finalizar_venda_view(request, pk):
+    venda = get_object_or_404(Venda, id=pk)
+    if request.method == 'POST':
+        venda.status = Venda.STATUS_CHOICES[2][0]
+        venda.save()
+        return redirect('venda_detalhar', pk=pk)
+    return render(request, 'venda/finalizar.html', {'venda': venda})
+
+
 def editar_quatidade_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
     form = EditarItemVendaForm(instance=item)
