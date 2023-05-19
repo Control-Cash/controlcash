@@ -1,6 +1,5 @@
 from django import forms
 
-from produto.models import Produto
 from venda.models import Cliente, Item
 
 
@@ -22,3 +21,9 @@ class EditarItemVendaForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['quantidade']
+
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        fields = ['nome', 'email']
+        model = Cliente
