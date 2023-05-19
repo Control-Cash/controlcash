@@ -2,6 +2,7 @@ from django.urls import path
 
 from venda.views.cliente_views import (criar_cliente_view,
                                        detalhar_cliente_view,
+                                       editar_cliente_view,
                                        listar_clientes_view)
 from venda.views.item_views import (editar_quatidade_item_view,
                                     remover_item_view)
@@ -24,4 +25,5 @@ urlpatterns = [
     path('cliente/', listar_clientes_view, name="cliente_listar"),
     path('cliente/criar', criar_cliente_view, name="cliente_criar"),
     path('cliente/<int:pk>', detalhar_cliente_view, name="cliente_detalhar"),
+    path('cliente/<int:pk>/editar', editar_cliente_view, name="cliente_editar"),
 ]
