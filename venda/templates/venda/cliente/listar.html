@@ -14,7 +14,7 @@
     <ul>
       {% for cliente in clientes %}
       <li>
-        <a href="#">
+        <a href="{% url 'cliente_detalhar' cliente.id %}">
           {{ cliente.nome }} {{ cliente.email | default_if_none:"" }} ({{ cliente.venda_set.count }} {{ cliente.venda_set.count | pluralize:"compra,compras" }})
         </a>
       </li>
