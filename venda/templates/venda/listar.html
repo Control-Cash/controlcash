@@ -9,11 +9,13 @@
   <body>
     <h1>Listar vendas</h1>
 
+    <a href="{% url 'venda_criar' %}">Cadastrar venda</a>
+
     <ul>
       {% for venda in vendas %}
       <li>
         <a href="{% url 'venda_detalhar' venda.id %}">
-          {{ venda.id }}
+          #{{ venda.id }} - {{ venda.item_set.count }} itens - ({{venda.get_status_display}})
         </a>
       </li>
       {% endfor %}
