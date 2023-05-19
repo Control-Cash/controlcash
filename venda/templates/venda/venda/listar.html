@@ -15,7 +15,7 @@
       {% for venda in vendas %}
       <li>
         <a href="{% url 'venda_detalhar' venda.id %}">
-          #{{ venda.id }} - {{ venda.item_set.count }} itens - ({{venda.get_status_display}})
+          {{ venda.item_set.count }} {{ venda.item_set.count | pluralize:"item,itens" }} - {{ venda.cliente }} - ({{venda.get_status_display}}) 
         </a>
       </li>
       {% endfor %}
