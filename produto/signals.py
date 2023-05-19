@@ -1,7 +1,7 @@
-from django.db.models.signals import pre_save, post_save, pre_delete
+from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
-from produto.models import Produto
 
+from produto.models import Produto
 from venda.models import Item
 
 
