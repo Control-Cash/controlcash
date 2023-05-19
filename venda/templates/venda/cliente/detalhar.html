@@ -17,6 +17,6 @@
     {{ cliente.venda_set.count | pluralize:"vez,vezes" }} na loja
   </p>
 
-  <a href="#">Editar</a>
+  <a href="{% url 'cliente_editar' cliente.id %}">Editar</a>
 </body>
 </html>
