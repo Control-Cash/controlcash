@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>Venda #{{ venda.id }}</h1>
+  <h3>{{ venda.get_status_display }}</h3>
 
   <table border="1">
     <thead>
@@ -16,7 +17,9 @@
         <th>Quantidade</th>
         <th>Preço unitário</th>
         <th>Preço total</th>
-        <th colspan="2">Ações</th>
+        {% if venda.status == 'ativa' %}
+          <th colspan="2">Ações</th>
+        {% endif %}
       </tr>
     </thead>
     <tbody>
@@ -26,8 +29,10 @@
         <td>{{ item.quantidade }}</td>
         <td>R$ {{ item.valor_unitario }}</td>
         <td>R$ {{ item.valor_total }}</td>
-        <td><a href="{% url 'item_editar' pk=item.id %}">Editar quantidade</a></td>
-        <td><a href="{% url 'item_remover' pk=item.id %}">Remover item</a></td>
+        {% if venda.status == 'ativa' %}
+          <td><a href="{% url 'item_editar' pk=item.id %}">Editar quantidade</a></td>
+          <td><a href="{% url 'item_remover' pk=item.id %}">Remover item</a></td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
@@ -35,16 +40,22 @@
 
   <hr>
 
-  <h2>Adicionar item</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Adicionar</button>
-  </form>
+  {% if venda.status == 'ativa' %}
+    <h2>Adicionar item</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Adicionar</button>
+    </form>
+  {% endif %}
 
   <hr>
 
-  <a href="{% url 'venda_desativar' venda.id %}">Desativar</a>
-  <a href="{% url 'venda_finalizar' venda.id %}">Finalizar</a>
+  {% if venda.status == 'ativa' %}
+    <a href="{% url 'venda_desativar' venda.id %}">Desativar</a>
+    <a href="{% url 'venda_finalizar' venda.id %}">Finalizar</a>
+  {% elif venda.status == 'inativa' %}
+    <a href="{% url 'venda_reativar' venda.id %}">Reativar</a>
+  {% endif %}
 </body>
 </html>
