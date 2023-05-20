@@ -139,6 +139,7 @@ class ListarClientesView(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_listar')
+        self.expeted_template = 'venda/cliente/listar.html'
         self.clientes_data = [
             {
                 'nome': 'José Silva',
@@ -183,3 +184,11 @@ class ListarClientesView(TestCase):
             all(isinstance(cliente, Cliente) for cliente in clientes),
             "Os objetos retornados não são do modelo 'Cliente'"
         )
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderização"""
+        response = self.client.get(self.target_url)
+        self.assertTemplateUsed(
+            response,
+            self.expeted_template,
+            'A view usou um template diferente do esperado')
