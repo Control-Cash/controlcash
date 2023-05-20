@@ -386,3 +386,21 @@ class EditarClienteViewTest(TestCase):
             self.cliente_criado.email,
             "O email do cliente foi alterado com o formulário em branco"
         )
+
+    def test_filled_form_saves(self):
+        """Verifica se a view salva os dados quando um post request tem os
+        dados corretos"""
+
+        self.client.post(self.target_url, self.form_data)
+        self.cliente_criado.refresh_from_db()
+
+        self.assertEqual(
+            self.cliente_criado.nome,
+            self.form_data.get('nome'),
+            "O nome do cliente não foi alterado com o formulário preenchido corretamente"
+        )
+        self.assertEqual(
+            self.cliente_criado.email,
+            self.form_data.get('email'),
+            "O email do cliente não foi alterado com o formulário preenchido corretamente"
+        )
