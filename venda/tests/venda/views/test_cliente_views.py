@@ -49,3 +49,13 @@ class CriarClienteView(TestCase):
         })
         form = response.context.get('form')
         self.assertIsNotNone(form.errors)
+
+    def test_filled_form_saves(self):
+        """Verifica se a view cria um cliente quando um post request tem os
+        dados corretos"""
+        cliente_count = Cliente.objects.count()
+        self.client.post(self.target_url, self.form_data)
+        self.assertEqual(
+            cliente_count + 1,
+            Cliente.objects.count(),
+            "Um cliente não foi criado com o formulário preechido")
