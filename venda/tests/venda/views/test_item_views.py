@@ -45,7 +45,18 @@ class EditarQuantidadeItemView(TestCase):
         self.assertIsNotNone(response.context.get('item'))
         self.assertIsInstance(response.context.get('item'), Item)
 
-    # 404 quando item nao existe
+    def test_returns_404_when_item_doesnt_exist(self):
+        """Verifica se a view response com 404 quando o item solicitado não
+        existe"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
     # usa o form correto
     # renderiza o template correto
     # nao salva com quantidade <= 0
