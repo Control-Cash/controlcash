@@ -5,6 +5,7 @@ from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from produto.models import Produto
+from venda.forms import EditarItemVendaForm
 from venda.models import Cliente, Item, Venda
 
 
@@ -29,6 +30,7 @@ class EditarQuantidadeItemView(TestCase):
         self.expected_template = 'venda/item/editar.html'
         self.view_url_name = 'venda:item_editar'
         self.success_redirect_url_name = 'venda:venda_detalhar'
+        self.expected_form_type = EditarItemVendaForm
         self.client = Client()
 
     def test_view_returns_item_to_template(self):
@@ -57,7 +59,20 @@ class EditarQuantidadeItemView(TestCase):
         ))
 
         self.assertEqual(response.status_code, 404)
-    # usa o form correto
+
+    def test_view_uses_expected_form_type(self):
+        """Verifica se a view passa para o template o formulário correto"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+
+        self.assertIsInstance(response.context.get(
+            'form'), self.expected_form_type)
+
     # renderiza o template correto
     # nao salva com quantidade <= 0
     # salva com quantidade especificada
