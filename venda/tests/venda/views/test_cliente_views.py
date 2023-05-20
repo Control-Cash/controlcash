@@ -1,4 +1,3 @@
-from urllib import response
 from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
@@ -324,4 +323,34 @@ class DetalharClienteView(TestCase):
             response,
             self.expected_template,
             'A view usou um template diferente do esperado'
+        )
+
+
+class EditarClienteViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.expected_template = 'venda/cliente/editar.html'
+        self.cliente_criado = Cliente.objects.create(
+            nome='João Silva',
+            email='joaosilva@gmail.com'
+        )
+        self.form_data = {
+            'nome': 'João Silva 2',
+            'email': 'joaosilva@outlook.com'
+        }
+        self.target_url = reverse_lazy(
+            'venda:cliente_editar',
+            kwargs={
+                'pk': self.cliente_criado.id
+            }
+        )
+
+    def test_view_sends_form_to_template(self):
+        """Verifica se a view envia o formulário ao template"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertIsNotNone(
+            response.context.get('form'),
+            "'form' não é enviado pela view"
         )
