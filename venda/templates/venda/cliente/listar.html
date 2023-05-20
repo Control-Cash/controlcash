@@ -9,12 +9,12 @@
   <body>
     <h1>Listar clientes</h1>
 
-    <a href="{% url 'cliente_criar' %}">Cadastrar cliente</a>
+    <a href="{% url 'venda:cliente_criar' %}">Cadastrar cliente</a>
 
     <ul>
       {% for cliente in clientes %}
       <li>
-        <a href="{% url 'cliente_detalhar' cliente.id %}">
+        <a href="{% url 'venda:cliente_detalhar' cliente.id %}">
           {{ cliente.nome }} {{ cliente.email | default_if_none:"" }} ({{ cliente.venda_set.count }} {{ cliente.venda_set.count | pluralize:"compra,compras" }})
         </a>
       </li>

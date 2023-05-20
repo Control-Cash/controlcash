@@ -7,7 +7,7 @@
   <title>Cliente "{{ cliente.nome }}" | ControlCash</title>
 </head>
 <body>
-  <a href="{% url 'cliente_listar' %}">Ir à lista de clientes</a>
+  <a href="{% url 'venda:cliente_listar' %}">Ir à lista de clientes</a>
 
   <h1>{{ cliente.nome }}</h1>
   <h2>Email: {{ cliente.email | default_if_none:"Não cadastrado" }}</h2>
@@ -17,6 +17,6 @@
     {{ cliente.venda_set.count | pluralize:"vez,vezes" }} na loja
   </p>
 
-  <a href="{% url 'cliente_editar' cliente.id %}">Editar</a>
+  <a href="{% url 'venda:cliente_editar' cliente.id %}">Editar</a>
 </body>
 </html>

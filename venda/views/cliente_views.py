@@ -12,7 +12,7 @@ def criar_cliente_view(request):
 
         if form.is_valid():
             form.save()
-            return redirect('venda_listar')
+            return redirect('venda:venda_listar')
     return render(request, 'venda/cliente/criar.html', {'form': form})
 
 
@@ -35,5 +35,5 @@ def editar_cliente_view(request, pk):
 
         if form.is_valid():
             form.save()
-        return redirect('cliente_detalhar', pk=pk)
+        return redirect('venda:cliente_detalhar', pk=pk)
     return render(request, 'venda/cliente/editar.html', {'form': form})

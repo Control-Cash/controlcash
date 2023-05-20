@@ -10,6 +10,8 @@ from venda.views.venda_views import (criar_venda_view, desativar_venda_view,
                                      detalhar_venda_view, finalizar_venda_view,
                                      listar_vendas_view, reativar_venda_view)
 
+app_name = 'venda'
+
 urlpatterns = [
     # relacionadas ao modelo venda
     path('', listar_vendas_view, name='venda_listar'),

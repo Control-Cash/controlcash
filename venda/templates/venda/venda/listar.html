@@ -9,12 +9,12 @@
   <body>
     <h1>Listar vendas</h1>
 
-    <a href="{% url 'venda_criar' %}">Cadastrar venda</a>
+    <a href="{% url 'venda:venda_criar' %}">Cadastrar venda</a>
 
     <ul>
       {% for venda in vendas %}
       <li>
-        <a href="{% url 'venda_detalhar' venda.id %}">
+        <a href="{% url 'venda:venda_detalhar' venda.id %}">
           {{ venda.item_set.count }} {{ venda.item_set.count | pluralize:"item,itens" }} - {{ venda.cliente }} - ({{venda.get_status_display}}) 
         </a>
       </li>

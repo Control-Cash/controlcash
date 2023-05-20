@@ -48,7 +48,7 @@ def detalhar_venda_view(request, pk):
             else:
                 novo_item.venda = venda
                 novo_item.save()
-            return redirect('venda_detalhar', pk=pk)
+            return redirect('venda:venda_detalhar', pk=pk)
 
     context = {
         'venda': venda,
@@ -62,7 +62,7 @@ def desativar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[1][0]
         venda.save()
-        return redirect('venda_listar')
+        return redirect('venda:venda_listar')
     return render(request, 'venda/venda/desativar.html', {'venda': venda})
 
 
@@ -71,7 +71,7 @@ def finalizar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[2][0]
         venda.save()
-        return redirect('venda_detalhar', pk=pk)
+        return redirect('venda:venda_detalhar', pk=pk)
     return render(request, 'venda/venda/finalizar.html', {'venda': venda})
 
 
@@ -80,5 +80,5 @@ def reativar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[0][0]
         venda.save()
-        return redirect('venda_detalhar', pk=pk)
+        return redirect('venda:venda_detalhar', pk=pk)
     return render(request, 'venda/venda/reativar.html', {'venda': venda})

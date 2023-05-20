@@ -7,7 +7,7 @@
   <title>Venda #{{ venda.id }} | ControlCash</title>
 </head>
 <body>
-  <a href="{% url 'venda_listar' %}">Ir a lista de vendas</a>
+  <a href="{% url 'venda:venda_listar' %}">Ir a lista de vendas</a>
 
   <h1>Venda #{{ venda.id }}</h1>
   <h3>{{ venda.get_status_display }}</h3>
@@ -34,8 +34,8 @@
         <td>R$ {{ item.valor_unitario }}</td>
         <td>R$ {{ item.valor_total }}</td>
         {% if venda.status == 'ativa' %}
-          <td><a href="{% url 'item_editar' pk=item.id %}">Editar quantidade</a></td>
-          <td><a href="{% url 'item_remover' pk=item.id %}">Remover item</a></td>
+          <td><a href="{% url 'venda:item_editar' pk=item.id %}">Editar quantidade</a></td>
+          <td><a href="{% url 'venda:item_remover' pk=item.id %}">Remover item</a></td>
         {% endif %}
       </tr>
       {% endfor %}
@@ -56,10 +56,10 @@
   <hr>
 
   {% if venda.status == 'ativa' %}
-    <a href="{% url 'venda_desativar' venda.id %}">Desativar</a>
-    <a href="{% url 'venda_finalizar' venda.id %}">Finalizar</a>
+    <a href="{% url 'venda:venda_desativar' venda.id %}">Desativar</a>
+    <a href="{% url 'venda:venda_finalizar' venda.id %}">Finalizar</a>
   {% elif venda.status == 'inativa' %}
-    <a href="{% url 'venda_reativar' venda.id %}">Reativar</a>
+    <a href="{% url 'venda:venda_reativar' venda.id %}">Reativar</a>
   {% endif %}
 </body>
 </html>

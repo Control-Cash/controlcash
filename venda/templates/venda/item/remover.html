@@ -11,7 +11,7 @@
   <form method="post">
     {% csrf_token %}
     <button type="submit">Remover</button>
-    <a href="{% url 'venda_detalhar' pk=item.venda.id %}">Cancelar</a>
+    <a href="{% url 'venda:venda_detalhar' pk=item.venda.id %}">Cancelar</a>
   </form>
 </body>
 </html>
