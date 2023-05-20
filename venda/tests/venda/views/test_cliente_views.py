@@ -85,3 +85,13 @@ class CriarClienteView(TestCase):
             cliente_count + 1,
             Cliente.objects.count(),
             "Um cliente não foi criado com os campos opcionais do formulário em branco")
+
+    def test_empty_required_fields_return_errors(self):
+        """Verifica se a view envia erros ao template quando recebe todos os 
+        dados obrigatórios em branco"""
+        response = self.client.post(self.target_url, {
+            'nome': '',
+            'email': self.form_data.get('email')
+        })
+        form = response.context.get('form')
+        self.assertIsNotNone(form.errors)
