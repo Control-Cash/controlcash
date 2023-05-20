@@ -72,3 +72,16 @@ class CriarClienteView(TestCase):
             cliente_count,
             Cliente.objects.count(),
             "Um cliente foi criado com os campos obrigatŕios do formulário em branco")
+
+    def test_empty_optional_fields_saves(self):
+        """Verifica se a view cria um cliente quando um post request tem os
+        dados opcionais em branco"""
+        cliente_count = Cliente.objects.count()
+        self.client.post(self.target_url, {
+            'nome': self.form_data.get('nome'),
+            'email': ''
+        })
+        self.assertEqual(
+            cliente_count + 1,
+            Cliente.objects.count(),
+            "Um cliente não foi criado com os campos opcionais do formulário em branco")
