@@ -365,3 +365,24 @@ class EditarClienteViewTest(TestCase):
             ClienteForm,
             "'form' enviado pela view não é 'ClienteForm'"
         )
+
+    def test_empty_form_doesnt_save(self):
+        """Verifica se a view não salva os dados quando um post request tem os
+        dados em branco"""
+
+        self.client.post(self.target_url, {
+            'nome': '',
+            'email': ''
+        })
+        cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
+
+        self.assertEqual(
+            cliente_atualizado.nome,
+            self.cliente_criado.nome,
+            "O nome do cliente foi alterado com o formulário em branco"
+        )
+        self.assertEqual(
+            cliente_atualizado.email,
+            self.cliente_criado.email,
+            "O email do cliente foi alterado com o formulário em branco"
+        )
