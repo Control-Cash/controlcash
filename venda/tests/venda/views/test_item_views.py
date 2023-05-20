@@ -1,9 +1,10 @@
 from datetime import date
 from decimal import Decimal
+
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
-from produto.models import Produto
 
+from produto.models import Produto
 from venda.models import Cliente, Item, Venda
 
 
@@ -53,6 +54,22 @@ class RemoverItemView(TestCase):
         ))
 
         self.assertEqual(response.status_code, 404)
-    # retonra item
+
+    def test_view_sends_item_to_template(self):
+        """Verifica se a view envia ao template o item associado ao atributo
+        'pk' passado na request"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+        item_recebido = response.context.get('item')
+
+        self.assertIsNotNone(item_recebido)
+        self.assertIsInstance(item_recebido, Item)
+        self.assertEqual(self.item, item_recebido)
+
     # remove o item
     # redireciona ao remover item
