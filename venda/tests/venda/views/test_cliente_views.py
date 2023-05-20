@@ -104,3 +104,12 @@ class CriarClienteView(TestCase):
             response,
             self.expeted_template,
             'A view usou um template diferente do esperado')
+
+    def test_successful_post_request_redirects(self):
+        """Verifica se a view redireciona quando uma solicitação post é enviada
+        corretamente com todos os dados"""
+        response = self.client.post(self.target_url, self.form_data)
+        self.assertEqual(
+            response.status_code,
+            302,
+            'A view não redirecionou após post request bem sucedido')
