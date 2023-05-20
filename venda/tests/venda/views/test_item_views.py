@@ -29,6 +29,7 @@ class RemoverItemView(TestCase):
         self.expected_template = 'venda/item/remover.html'
         self.client = Client()
         self.view_url_name = 'venda:item_remover'
+        self.success_redirect_url_name = 'venda:venda_detalhar'
 
     def test_renders_correct_template(self):
         """Verifica se a view renderiza o template esperado"""
@@ -84,5 +85,25 @@ class RemoverItemView(TestCase):
 
         self.assertEqual(initial_count - 1, Item.objects.count())
 
-    # redireciona ao remover item
-    # produtos do item voltam ao estoque
+    def test_redirects_to_correct_page_after_delete(self):
+        """Verifica se a view redireciona para a página correta após excluir o
+        item"""
+
+        response = self.client.post(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                self.success_redirect_url_name,
+                kwargs={
+                    'pk': self.venda.id
+                }
+            ),
+            302,
+            200
+        )
