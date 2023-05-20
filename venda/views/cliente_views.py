@@ -35,5 +35,5 @@ def editar_cliente_view(request, pk):
 
         if form.is_valid():
             form.save()
-        return redirect('venda:cliente_detalhar', pk=pk)
+            return redirect('venda:cliente_detalhar', pk=pk)
     return render(request, 'venda/cliente/editar.html', {'form': form})
