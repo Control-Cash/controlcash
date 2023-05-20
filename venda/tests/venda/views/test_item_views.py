@@ -27,12 +27,13 @@ class RemoverItemView(TestCase):
         )
         self.expected_template = 'venda/item/remover.html'
         self.client = Client()
+        self.view_url_name = 'venda:item_remover'
 
     def test_renders_correct_template(self):
         """Verifica se a view renderiza o template esperado"""
 
         response = self.client.get(reverse_lazy(
-            'venda:item_remover',
+            self.view_url_name,
             kwargs={
                 'pk': self.item.id
             }
@@ -40,6 +41,18 @@ class RemoverItemView(TestCase):
 
         self.assertTemplateUsed(response, self.expected_template)
 
-    # retorna 404 quando o item nao existe
+    def test_response_is_404_when_item_doesnt_exist(self):
+        """Verifica se a view retorna 404 quando o atributo 'pk' passado não
+        pertence a nenhum item"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
     # retonra item
     # remove o item
+    # redireciona ao remover item
