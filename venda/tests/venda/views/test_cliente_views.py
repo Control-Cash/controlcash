@@ -14,7 +14,7 @@ class CriarClienteView(TestCase):
             'nome': 'José Silva',
             'email': 'josesilva@gmail.com'
         }
-        self.expeted_template = 'venda/cliente/criar.html'
+        self.expected_template = 'venda/cliente/criar.html'
 
     def test_view_sends_form_to_template(self):
         """Verifica se a view envia o formulário ao template"""
@@ -136,7 +136,7 @@ class CriarClienteView(TestCase):
 
         self.assertTemplateUsed(
             response,
-            self.expeted_template,
+            self.expected_template,
             'A view usou um template diferente do esperado'
         )
 
@@ -177,7 +177,6 @@ class ListarClientesView(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_listar')
-        self.expeted_template = 'venda/cliente/listar.html'
         self.clientes_data = [
             {
                 'nome': 'José Silva',
@@ -192,7 +191,7 @@ class ListarClientesView(TestCase):
                 'email': 'mariasantos@outlook.com'
             },
         ]
-        self.expeted_template = 'venda/cliente/listar.html'
+        self.expected_template = 'venda/cliente/listar.html'
 
     def test_view_sends_clientes_to_template(self):
         """Verifica se a view envia uma variavel 'clientes' ao template"""
@@ -232,7 +231,7 @@ class ListarClientesView(TestCase):
 
         self.assertTemplateUsed(
             response,
-            self.expeted_template,
+            self.expected_template,
             'A view usou um template diferente do esperado'
         )
 
