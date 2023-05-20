@@ -41,7 +41,7 @@ class CriarClienteView(TestCase):
         ), "Um cliente foi criado com o formulário em branco")
 
     def test_empty_form_return_errors(self):
-        """Verifica se a view enviar erros ao template quando recebe dados em
+        """Verifica se a view envia erros ao template quando recebe dados em
         branco"""
         response = self.client.post(self.target_url, {
             'nome': '',
@@ -59,3 +59,16 @@ class CriarClienteView(TestCase):
             cliente_count + 1,
             Cliente.objects.count(),
             "Um cliente não foi criado com o formulário preechido")
+
+    def test_empty_required_fields_doesnt_save(self):
+        """Verifica se a view nao cria um cliente quando um post request tem os
+        dados obrigatótios em branco"""
+        cliente_count = Cliente.objects.count()
+        self.client.post(self.target_url, {
+            'nome': '',
+            'email': self.form_data.get('email')
+        })
+        self.assertEqual(
+            cliente_count,
+            Cliente.objects.count(),
+            "Um cliente foi criado com os campos obrigatŕios do formulário em branco")
