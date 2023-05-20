@@ -162,3 +162,24 @@ class ListarClientesView(TestCase):
         self.assertIsNotNone(
             response.context.get('clientes'),
             "'clientes' não é enviado pela view")
+
+    def test_clientes_sended_to_template_contains_clientes_data(self):
+        """Verifica se a view envia os dados dos clientes ao template"""
+
+        Cliente.objects.create(
+            nome=self.clientes_data[0].get('nome'),
+            email=self.clientes_data[0].get('email'),
+        )
+
+        response = self.client.get(self.target_url)
+        clientes = response.context.get('clientes')
+
+        self.assertIsInstance(
+            clientes,
+            QuerySet,
+            "'clientes' enviado pela view não é conjunto de modelos")
+
+        self.assertTrue(
+            all(isinstance(cliente, Cliente) for cliente in clientes),
+            "Os objetos retornados não são do modelo 'Cliente'"
+        )
