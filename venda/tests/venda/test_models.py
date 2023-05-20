@@ -84,3 +84,19 @@ class ItemModel(TestCase):
         )
 
         self.assertRaises(ValidationError, item.clean)
+
+    def test_valor_total_returns_multiplication_of_quantidade_and_valor_unitario(self):
+        """Verifica se a chamada do método valor_total retorna o preço unitário
+        do item multiplicado por sua quantidade"""
+
+        item = Item.objects.create(
+            quantidade=2,
+            produto=self.produto,
+            venda=self.venda
+        )
+
+        self.assertEqual(
+            item.quantidade *
+            item.valor_unitario, item.valor_total(),
+            "O método 'valor_total' não retornou o valor esperado"
+        )
