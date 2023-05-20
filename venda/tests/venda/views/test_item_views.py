@@ -97,7 +97,7 @@ class EditarQuantidadeItemView(TestCase):
                 }
             ),
             {
-                'quatidade': 0
+                'quantidade': 0
             }
         )
         form_errors = response.context.get('form').errors
@@ -118,7 +118,7 @@ class EditarQuantidadeItemView(TestCase):
                 }
             ),
             {
-                'quatidade': -1
+                'quantidade': -1
             }
         )
         form_errors = response.context.get('form').errors
@@ -127,7 +127,26 @@ class EditarQuantidadeItemView(TestCase):
         self.assertEqual(after_request_item, self.item)
         self.assertIsNotNone(form_errors)
 
-    # salva com quantidade especificada
+    def test_item_updates_when_quantidade_is_greater_than_zero(self):
+        """Verifica se a view atualiza o item quando a quantidade passada é
+        maior que zero"""
+
+        nova_quantidade = 3
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.item.id
+                }
+            ),
+            {
+                'quantidade': nova_quantidade
+            }
+        )
+        updated_item = Item.objects.get(id=self.item.id)
+
+        self.assertEqual(updated_item.quantidade, nova_quantidade)
+
     # redireciona ao salvar para a pagina correta
 
 
