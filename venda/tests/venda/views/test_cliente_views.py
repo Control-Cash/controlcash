@@ -113,3 +113,22 @@ class CriarClienteView(TestCase):
             response.status_code,
             302,
             'A view não redirecionou após post request bem sucedido')
+
+    def test_successful_post_request_redirects_to_expected_url(self):
+        """Verifica se a view redireciona para a url correta quando uma
+        solicitação post é enviada corretamente com todos os dados"""
+
+        response = self.client.post(self.target_url, self.form_data)
+        cliente_criado = Cliente.objects.last()
+        reverse_lazy()
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                'venda:cliente_detalhar',
+                kwargs={
+                    'pk': cliente_criado.id
+                }
+            ),
+            302,
+            200)
