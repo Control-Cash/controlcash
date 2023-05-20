@@ -11,8 +11,8 @@ def criar_cliente_view(request):
         form = ClienteForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect('venda:venda_listar')
+            cliente_criado = form.save()
+            return redirect('venda:cliente_detalhar', cliente_criado.id)
     return render(request, 'venda/cliente/criar.html', {'form': form})
 
 
