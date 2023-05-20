@@ -263,7 +263,7 @@ class ListarClientesView(TestCase):
 class DetalharClienteView(TestCase):
     def setUp(self) -> None:
         self.client = Client()
-        self.expeted_template = 'venda/cliente/detalhar.html'
+        self.expected_template = 'venda/cliente/detalhar.html'
         self.cliente_criado = Cliente.objects.create(
             nome='José Silva',
             email='josesilva@gmail.com'
@@ -307,3 +307,21 @@ class DetalharClienteView(TestCase):
 
         self.assertIsNone(response.context.get('cliente'))
         self.assertEqual(response.status_code, 404)
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderização"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'venda:cliente_detalhar',
+                kwargs={
+                    'pk': self.cliente_criado.id
+                }
+            )
+        )
+
+        self.assertTemplateUsed(
+            response,
+            self.expected_template,
+            'A view usou um template diferente do esperado'
+        )
