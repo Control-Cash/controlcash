@@ -431,3 +431,16 @@ class EditarClienteViewTest(TestCase):
 
         self.assertIsNone(response.context.get('form'))
         self.assertEqual(response.status_code, 404)
+
+    def test_empty_required_fields_doesnt_save(self):
+        """Verifica se a view nao atualiza um cliente quando um post request tem
+        os dados obrigatótios em branco"""
+
+        self.client.post(self.target_url, {'nome': ''})
+        cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
+
+        self.assertEqual(
+            cliente_atualizado.nome,
+            self.cliente_criado.nome,
+            "O cliente foi atualizado com os campos obrigatŕios do formulário em branco"
+        )
