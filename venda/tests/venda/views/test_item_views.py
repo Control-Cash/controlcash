@@ -71,5 +71,18 @@ class RemoverItemView(TestCase):
         self.assertIsInstance(item_recebido, Item)
         self.assertEqual(self.item, item_recebido)
 
-    # remove o item
+    def removes_item_on_post_request(self):
+        """Verifica se a view realiza a remoção do item do banco de dados"""
+
+        initial_count = Item.objects.count()
+        self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+
+        self.assertEqual(initial_count - 1, Item.objects.count())
+
     # redireciona ao remover item
+    # produtos do item voltam ao estoque
