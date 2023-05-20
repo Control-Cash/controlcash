@@ -73,7 +73,18 @@ class EditarQuantidadeItemView(TestCase):
         self.assertIsInstance(response.context.get(
             'form'), self.expected_form_type)
 
-    # renderiza o template correto
+    def test_view_uses_expected_template(self):
+        """Verifica se a view renderiza o template correto"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+
+        self.assertTemplateUsed(response, self.expected_template)
+
     # nao salva com quantidade <= 0
     # salva com quantidade especificada
     # redireciona ao salvar para a pagina correta
