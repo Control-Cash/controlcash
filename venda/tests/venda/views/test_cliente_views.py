@@ -404,3 +404,14 @@ class EditarClienteViewTest(TestCase):
             self.form_data.get('email'),
             "O email do cliente não foi alterado com o formulário preenchido corretamente"
         )
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderização"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertTemplateUsed(
+            response,
+            self.expected_template,
+            'A view usou um template diferente do esperado'
+        )
