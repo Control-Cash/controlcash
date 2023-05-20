@@ -13,6 +13,7 @@ class CriarClienteView(TestCase):
             'nome': 'José Silva',
             'email': 'josesilva@gmail.com'
         }
+        self.expeted_template = 'venda/cliente/criar.html'
 
     def test_view_sends_form_to_template(self):
         """Verifica se a view envia o formulário ao template"""
@@ -95,3 +96,11 @@ class CriarClienteView(TestCase):
         })
         form = response.context.get('form')
         self.assertIsNotNone(form.errors)
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderizacao"""
+        response = self.client.get(self.target_url)
+        self.assertTemplateUsed(
+            response,
+            self.expeted_template,
+            'A view usou um template diferente do esperado')
