@@ -1,3 +1,4 @@
+from urllib import response
 from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
@@ -290,3 +291,19 @@ class DetalharClienteView(TestCase):
             cliente_retornado,
             "A view não retornou o cliente solicitado"
         )
+
+    def test_view_returns_404_when_cliente_is_unknown(self):
+        """Verifica se a view retorna uma resposta 404 quando o cliente
+        solicitado não existe"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'venda:cliente_detalhar',
+                kwargs={
+                    'pk': 50
+                }
+            )
+        )
+
+        self.assertIsNone(response.context.get('cliente'))
+        self.assertEqual(response.status_code, 404)
