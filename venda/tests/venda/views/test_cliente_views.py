@@ -457,3 +457,12 @@ class EditarClienteViewTest(TestCase):
             self.form_data.get('nome'),
             "Um cliente não foi atualizado com os campos opcionais do formulário em branco"
         )
+
+    def test_empty_required_fields_return_errors(self):
+        """Verifica se a view envia erros ao template quando recebe todos os 
+        dados obrigatórios em branco"""
+
+        response = self.client.post(self.target_url, {'nome': ''})
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form.errors)
