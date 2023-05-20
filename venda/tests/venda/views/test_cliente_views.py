@@ -257,3 +257,36 @@ class ListarClientesView(TestCase):
         self.assertIn(cliente1, clientes)
         self.assertIn(cliente2, clientes)
         self.assertIn(cliente3, clientes)
+
+
+class DetalharClienteView(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.expeted_template = 'venda/cliente/detalhar.html'
+        self.cliente_criado = Cliente.objects.create(
+            nome='José Silva',
+            email='josesilva@gmail.com'
+        )
+
+    def test_view_returns_cliente_requested(self):
+        """Veriica se a view retorna ao template o cliente solicitado"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'venda:cliente_detalhar',
+                kwargs={
+                    'pk': self.cliente_criado.id
+                }
+            )
+        )
+        cliente_retornado = response.context.get('cliente')
+
+        self.assertIsNotNone(
+            cliente_retornado,
+            "A view não retorna a variável 'cliente'"
+        )
+        self.assertEqual(
+            self.cliente_criado,
+            cliente_retornado,
+            "A view não retornou o cliente solicitado"
+        )
