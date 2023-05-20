@@ -8,6 +8,51 @@ from produto.models import Produto
 from venda.models import Cliente, Item, Venda
 
 
+class EditarQuantidadeItemView(TestCase):
+    def setUp(self) -> None:
+        self.cliente = Cliente.objects.create(
+            nome='João',
+            email="joao@gmail.com"
+        )
+        self.venda = Venda.objects.create(cliente=self.cliente)
+        self.produto = Produto.objects.create(
+            nome='sandalia',
+            precoVenda=Decimal(20),
+            quantidadeEstoque=5,
+            dataRegistro=date(2023, 2, 1)
+        )
+        self.item = Item.objects.create(
+            produto=self.produto,
+            quantidade=1,
+            venda=self.venda
+        )
+        self.expected_template = 'venda/item/editar.html'
+        self.view_url_name = 'venda:item_editar'
+        self.success_redirect_url_name = 'venda:venda_detalhar'
+        self.client = Client()
+
+    def test_view_returns_item_to_template(self):
+        """Verifica se a view passa o item que o usuário deseja editar para o
+        template"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.item.id
+            }
+        ))
+
+        self.assertIsNotNone(response.context.get('item'))
+        self.assertIsInstance(response.context.get('item'), Item)
+
+    # 404 quando item nao existe
+    # usa o form correto
+    # renderiza o template correto
+    # nao salva com quantidade <= 0
+    # salva com quantidade especificada
+    # redireciona ao salvar para a pagina correta
+
+
 class RemoverItemView(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
