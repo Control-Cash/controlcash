@@ -444,3 +444,16 @@ class EditarClienteViewTest(TestCase):
             self.cliente_criado.nome,
             "O cliente foi atualizado com os campos obrigatŕios do formulário em branco"
         )
+
+    def test_empty_optional_fields_saves(self):
+        """Verifica se a view atualiza um cliente quando um post request tem os
+        dados opcionais em branco"""
+
+        self.client.post(self.target_url, {'nome': self.form_data.get('nome')})
+        cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
+
+        self.assertEqual(
+            cliente_atualizado.nome,
+            self.form_data.get('nome'),
+            "Um cliente não foi atualizado com os campos opcionais do formulário em branco"
+        )
