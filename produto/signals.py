@@ -6,7 +6,7 @@ from venda.models import Item
 
 
 @receiver(pre_save, sender=Item)
-def restaurar_estoque(sender, instance, **kwargs):
+def restaurar_estoque_antes_de_atualizar_item(sender, instance, **kwargs):
     if instance.id:  # Verifica se o objeto já existe no banco de dados
         item_anterior = Item.objects.get(id=instance.id)
 
@@ -16,14 +16,14 @@ def restaurar_estoque(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=Item)
-def atualizar_estoque(sender, instance, **kwargs):
+def atualizar_estoque_apos_criar_ou_atualizar_item(sender, instance, **kwargs):
     produto = Produto.objects.get(id=instance.produto.id)
     produto.quantidadeEstoque = produto.quantidadeEstoque - instance.quantidade
     produto.save()
 
 
 @receiver(pre_delete, sender=Item)
-def restaurar_estoque(sender, instance, **kwargs):
+def restaurar_estoque_antes_de_remover_item(sender, instance, **kwargs):
     produto = Produto.objects.get(id=instance.produto.id)
     produto.quantidadeEstoque = produto.quantidadeEstoque + instance.quantidade
     produto.save()
