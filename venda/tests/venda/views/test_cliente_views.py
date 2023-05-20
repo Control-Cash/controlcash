@@ -415,3 +415,19 @@ class EditarClienteViewTest(TestCase):
             self.expected_template,
             'A view usou um template diferente do esperado'
         )
+
+    def test_view_returns_404_when_cliente_is_unknown(self):
+        """Verifica se a view retorna uma resposta 404 quando o cliente
+        solicitado não existe"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'venda:cliente_editar',
+                kwargs={
+                    'pk': 50
+                }
+            )
+        )
+
+        self.assertIsNone(response.context.get('form'))
+        self.assertEqual(response.status_code, 404)
