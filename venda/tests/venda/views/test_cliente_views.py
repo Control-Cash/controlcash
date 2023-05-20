@@ -39,3 +39,13 @@ class CriarClienteView(TestCase):
         })
         self.assertEqual(cliente_count, Cliente.objects.count(
         ), "Um cliente foi criado com o formulário em branco")
+
+    def test_empty_form_return_errors(self):
+        """Verifica se a view enviar erros ao template quando recebe dados em
+        branco"""
+        response = self.client.post(self.target_url, {
+            'nome': '',
+            'email': ''
+        })
+        form = response.context.get('form')
+        self.assertIsNotNone(form.errors)
