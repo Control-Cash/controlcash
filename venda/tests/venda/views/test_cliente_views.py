@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
@@ -132,3 +133,32 @@ class CriarClienteView(TestCase):
             ),
             302,
             200)
+
+
+class ListarClientesView(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.target_url = reverse_lazy('venda:cliente_listar')
+        self.clientes_data = [
+            {
+                'nome': 'José Silva',
+                'email': 'josesilva@gmail.com'
+            },
+            {
+                'nome': 'João Silva',
+                'email': 'joaosilva@gmail.com'
+            },
+            {
+                'nome': 'Maria Santos',
+                'email': 'mariasantos@outlook.com'
+            },
+        ]
+        self.expeted_template = 'venda/cliente/listar.html'
+
+    def test_view_sends_clientes_to_template(self):
+        """Verifica se a view envia uma variavel 'clientes' ao template"""
+
+        response = self.client.get(self.target_url)
+        self.assertIsNotNone(
+            response.context.get('clientes'),
+            "'clientes' não é enviado pela view")
