@@ -235,3 +235,26 @@ class ListarClientesView(TestCase):
             self.expeted_template,
             'A view usou um template diferente do esperado'
         )
+
+    def test_all_clients_are_sended_to_template(self):
+        """Verifica se a view envia todos os clientes ao template"""
+
+        cliente1 = Cliente.objects.create(
+            nome=self.clientes_data[0].get('nome'),
+            email=self.clientes_data[0].get('email'),
+        )
+        cliente2 = Cliente.objects.create(
+            nome=self.clientes_data[1].get('nome'),
+            email=self.clientes_data[1].get('email'),
+        )
+        cliente3 = Cliente.objects.create(
+            nome=self.clientes_data[2].get('nome'),
+            email=self.clientes_data[2].get('email'),
+        )
+
+        response = self.client.get(self.target_url)
+        clientes = response.context.get('clientes')
+
+        self.assertIn(cliente1, clientes)
+        self.assertIn(cliente2, clientes)
+        self.assertIn(cliente3, clientes)
