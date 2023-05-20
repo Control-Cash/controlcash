@@ -147,7 +147,33 @@ class EditarQuantidadeItemView(TestCase):
 
         self.assertEqual(updated_item.quantidade, nova_quantidade)
 
-    # redireciona ao salvar para a pagina correta
+    def test_view_redirects_to_correct_page_after_update(self):
+        """Verifica se a view redireciona para a página correta após a
+        atualização do item"""
+
+        response = self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.item.id
+                }
+            ),
+            {
+                'quantidade': 3
+            }
+        )
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                self.success_redirect_url_name,
+                kwargs={
+                    'pk': self.item.id
+                }
+            ),
+            302,
+            200
+        )
 
 
 class RemoverItemView(TestCase):
