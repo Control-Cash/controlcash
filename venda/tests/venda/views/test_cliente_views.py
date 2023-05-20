@@ -158,7 +158,6 @@ class CriarClienteView(TestCase):
 
         response = self.client.post(self.target_url, self.form_data)
         cliente_criado = Cliente.objects.last()
-        reverse_lazy()
 
         self.assertRedirects(
             response,
@@ -466,3 +465,21 @@ class EditarClienteViewTest(TestCase):
         form = response.context.get('form')
 
         self.assertIsNotNone(form.errors)
+
+    def test_redirects_to_correct_page_on_update(self):
+        """Verifica se a view redireciona para a url correta quando uma
+        solicitação post é enviada corretamente com todos os dados"""
+
+        response = self.client.post(self.target_url, self.form_data)
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                'venda:cliente_detalhar',
+                kwargs={
+                    'pk': self.cliente_criado.id
+                }
+            ),
+            302,
+            200
+        )
