@@ -480,7 +480,14 @@ class DetalharVendaViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
-    # usa o template correto
+    def test_view_uses_expected_temlpate(self):
+        """Verifica se a view renderiza o template correto"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, self.expected_template)
+        
     # form correto é enviado
     # adiciona item quando preenchido corretamente
     # nao adiciona item quando campo obrigatorio vai vazio
