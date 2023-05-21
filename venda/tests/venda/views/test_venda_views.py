@@ -421,3 +421,15 @@ class FinalizarVendaView(TestCase):
         self.assertIsNotNone(venda)
         self.assertIsInstance(venda, Venda)
         self.assertEqual(venda.id, self.venda.id)
+
+    def test_view_returns_404_when_venda_is_not_found(self):
+        """Verifica se a view retorna 404 quando o objeto venda solicitado não existe"""
+
+        response = self.client.get(reverse_lazy(
+            self.target_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
