@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 from produto.models import Produto
 from venda.forms import CriarVendaForm
-from venda.models import Cliente, Item, Venda
+from venda.models import Cliente, Venda
 
 
 class ListarVendasView(TestCase):
@@ -354,3 +354,35 @@ class ReativarVendaView(TestCase):
         ))
 
         self.assertEqual(response.status_code, 404)
+
+
+class FinalizarVendaView(TestCase):
+    def setUp(self) -> None:
+        self.expected_template = 'venda/venda/finalizar.html'
+        self.target_url_name = 'venda:venda_finalizar'
+        self.expected_url_redirect_name = 'venda:venda_detalhar'
+        self.client = Client()
+        self.cliente = Cliente.objects.create(nome='João Silva')
+        self.produto = Produto.objects.create(
+            nome='Celular',
+            precoVenda=Decimal(1000),
+            quantidadeEstoque=10,
+            dataRegistro=date(2023, 2, 10)
+        )
+        self.venda = Venda.objects.create(
+            cliente=self.cliente,
+        )
+        self.target_url = reverse_lazy(
+            self.target_url_name,
+            kwargs={
+                'pk': self.venda.id
+            }
+        )
+
+    def test_view_uses_expected_temlpate(self):
+        """Verifica se a view renderiza o template correto"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, self.expected_template)
