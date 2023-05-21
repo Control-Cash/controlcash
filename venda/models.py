@@ -47,10 +47,11 @@ class Item(models.Model):
 
     def clean(self):
         try:
-            if self.quantidade > self.produto.quantidadeEstoque:
-                raise ValidationError(
-                    f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque."
-                )
+            if self.quantidade and self.produto.quantidadeEstoque:
+                if self.quantidade > self.produto.quantidadeEstoque:
+                    raise ValidationError(
+                        f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque."
+                    )
         except Item.produto.RelatedObjectDoesNotExist:
             raise ValidationError("Esse produto não existe.")
 
