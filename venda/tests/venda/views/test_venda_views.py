@@ -394,3 +394,20 @@ class FinalizarVendaView(TestCase):
         self.venda.refresh_from_db()
 
         self.assertEqual(self.venda.status, 'finalizada')
+
+    def test_view_redirects_to_correct_page_after_update(self):
+        """Verifica se a view redireciona para a página correta após ser submetida"""
+
+        response = self.client.post(self.target_url)
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                self.expected_url_redirect_name,
+                kwargs={
+                    'pk': self.venda.id
+                }
+            ),
+            302,
+            200
+        )
