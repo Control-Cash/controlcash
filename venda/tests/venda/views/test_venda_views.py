@@ -137,7 +137,18 @@ class CriarVendaView(TestCase):
         self.assertTrue(Venda.objects.exists())
         self.assertEqual(Venda.objects.last().cliente.id, form_data['cliente'])
 
-    # retorna erros no form quando vai preenchido errado
+    def test_view_return_form_errors_when_some_data_is_missing(self):
+        """Verifica se a venda retorna erros de fomrulário quando recebe dados incompletos"""
+
+        form_data = {
+            'produto': '',
+            'quantidade': '',
+            'cliente': ''
+        }
+        response = self.client.post(self.target_url, data=form_data)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(response.context['form'].errors)
     # nao cria venda quando a quantidade do item é maior que o estoque de produto
     # form inicial carrega com os campos vazios
     # form apos erro de validacao renderiza com os campos preenchidos anteriormente
