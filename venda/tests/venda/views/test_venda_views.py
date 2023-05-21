@@ -162,5 +162,15 @@ class CriarVendaView(TestCase):
 
         self.assertFalse(Venda.objects.exists())
         self.assertIsNotNone(response.context['form'].errors)
-    # form inicial carrega com os campos vazios
+
+    def test_intial_form_is_empty(self):
+        """Verifica se a view envia um formulário vazio para o template"""
+
+        response = self.client.get(self.target_url)
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form)
+        self.assertIsNone(form.initial.get('produto'))
+        self.assertIsNone(form.initial.get('quantidade'))
+        self.assertIsNone(form.initial.get('cliente'))
     # form apos erro de validacao renderiza com os campos preenchidos anteriormente
