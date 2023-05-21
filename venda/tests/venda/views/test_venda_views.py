@@ -200,6 +200,7 @@ class CriarVendaView(TestCase):
 class DesativarVendaView(TestCase):
     def setUp(self) -> None:
         self.expected_template = 'venda/venda/desativar.html'
+        self.target_url_name = 'venda:venda_desativar'
         self.expected_url_redirect_name = 'venda:venda_detalhar'
         self.client = Client()
         self.cliente = Cliente.objects.create(nome='João Silva')
@@ -218,7 +219,7 @@ class DesativarVendaView(TestCase):
             venda=self.venda
         )
         self.target_url = reverse_lazy(
-            'venda:venda_desativar',
+            self.target_url_name,
             kwargs={
                 'pk': self.venda.id
             }
@@ -258,7 +259,7 @@ class DesativarVendaView(TestCase):
         )
 
     def test_view_sends_correct_venda_to_template(self):
-        """Verifica se a view pasa o objeto venda solicitado"""
+        """Verifica se a view passa o objeto venda solicitado"""
 
         response = self.client.get(self.target_url)
         venda = response.context.get('venda')
@@ -267,4 +268,14 @@ class DesativarVendaView(TestCase):
         self.assertIsInstance(venda, Venda)
         self.assertEqual(venda.id, self.venda.id)
 
-    # retorna 404 quando venda n existe
+    def test_view_returns_404_when_venda_is_not_found(self):
+        """Verifica se a view retorna 404 quando o objeto venda solicitado não existe"""
+
+        response = self.client.get(reverse_lazy(
+            self.target_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
