@@ -440,7 +440,7 @@ class DetalharVendaViewTest(TestCase):
         self.expected_template = 'venda/venda/detalhar.html'
         self.target_url_name = 'venda:venda_detalhar'
         self.expected_url_redirect_name = 'venda:venda_detalhar'
-        self.expected_form_type = ItemVendaForm
+        self.expected_form_class = ItemVendaForm
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
@@ -487,8 +487,16 @@ class DetalharVendaViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.expected_template)
-        
-    # form correto é enviado
+    
+    def test_correct_form_in_context(self):
+        """Verifica se a view envia um formulário para o template e se esse formulário é da classe correta"""
+
+        response = self.client.get(self.target_url)
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form)
+        self.assertIsInstance(form, self.expected_form_class)
+
     # adiciona item quando preenchido corretamente
     # nao adiciona item quando campo obrigatorio vai vazio
     # quando adiciona o item redireciona para a url esperada
