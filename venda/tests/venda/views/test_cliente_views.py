@@ -483,3 +483,14 @@ class EditarClienteViewTest(TestCase):
             302,
             200
         )
+
+    def test_form_loads_with_values_from_model(self):
+        """Verifica se a view envia o formulário com os campos preenchidos com
+        os valores atuais salvos no banco de dados para o template"""
+
+        response = self.client.get(self.target_url)
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form)
+        self.assertEqual(form.initial.get('nome'), self.cliente_criado.nome)
+        self.assertEqual(form.initial.get('email'), self.cliente_criado.email)
