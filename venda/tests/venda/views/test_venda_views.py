@@ -256,5 +256,15 @@ class DesativarVendaView(TestCase):
             302,
             200
         )
-    # passa objeto venda correto
+
+    def test_view_sends_correct_venda_to_template(self):
+        """Verifica se a view pasa o objeto venda solicitado"""
+
+        response = self.client.get(self.target_url)
+        venda = response.context.get('venda')
+
+        self.assertIsNotNone(venda)
+        self.assertIsInstance(venda, Venda)
+        self.assertEqual(venda.id, self.venda.id)
+
     # retorna 404 quando venda n existe
