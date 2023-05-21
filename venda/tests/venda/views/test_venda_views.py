@@ -1,11 +1,12 @@
 from datetime import date
 from decimal import Decimal
+
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
-from venda.forms import CriarVendaForm
 
-from venda.models import Cliente, Item, Venda
 from produto.models import Produto
+from venda.forms import CriarVendaForm
+from venda.models import Cliente, Venda
 
 
 class ListarVendasView(TestCase):
@@ -59,8 +60,7 @@ class CriarVendaView(TestCase):
         )
 
     def test_correct_form_in_context(self):
-        """Verifica se a view envia um formulário para o template e se esse
-        formulário é da classe correta"""
+        """Verifica se a view envia um formulário para o template e se esse formulário é da classe correta"""
 
         response = self.client.get(self.target_url)
         form = response.context.get('form')
@@ -76,20 +76,42 @@ class CriarVendaView(TestCase):
         self.assertTemplateUsed(response, self.expected_template)
 
     def test_doesnt_create_venda_when_cliente_is_none(self):
-        """Verifica se a venda não é criada quando o cliente não é passado para
-        a view"""
+        """Verifica se a venda não é criada quando o cliente não é passado para a view"""
 
         form_data = {
-            'produto': self.produto.pk,
+            'produto': self.produto.id,
             'quantidade': 1,
+            'cliente': ''
         }
         response = self.client.post(self.target_url, data=form_data)
 
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Venda.objects.exists())
 
-    # nao cria venda sem item
-    # redireciona para a url correta ao salvar
+    def test_redirects_to_correct_page_on_save(self):
+        """Verifica se a view redireciona para a página correta após salvar a venda"""
+
+        print(self.cliente.id)
+        form_data = {
+            'cliente': self.cliente.id,
+            'produto': self.produto.id,
+            'quantidade': 1
+        }
+        response = self.client.post(self.target_url, data=form_data)
+        venda_criada = Venda.objects.last()
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                self.expected_url_redirect_name,
+                kwargs={
+                    'pk': venda_criada.id
+                }
+            ),
+            302,
+            200
+        )
+
     # cria venda quando os dados tao corretos
     # retorna erros no form quando vai preenchido errado
     # nao cria venda quando a quantidade do item é maior que o estoque de produto
