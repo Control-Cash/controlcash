@@ -91,7 +91,6 @@ class CriarVendaView(TestCase):
     def test_redirects_to_correct_page_on_save(self):
         """Verifica se a view redireciona para a página correta após salvar a venda"""
 
-        print(self.cliente.id)
         form_data = {
             'cliente': self.cliente.id,
             'produto': self.produto.id,
