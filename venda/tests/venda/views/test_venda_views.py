@@ -68,7 +68,13 @@ class CriarVendaView(TestCase):
         self.assertIsNotNone(form)
         self.assertIsInstance(form, self.expected_form_class)
 
-    # template correto
+    def test_correct_template_rendered(self):
+        """Verifica se a view renderiza o template correto"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertTemplateUsed(response, self.expected_template)
+
     # nao cria venda sem cliente
     # nao cria venda sem item
     # redireciona para a url correta ao salvar
