@@ -510,8 +510,30 @@ class DetalharVendaViewTest(TestCase):
         item_final_count = self.venda.item_set.count()
 
         self.assertEqual(item_inital_count +1, item_final_count)
+
+    def test_doesnt_add_item_to_venda_when_not_all_data_is_send(self):
+        """Verifica se o item não é adicionado a venda quando nem todos os dados necessários são enviados"""
+
+        # sem a quantidade -----------------------------------------------------
+        item_inital_count = self.venda.item_set.count()
+        self.client.post(self.target_url, {
+            'produto': self.form_data['produto'],
+            'quantidade': ''
+        })
+        self.venda.refresh_from_db()
+        item_final_count = self.venda.item_set.count()
+
+        self.assertEqual(item_inital_count, item_final_count)
+
+        # sem o produto --------------------------------------------------------
+        item_inital_count = self.venda.item_set.count()
+        self.client.post(self.target_url, {
+            'produto': '',
+            'quantidade': self.form_data['quantidade']
+        })
+        self.venda.refresh_from_db()
+        item_final_count = self.venda.item_set.count()
         
-    # nao adiciona item quando campo obrigatorio vai vazio
     # quando adiciona o item redireciona para a url esperada
     # quando o item ja está na venda a quantidade é somada ao inves de criar um novo item igual
     # campos do form iniciam vazios
