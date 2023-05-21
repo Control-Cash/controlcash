@@ -307,3 +307,11 @@ class ReativarVendaView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.expected_template)
+
+    def test_view_alters_venda_when_post_request_is_submitted(self):
+        """Verifica se a view reativa a venda quando é submetida"""
+
+        self.client.post(self.target_url)
+        self.venda.refresh_from_db()
+
+        self.assertEqual(self.venda.status, 'ativa')
