@@ -75,7 +75,19 @@ class CriarVendaView(TestCase):
 
         self.assertTemplateUsed(response, self.expected_template)
 
-    # nao cria venda sem cliente
+    def test_doesnt_create_venda_when_cliente_is_none(self):
+        """Verifica se a venda não é criada quando o cliente não é passado para
+        a view"""
+
+        form_data = {
+            'produto': self.produto.pk,
+            'quantidade': 1,
+        }
+        response = self.client.post(self.target_url, data=form_data)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Venda.objects.exists())
+
     # nao cria venda sem item
     # redireciona para a url correta ao salvar
     # cria venda quando os dados tao corretos
