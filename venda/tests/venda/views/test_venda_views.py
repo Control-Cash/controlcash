@@ -124,7 +124,19 @@ class CriarVendaView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Venda.objects.exists())
 
-    # cria venda quando os dados tao corretos
+    def test_creates_venda_when_all_data_is_given(self):
+        """Verifica se a venda é criada quando todos os dados são passados para a view"""
+
+        form_data = {
+            'cliente': self.cliente.id,
+            'quantidade': 1,
+            'produto': self.produto.id
+        }
+
+        self.client.post(self.target_url, data=form_data)
+        self.assertTrue(Venda.objects.exists())
+        self.assertEqual(Venda.objects.last().cliente.id, form_data['cliente'])
+
     # retorna erros no form quando vai preenchido errado
     # nao cria venda quando a quantidade do item é maior que o estoque de produto
     # form inicial carrega com os campos vazios
