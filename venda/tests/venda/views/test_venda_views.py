@@ -132,8 +132,8 @@ class CriarVendaView(TestCase):
             'quantidade': 1,
             'produto': self.produto.id
         }
-
         self.client.post(self.target_url, data=form_data)
+
         self.assertTrue(Venda.objects.exists())
         self.assertEqual(Venda.objects.last().cliente.id, form_data['cliente'])
 
@@ -149,6 +149,18 @@ class CriarVendaView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['form'].errors)
-    # nao cria venda quando a quantidade do item é maior que o estoque de produto
+
+    def test_doesnt_create_venda_when_quantidade_greater_than_estoque(self):
+        """Verifica se a venda não é criada quando o quantidade do produto é maior que o estoque"""
+
+        form_data = {
+            'cliente': self.cliente.id,
+            'quantidade': 100000,
+            'produto': self.produto.id
+        }
+        response = self.client.post(self.target_url, data=form_data)
+
+        self.assertFalse(Venda.objects.exists())
+        self.assertIsNotNone(response.context['form'].errors)
     # form inicial carrega com os campos vazios
     # form apos erro de validacao renderiza com os campos preenchidos anteriormente
