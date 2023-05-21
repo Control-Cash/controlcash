@@ -173,4 +173,25 @@ class CriarVendaView(TestCase):
         self.assertIsNone(form.initial.get('produto'))
         self.assertIsNone(form.initial.get('quantidade'))
         self.assertIsNone(form.initial.get('cliente'))
-    # form apos erro de validacao renderiza com os campos preenchidos anteriormente
+
+    def test_form_fields_are_filled_with_previous_values(self):
+        """Verifica se a view envia os campos do formulário preenchidos com os valores anteriores em caso de erro de validação"""
+
+        form_data = {
+            'produto': self.produto.id,
+            'quantidade': 1,
+            'cliente': ''
+        }
+        response = self.client.post(self.target_url, data=form_data)
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form)
+        self.assertEqual(
+            form['produto'].value(),
+            str(form_data.get('produto'))
+        )
+
+        self.assertEqual(
+            form['cliente'].value(),
+            form_data['cliente']
+        )
