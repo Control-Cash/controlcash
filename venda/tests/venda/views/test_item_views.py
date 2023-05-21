@@ -9,7 +9,7 @@ from venda.forms import EditarItemVendaForm
 from venda.models import Cliente, Item, Venda
 
 
-class EditarQuantidadeItemView(TestCase):
+class EditarQuantidadeItemViewTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
@@ -176,7 +176,7 @@ class EditarQuantidadeItemView(TestCase):
         )
 
 
-class RemoverItemView(TestCase):
+class RemoverItemViewTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',

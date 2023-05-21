@@ -9,7 +9,7 @@ from venda.forms import CriarVendaForm
 from venda.models import Cliente, Venda
 
 
-class ListarVendasView(TestCase):
+class ListarVendasViewTest(TestCase):
     def setUp(self) -> None:
         self.target_url = reverse_lazy('venda:venda_listar')
         self.cliente = Cliente.objects.create(nome='João Silva')
@@ -44,7 +44,7 @@ class ListarVendasView(TestCase):
         self.assertIsInstance(self.vendas[2], Venda)
 
 
-class CriarVendaView(TestCase):
+class CriarVendaViewTest(TestCase):
     def setUp(self) -> None:
         self.target_url = reverse_lazy('venda:venda_criar')
         self.expected_template = 'venda/venda/criar.html'
@@ -197,7 +197,7 @@ class CriarVendaView(TestCase):
         )
 
 
-class DesativarVendaView(TestCase):
+class DesativarVendaViewTest(TestCase):
     def setUp(self) -> None:
         self.expected_template = 'venda/venda/desativar.html'
         self.target_url_name = 'venda:venda_desativar'
@@ -276,7 +276,7 @@ class DesativarVendaView(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-class ReativarVendaView(TestCase):
+class ReativarVendaViewTest(TestCase):
     def setUp(self) -> None:
         self.expected_template = 'venda/venda/reativar.html'
         self.target_url_name = 'venda:venda_reativar'
@@ -356,7 +356,7 @@ class ReativarVendaView(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-class FinalizarVendaView(TestCase):
+class FinalizarVendaViewTest(TestCase):
     def setUp(self) -> None:
         self.expected_template = 'venda/venda/finalizar.html'
         self.target_url_name = 'venda:venda_finalizar'

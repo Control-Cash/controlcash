@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from venda.models import Cliente, Item, Venda
 
 
-class ClienteModel(TestCase):
+class ClienteModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
@@ -25,7 +25,7 @@ class ClienteModel(TestCase):
         )
 
 
-class VendaModel(TestCase):
+class VendaModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
@@ -44,7 +44,7 @@ class VendaModel(TestCase):
         )
 
 
-class ItemModel(TestCase):
+class ItemModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',

@@ -6,7 +6,7 @@ from venda.forms import ClienteForm
 from venda.models import Cliente
 
 
-class CriarClienteView(TestCase):
+class CriarClienteViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_criar')
@@ -172,7 +172,7 @@ class CriarClienteView(TestCase):
         )
 
 
-class ListarClientesView(TestCase):
+class ListarClientesViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_listar')
@@ -258,7 +258,7 @@ class ListarClientesView(TestCase):
         self.assertIn(cliente3, clientes)
 
 
-class DetalharClienteView(TestCase):
+class DetalharClienteViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.expected_template = 'venda/cliente/detalhar.html'
