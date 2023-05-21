@@ -24,4 +24,16 @@ class ListarVendasView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.expected_template)
 
-    # passa objeto vendas ao template
+    def test_view_sends_vendas_to_template(self):
+        """Verifica se a view envia os objetos Venda para o template"""
+
+        response = self.client.get(self.target_url)
+        vendas = response.context.get('vendas')
+
+        self.assertIsNotNone(vendas)
+        self.assertIn(self.vendas[0], vendas)
+        self.assertIn(self.vendas[1], vendas)
+        self.assertIn(self.vendas[2], vendas)
+        self.assertIsInstance(self.vendas[0], Venda)
+        self.assertIsInstance(self.vendas[1], Venda)
+        self.assertIsInstance(self.vendas[2], Venda)
