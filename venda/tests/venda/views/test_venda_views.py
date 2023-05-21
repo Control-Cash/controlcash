@@ -111,6 +111,19 @@ class CriarVendaView(TestCase):
             200
         )
 
+    def test_doesnt_create_venda_when_produto_is_none(self):
+        """Verifica se a venda não é criada quando o produto não é passado para a view"""
+
+        form_data = {
+            'cliente': self.cliente.id,
+            'quantidade': 1,
+            'produto': ''
+        }
+        response = self.client.post(self.target_url, data=form_data)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(Venda.objects.exists())
+
     # cria venda quando os dados tao corretos
     # retorna erros no form quando vai preenchido errado
     # nao cria venda quando a quantidade do item é maior que o estoque de produto
