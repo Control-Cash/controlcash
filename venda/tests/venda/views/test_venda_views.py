@@ -457,6 +457,10 @@ class DetalharVendaViewTest(TestCase):
                 'pk': self.venda.id
             }
         )
+        self.form_data = {
+            'produto': self.produto.id,
+            'quantidade': 2
+        }
 
     def test_view_sends_venda_requested(self):
         """A view envia a venda correspondente a id passada"""
@@ -497,7 +501,16 @@ class DetalharVendaViewTest(TestCase):
         self.assertIsNotNone(form)
         self.assertIsInstance(form, self.expected_form_class)
 
-    # adiciona item quando preenchido corretamente
+    def test_add_item_to_venda_when_all_data_is_send(self):
+        """Verifica se o item é adicionado a venda quando todos os dados necessários são enviados"""
+
+        item_inital_count = self.venda.item_set.count()
+        self.client.post(self.target_url, self.form_data)
+        self.venda.refresh_from_db()
+        item_final_count = self.venda.item_set.count()
+
+        self.assertEqual(item_inital_count +1, item_final_count)
+        
     # nao adiciona item quando campo obrigatorio vai vazio
     # quando adiciona o item redireciona para a url esperada
     # quando o item ja está na venda a quantidade é somada ao inves de criar um novo item igual
