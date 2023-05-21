@@ -17,7 +17,7 @@ def criar_venda_view(request):
             novo_item = form.save(commit=False)
             novo_item.venda = nova_venda
             novo_item.save()
-            return redirect('venda_detalhar', pk=nova_venda.id)
+            return redirect('venda:venda_detalhar', pk=nova_venda.id)
     return render(request, 'venda/venda/criar.html', {'form': form})
 
 
