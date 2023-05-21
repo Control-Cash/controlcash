@@ -5,7 +5,7 @@ from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from produto.models import Produto
-from venda.forms import CriarVendaForm
+from venda.forms import CriarVendaForm, ItemVendaForm
 from venda.models import Cliente, Venda
 
 
@@ -433,3 +433,46 @@ class FinalizarVendaViewTest(TestCase):
         ))
 
         self.assertEqual(response.status_code, 404)
+
+class DetalharVendaViewTest(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.expected_template = 'venda/venda/detalhar.html'
+        self.target_url_name = 'venda:venda_detalhar'
+        self.expected_url_redirect_name = 'venda:venda_detalhar'
+        self.expected_form_type = ItemVendaForm
+        self.cliente = Cliente.objects.create(nome='João Silva')
+        self.produto = Produto.objects.create(
+            nome='Celular',
+            precoVenda=Decimal(1000),
+            quantidadeEstoque=10,
+            dataRegistro=date(2023, 2, 10)
+        )
+        self.venda = Venda.objects.create(
+            cliente=self.cliente,
+        )
+        self.target_url = reverse_lazy(
+            self.target_url_name,
+            kwargs={
+                'pk': self.venda.id
+            }
+        )
+
+    def test_view_sends_venda_requested(self):
+        """A view envia a venda correspondente a id passada"""
+
+        response = self.client.get(self.target_url)
+        venda = response.context['venda']
+
+        self.assertIsNotNone(venda)
+        self.assertIsInstance(venda, Venda)
+        self.assertEqual(venda.id, self.venda.id)
+    # quando a venda nao existe retorna 404
+    # usa o template correto
+    # form correto é enviado
+    # adiciona item quando preenchido corretamente
+    # nao adiciona item quando campo obrigatorio vai vazio
+    # quando adiciona o item redireciona para a url esperada
+    # quando o item ja está na venda a quantidade é somada ao inves de criar um novo item igual
+    # campos do form iniciam vazios
+    # quando há erro os campos carregam com os valores anteriores
