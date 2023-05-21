@@ -467,7 +467,19 @@ class DetalharVendaViewTest(TestCase):
         self.assertIsNotNone(venda)
         self.assertIsInstance(venda, Venda)
         self.assertEqual(venda.id, self.venda.id)
-    # quando a venda nao existe retorna 404
+
+    def test_view_returns_404_when_venda_doesnt_exist(self):
+        """A view retorna 404 quando a id passada não corresponde a uma venda"""
+
+        response = self.client.get(reverse_lazy(
+            self.target_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
     # usa o template correto
     # form correto é enviado
     # adiciona item quando preenchido corretamente
