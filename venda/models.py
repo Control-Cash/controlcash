@@ -46,9 +46,13 @@ class Item(models.Model):
         return f"{self.quantidade} {self.produto.nome}"
 
     def clean(self):
-        if self.quantidade > self.produto.quantidadeEstoque:
-            raise ValidationError(
-                f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque.")
+        try:
+            if self.quantidade > self.produto.quantidadeEstoque:
+                raise ValidationError(
+                    f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque."
+                )
+        except Item.produto.RelatedObjectDoesNotExist:
+            raise ValidationError("Esse produto não existe.")
 
     def valor_total(self):
         return self.quantidade * self.valor_unitario
