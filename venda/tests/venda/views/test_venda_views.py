@@ -240,7 +240,7 @@ class DesativarVendaView(TestCase):
 
         self.assertEqual(self.venda.status, 'inativa')
 
-    def test_views_redirects_to_correct_page_after_update(self):
+    def test_view_redirects_to_correct_page_after_update(self):
         """Verifica se a view redireciona para a página correta após ser submetida"""
 
         response = self.client.post(self.target_url)
