@@ -15,8 +15,7 @@ class ClienteModelTest(TestCase):
         )
 
     def test_model_string_representation_is_cliente_nome(self):
-        """Verifica se a representação string do modelo 'Cliente' é o seu
-        atributo nome"""
+        """Verifica se a representação string do modelo 'Cliente' é o seu atributo nome"""
 
         self.assertEqual(
             str(self.cliente),
@@ -34,8 +33,7 @@ class VendaModelTest(TestCase):
         self.venda = Venda.objects.create(cliente=self.cliente)
 
     def test_model_string_representation_is_venda_details(self):
-        """Verifica se a representação string do modelo 'Venda' é uma string com
-        detalhes a seu respeito"""
+        """Verifica se a representação string do modelo 'Venda' é uma string com detalhes a seu respeito"""
 
         self.assertEqual(
             str(self.venda),
@@ -64,8 +62,7 @@ class ItemModelTest(TestCase):
         )
 
     def test_model_string_representation_is_item_details(self):
-        """Verifica se a representação string do modelo 'Item' é uma string com
-        detalhes a seu respeito"""
+        """Verifica se a representação string do modelo 'Item' é uma string com detalhes a seu respeito"""
 
         self.assertEqual(
             str(self.item),
@@ -74,8 +71,7 @@ class ItemModelTest(TestCase):
         )
 
     def test_model_raises_error_when_quantidade_is_greater_than_estoque(self):
-        """Verifica se o modelo lança um erro ao tentar criar um item com uma
-        quatidade maior do que o estoque do produto"""
+        """Verifica se o modelo lança um erro ao tentar criar um item com uma quatidade maior do que o estoque do produto"""
 
         item = Item.objects.create(
             quantidade=(self.produto.quantidadeEstoque + 5000),
@@ -86,8 +82,7 @@ class ItemModelTest(TestCase):
         self.assertRaises(ValidationError, item.clean)
 
     def test_valor_total_returns_multiplication_of_quantidade_and_valor_unitario(self):
-        """Verifica se a chamada do método valor_total retorna o preço unitário
-        do item multiplicado por sua quantidade"""
+        """Verifica se a chamada do método valor_total retorna o preço unitário do item multiplicado por sua quantidade"""
 
         item = Item.objects.create(
             quantidade=2,

@@ -35,8 +35,7 @@ class CriarClienteViewTest(TestCase):
             "'form' enviado pela view não é 'ClienteForm'")
 
     def test_empty_form_doesnt_save(self):
-        """Verifica se a view não cria um cliente quando um post request tem os
-        dados em branco"""
+        """Verifica se a view não cria um cliente quando um post request tem os dados em branco"""
 
         cliente_count = Cliente.objects.count()
         self.client.post(self.target_url, {
@@ -51,8 +50,7 @@ class CriarClienteViewTest(TestCase):
         )
 
     def test_empty_form_return_errors(self):
-        """Verifica se a view envia erros ao template quando recebe dados em
-        branco"""
+        """Verifica se a view envia erros ao template quando recebe dados em branco"""
 
         response = self.client.post(
             self.target_url,
@@ -66,8 +64,7 @@ class CriarClienteViewTest(TestCase):
         self.assertIsNotNone(form.errors)
 
     def test_filled_form_saves(self):
-        """Verifica se a view cria um cliente quando um post request tem os
-        dados corretos"""
+        """Verifica se a view cria um cliente quando um post request tem os dados corretos"""
 
         cliente_count = Cliente.objects.count()
         self.client.post(self.target_url, self.form_data)
@@ -78,8 +75,7 @@ class CriarClienteViewTest(TestCase):
             "Um cliente não foi criado com o formulário preechido")
 
     def test_empty_required_fields_doesnt_save(self):
-        """Verifica se a view nao cria um cliente quando um post request tem os
-        dados obrigatótios em branco"""
+        """Verifica se a view nao cria um cliente quando um post request tem os dados obrigatótios em branco"""
 
         cliente_count = Cliente.objects.count()
         self.client.post(
@@ -96,8 +92,7 @@ class CriarClienteViewTest(TestCase):
             "Um cliente foi criado com os campos obrigatŕios do formulário em branco")
 
     def test_empty_optional_fields_saves(self):
-        """Verifica se a view cria um cliente quando um post request tem os
-        dados opcionais em branco"""
+        """Verifica se a view cria um cliente quando um post request tem os dados opcionais em branco"""
 
         cliente_count = Cliente.objects.count()
         self.client.post(
@@ -115,8 +110,7 @@ class CriarClienteViewTest(TestCase):
         )
 
     def test_empty_required_fields_return_errors(self):
-        """Verifica se a view envia erros ao template quando recebe todos os 
-        dados obrigatórios em branco"""
+        """Verifica se a view envia erros ao template quando recebe todos os dados obrigatórios em branco"""
 
         response = self.client.post(
             self.target_url,
@@ -141,8 +135,7 @@ class CriarClienteViewTest(TestCase):
         )
 
     def test_successful_post_request_redirects(self):
-        """Verifica se a view redireciona quando uma solicitação post é enviada
-        corretamente com todos os dados"""
+        """Verifica se a view redireciona quando uma solicitação post é enviada corretamente com todos os dados"""
 
         response = self.client.post(self.target_url, self.form_data)
 
@@ -153,8 +146,7 @@ class CriarClienteViewTest(TestCase):
         )
 
     def test_successful_post_request_redirects_to_expected_url(self):
-        """Verifica se a view redireciona para a url correta quando uma
-        solicitação post é enviada corretamente com todos os dados"""
+        """Verifica se a view redireciona para a url correta quando uma solicitação post é enviada corretamente com todos os dados"""
 
         response = self.client.post(self.target_url, self.form_data)
         cliente_criado = Cliente.objects.last()
@@ -291,8 +283,7 @@ class DetalharClienteViewTest(TestCase):
         )
 
     def test_view_returns_404_when_cliente_is_unknown(self):
-        """Verifica se a view retorna uma resposta 404 quando o cliente
-        solicitado não existe"""
+        """Verifica se a view retorna uma resposta 404 quando o cliente solicitado não existe"""
 
         response = self.client.get(
             reverse_lazy(
@@ -366,8 +357,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_empty_form_doesnt_save(self):
-        """Verifica se a view não salva os dados quando um post request tem os
-        dados em branco"""
+        """Verifica se a view não salva os dados quando um post request tem os dados em branco"""
 
         self.client.post(self.target_url, {
             'nome': '',
@@ -387,8 +377,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_filled_form_saves(self):
-        """Verifica se a view salva os dados quando um post request tem os
-        dados corretos"""
+        """Verifica se a view salva os dados quando um post request tem os dados corretos"""
 
         self.client.post(self.target_url, self.form_data)
         self.cliente_criado.refresh_from_db()
@@ -416,8 +405,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_view_returns_404_when_cliente_is_unknown(self):
-        """Verifica se a view retorna uma resposta 404 quando o cliente
-        solicitado não existe"""
+        """Verifica se a view retorna uma resposta 404 quando o cliente solicitado não existe"""
 
         response = self.client.get(
             reverse_lazy(
@@ -432,8 +420,7 @@ class EditarClienteViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_empty_required_fields_doesnt_save(self):
-        """Verifica se a view nao atualiza um cliente quando um post request tem
-        os dados obrigatótios em branco"""
+        """Verifica se a view nao atualiza um cliente quando um post request tem os dados obrigatótios em branco"""
 
         self.client.post(self.target_url, {'nome': ''})
         cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
@@ -445,8 +432,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_empty_optional_fields_saves(self):
-        """Verifica se a view atualiza um cliente quando um post request tem os
-        dados opcionais em branco"""
+        """Verifica se a view atualiza um cliente quando um post request tem os dados opcionais em branco"""
 
         self.client.post(self.target_url, {'nome': self.form_data.get('nome')})
         cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
@@ -458,8 +444,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_empty_required_fields_return_errors(self):
-        """Verifica se a view envia erros ao template quando recebe todos os 
-        dados obrigatórios em branco"""
+        """Verifica se a view envia erros ao template quando recebe todos os dados obrigatórios em branco"""
 
         response = self.client.post(self.target_url, {'nome': ''})
         form = response.context.get('form')
@@ -467,8 +452,7 @@ class EditarClienteViewTest(TestCase):
         self.assertIsNotNone(form.errors)
 
     def test_redirects_to_correct_page_on_update(self):
-        """Verifica se a view redireciona para a url correta quando uma
-        solicitação post é enviada corretamente com todos os dados"""
+        """Verifica se a view redireciona para a url correta quando uma solicitação post é enviada corretamente com todos os dados"""
 
         response = self.client.post(self.target_url, self.form_data)
 
@@ -485,8 +469,7 @@ class EditarClienteViewTest(TestCase):
         )
 
     def test_form_loads_with_values_from_model(self):
-        """Verifica se a view envia o formulário com os campos preenchidos com
-        os valores atuais salvos no banco de dados para o template"""
+        """Verifica se a view envia o formulário com os campos preenchidos com os valores atuais salvos no banco de dados para o template"""
 
         response = self.client.get(self.target_url)
         form = response.context.get('form')

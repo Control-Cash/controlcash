@@ -34,8 +34,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.client = Client()
 
     def test_view_returns_item_to_template(self):
-        """Verifica se a view passa o item que o usuário deseja editar para o
-        template"""
+        """Verifica se a view passa o item que o usuário deseja editar para o template"""
 
         response = self.client.get(reverse_lazy(
             self.view_url_name,
@@ -48,8 +47,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.assertIsInstance(response.context.get('item'), Item)
 
     def test_returns_404_when_item_doesnt_exist(self):
-        """Verifica se a view response com 404 quando o item solicitado não
-        existe"""
+        """Verifica se a view response com 404 quando o item solicitado não existe"""
 
         response = self.client.get(reverse_lazy(
             self.view_url_name,
@@ -86,8 +84,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.assertTemplateUsed(response, self.expected_template)
 
     def test_item_not_updated_when_quantidade_equal_zero(self):
-        """Verifica se a view não atualiza o item quando a quantidade passada é
-        igual a 0"""
+        """Verifica se a view não atualiza o item quando a quantidade passada é igual a 0"""
 
         response = self.client.post(
             reverse_lazy(
@@ -107,8 +104,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.assertIsNotNone(form_errors)
 
     def test_item_not_updated_when_quantidade_is_less_than_zero(self):
-        """Verifica se a view não atualiza o item quando a quantidade passada é
-        menor que zero"""
+        """Verifica se a view não atualiza o item quando a quantidade passada é menor que zero"""
 
         response = self.client.post(
             reverse_lazy(
@@ -128,8 +124,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.assertIsNotNone(form_errors)
 
     def test_item_updates_when_quantidade_is_greater_than_zero(self):
-        """Verifica se a view atualiza o item quando a quantidade passada é
-        maior que zero"""
+        """Verifica se a view atualiza o item quando a quantidade passada é maior que zero"""
 
         nova_quantidade = 3
         self.client.post(
@@ -148,8 +143,7 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.assertEqual(updated_item.quantidade, nova_quantidade)
 
     def test_view_redirects_to_correct_page_after_update(self):
-        """Verifica se a view redireciona para a página correta após a
-        atualização do item"""
+        """Verifica se a view redireciona para a página correta após a atualização do item"""
 
         response = self.client.post(
             reverse_lazy(
@@ -212,8 +206,7 @@ class RemoverItemViewTest(TestCase):
         self.assertTemplateUsed(response, self.expected_template)
 
     def test_response_is_404_when_item_doesnt_exist(self):
-        """Verifica se a view retorna 404 quando o atributo 'pk' passado não
-        pertence a nenhum item"""
+        """Verifica se a view retorna 404 quando o atributo 'pk' passado não pertence a nenhum item"""
 
         response = self.client.get(reverse_lazy(
             self.view_url_name,
@@ -225,8 +218,7 @@ class RemoverItemViewTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_view_sends_item_to_template(self):
-        """Verifica se a view envia ao template o item associado ao atributo
-        'pk' passado na request"""
+        """Verifica se a view envia ao template o item associado ao atributo 'pk' passado na request"""
 
         response = self.client.get(reverse_lazy(
             self.view_url_name,
@@ -254,8 +246,7 @@ class RemoverItemViewTest(TestCase):
         self.assertEqual(initial_count - 1, Item.objects.count())
 
     def test_redirects_to_correct_page_after_delete(self):
-        """Verifica se a view redireciona para a página correta após excluir o
-        item"""
+        """Verifica se a view redireciona para a página correta após excluir o item"""
 
         response = self.client.post(reverse_lazy(
             self.view_url_name,
