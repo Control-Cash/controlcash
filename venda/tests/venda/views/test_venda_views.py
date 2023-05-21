@@ -232,5 +232,13 @@ class DesativarVendaView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.expected_template)
 
-    # relaiza alteração
+    def test_view_alters_venda_when_post_request_is_submitted(self):
+        """Verifica se a view desativa a venda quando é submetida"""
+
+        self.client.post(self.target_url)
+        self.venda.refresh_from_db()
+
+        self.assertEqual(self.venda.status, 'inativa')
     # redireciona para a pagina certa
+    # passa objeto venda correto
+    # retorna 404 quando venda n existe
