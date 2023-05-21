@@ -78,8 +78,8 @@ Descrição: O sistema deve permitir o registro de  vendas. Uma venda contém os
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           | Bianca    |
-| Desenvolvedor      |     |
-| Revisor            |     |
+| Desenvolvedor      | Adriel    |
+| Revisor            | Guilherme |
 | Testador           |     |
 
 | Testes de aceitação (TA) |           |
@@ -105,8 +105,8 @@ Descrição: O sistema deverá permitir ao vendedor adicionar, editar ou remover
 | Tempo gasto (real) | Não iniciado    |
 | Tamanho funcional  | -               |
 | Analista           | Cíntia          |
-| Desenvolvedor      | -               |
-| Revisor            | -               |
+| Desenvolvedor      | Adriel          |
+| Revisor            | Bianca          |
 | Testador           | -               |
 
 | Testes de aceitação (TA) |                                                  |
@@ -212,8 +212,8 @@ Descrição:
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
+| Desenvolvedor      | Adriel |
+| Revisor            | Bianca |
 | Testador           |     |
 
 | Testes de aceitação (TA) |           |
