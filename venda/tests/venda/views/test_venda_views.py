@@ -213,11 +213,6 @@ class DesativarVendaView(TestCase):
         self.venda = Venda.objects.create(
             cliente=self.cliente
         )
-        self.item = Item.objects.create(
-            produto=self.produto,
-            quantidade=1,
-            venda=self.venda
-        )
         self.target_url = reverse_lazy(
             self.target_url_name,
             kwargs={
