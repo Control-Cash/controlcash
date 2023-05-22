@@ -439,7 +439,7 @@ class DetalharVendaViewTest(TestCase):
         self.client = Client()
         self.expected_template = 'venda/venda/detalhar.html'
         self.target_url_name = 'venda:venda_detalhar'
-        self.expected_url_redirect_name = 'venda:venda_detalhar'
+        self.expected_redirect_url_name = 'venda:venda_detalhar'
         self.expected_form_class = ItemVendaForm
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
@@ -453,6 +453,12 @@ class DetalharVendaViewTest(TestCase):
         )
         self.target_url = reverse_lazy(
             self.target_url_name,
+            kwargs={
+                'pk': self.venda.id
+            }
+        )
+        self.expected_redirect_url = reverse_lazy(
+            self.expected_redirect_url_name,
             kwargs={
                 'pk': self.venda.id
             }
@@ -533,8 +539,14 @@ class DetalharVendaViewTest(TestCase):
         })
         self.venda.refresh_from_db()
         item_final_count = self.venda.item_set.count()
+
+    def test_redirects_to_correct_page_on_sucessful_post_request(self):
+        """Verifica se a view redireicona para a página esperada quando uma request de tipo post é bem sucedida"""
+
+        response = self.client.post(self.target_url, self.form_data)
+
+        self.assertRedirects(response, self.expected_redirect_url, 302, 200)
         
-    # quando adiciona o item redireciona para a url esperada
     # quando o item ja está na venda a quantidade é somada ao inves de criar um novo item igual
     # campos do form iniciam vazios
     # quando há erro os campos carregam com os valores anteriores
