@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 from produto.models import Produto
 from venda.forms import CriarVendaForm, ItemVendaForm
-from venda.models import Cliente, Venda
+from venda.models import Cliente, Item, Venda
 
 
 class ListarVendasViewTest(TestCase):
@@ -546,7 +546,17 @@ class DetalharVendaViewTest(TestCase):
         response = self.client.post(self.target_url, self.form_data)
 
         self.assertRedirects(response, self.expected_redirect_url, 302, 200)
-        
-    # quando o item ja está na venda a quantidade é somada ao inves de criar um novo item igual
+    
+    def test_add_repeated_product_updates_existing_item_quantidade(self):
+        """Verifica se quando o produto ja está na venda a quantidade é somada ao item ao invés de criar um novo"""
+
+        self.client.post(self.target_url, self.form_data)
+        self.client.post(self.target_url, self.form_data)
+        self.venda.refresh_from_db()
+        item = Item.objects.get(venda=self.venda.id, produto=self.produto.id)
+
+        self.assertEqual(self.venda.item_set.count(), 1)
+        self.assertEqual(item.quantidade, self.form_data['quantidade'] * 2)
+    
     # campos do form iniciam vazios
     # quando há erro os campos carregam com os valores anteriores
