@@ -558,5 +558,14 @@ class DetalharVendaViewTest(TestCase):
         self.assertEqual(self.venda.item_set.count(), 1)
         self.assertEqual(item.quantidade, self.form_data['quantidade'] * 2)
     
-    # campos do form iniciam vazios
+    def test_intial_form_is_empty(self):
+        """Verifica se a view envia um formulário vazio para o template"""
+
+        response = self.client.get(self.target_url)
+        form = response.context.get('form')
+
+        self.assertIsNotNone(form)
+        self.assertIsNone(form.initial.get('produto'))
+        self.assertIsNone(form.initial.get('quantidade'))
+
     # quando há erro os campos carregam com os valores anteriores
