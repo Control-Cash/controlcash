@@ -23,11 +23,11 @@ produtos.
 | Prioridade         | Essencial |
 | Estimativa         | 8h        |
 | Tempo gasto (real) | -         |
-| Tamanho funcional  | -         |
+| Tamanho funcional  | [27](./documento-pontos-de-funcao.md#us01---manter-produto) |
 | Analista           | Adriel    |
-| Desenvolvedor      | -         |
-| Revisor            | -         |
-| Testador           | -         |
+| Desenvolvedor      | Guilherme |
+| Revisor            | Bianca    |
+| Testador           | Hilário   |
 
 | Testes de aceitação (TA) |                                                  |
 | ------------------------ | ------------------------------------------------ |
@@ -49,6 +49,7 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 |                    |     |
 | ------------------ | --- |
 | Prioridade         | Essencial    |
+| Estimativa         | 7h        |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           | Alef Luciano Silva    |
@@ -62,52 +63,60 @@ Descrição: O sistema, deverar permitir pesquisar produtos no sistema pelo seu 
 | TA02.01                  | O usuário acessa a página de pesquisa de produto e digita o nome ou código do produto desajado. O sistema exibe uma lista com os produtos correspondente à pesquisa, contendo nome, preço de venda e quatidade em estoque. O usuário pode clicar em um dos produtos para ver mais informações sobre ele na página de detalhes. |
 | TA02.02                  | O usuário acessa a página de detalhes de um produto encontrado na pesquisa e verifica se todas as informações sobre o produto estão corretas, incluindo preço, quantidade em estoque e categoria. |
 
-
 ## US03 - Manter venda
 
-Descrição:
+Descrição: O sistema deve permitir o registro de  vendas. Uma venda contém os seguintes atributos: data, hora, cliente, itens de venda, valor total, pagamento, listagem, visualização de vendas e status.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF02                  | Manter venda    |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial   |
+| Estimativa         | 15h         |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
+| Analista           | Bianca    |
+| Desenvolvedor      | Adriel    |
+| Revisor            | Guilherme |
 | Testador           |     |
 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA03.01                  |Teste de cadastro de venda bem-sucedido: ao preencher todos os campos obrigatórios de uma nova venda e clicar no botão de cadastro, o sistema deve exibir uma mensagem de confirmação indicando que a venda foi registrada com sucesso.       |
+| TA03.02                  |Teste de validação de campos obrigatórios: ao tentar cadastrar uma nova venda sem preencher algum dos campos obrigatórios, o sistema deve exibir uma mensagem de erro indicando quais campos estão faltando e impedir o cadastro da venda. |
+| TA03.03                  |Teste de edição de venda: ao selecionar uma venda já registrada e clicar no botão de edição, o sistema deve permitir a alteração dos campos desejados e exibir uma mensagem de confirmação quando a venda for salva com sucesso.                |
+| TA03.04                  |Teste de exclusão de venda: ao selecionar uma venda já registrada e clicar no botão de exclusão, o sistema deve exibir uma mensagem de confirmação e excluir a venda do sistema sem afetar outros dados do sistema.                             |
 
 ## US04 - Manter item de venda
 
-Descrição:
+Descrição: O sistema deverá permitir ao vendedor adicionar, editar ou remover um item de venda em uma venda. Cada item deve ter informações como produto, quantidade, e preço unitário.
 
-| Requisitos envolvidos |     |
-| --------------------- | --- |
-|                       |     |
+| Requisitos envolvidos |                   |
+| --------------------- | ----------------- |
+| RF02                  | Manter venda      |
+| RF03                  | Manter produto    |
 
-|                    |     |
-| ------------------ | --- |
-| Prioridade         |     |
-| Tempo gasto (real) |     |
-| Tamanho funcional  |     |
-| Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
-| Testador           |     |
+|                    |                 |
+| ------------------ | --------------- |
+| Prioridade         | Média           |
+| Tempo gasto (real) | Não iniciado    |
+| Tamanho funcional  | -               |
+| Analista           | Cíntia          |
+| Desenvolvedor      | Adriel          |
+| Revisor            | Bianca          |
+| Testador           | -               |
 
-| Testes de aceitação (TA) |           |
-| ------------------------ | --------- |
-| Código                   | Descrição |
-|                          |           |
+| Testes de aceitação (TA) |                                                  |
+| ------------------------ | ------------------------------------------------ |
+| Código                   | Descrição                                        |
+| TA04.01                  | O vendedor pode adicionar um item de venda com informações de produto, quantidade e preço unitário. |
+| TA04.02                  | O vendedor pode editar as informações de um item de venda já existente, incluindo produto, quantidade e preço unitário. |
+| TA04.03                  | O vendedor pode remover um item de venda existente. |
+| TA04.04                  | O sistema verifica a disponibilidade em estoque do produto adicionado ou editado pelo vendedor. |
+| TA04.05                  | O sistema atualiza o valor total da venda quando um ítem é adicionado ou editado. |
 
 ## US05 - Manter forma de pagamento
 
@@ -140,21 +149,21 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 | TA05.07                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em editar na forma de pagamento que deseja, ele deve ser redirecionado para uma página de edição de forma de pagamento. Caso o "usuário" tente modificar um campo com um conteúdo nulo ou vazio, ao clicar em salvar, deve ser exibida a mensagem: Por favor, preencha o(s) campo(s) com informações válidas.  |
 | TA05.08                         | O perfil administrador acessa a página "principal" (área restrita para administradores), ao clicar em pagamentos e acessar a página de formas de pagamento, o "usuário" clica em deletar na forma de pagamento que deseja. Ao confimar que deseja realmente excluir, a forma de pagamento deve ser removida do banco de dados.|
 
-
 ## US06 - Manter pagamento
 
-Descrição:
+Descrição: O sistema deve permitir a visualização da lista de pagamentos pendentes, recebidos e cancelados. Deve ser possível atualizar o status do pagamento de pendente para recebido ou cancelado, além de pesquisar pagamentos por data, valor ou id do cliente. Essas operações devem ser realizadas pelo perfil de administrador financeiro.
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| RF06                  |     |
+| RF30                  |     |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
-| Analista           |     |
+| Analista           | Hilário |
 | Desenvolvedor      |     |
 | Revisor            |     |
 | Testador           |     |
@@ -162,7 +171,9 @@ Descrição:
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA06.01                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Visualizar pagamentos', onde será exibido um campo de filtro que permitirá que ele selecione entre as opções de pagamentos pendentes, recebidos ou cancelados. Em seguida, ele poderá visualizar a lista completa de pagamentos, com todas as informações relacionadas, de acordo com o filtro selecionado.|
+| TA06.02                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Visualizar pagamentos'. Na página, é mostrado um filtro onde ele deverá selecionar a opção de pagamentos pendentes. Em seguida, ele deve selecionar um pagamento específico, onde serão exibidos todos os detalhes do pagamento, incluindo um botão para atualização do status. Ele pode mudar o status de pendente para cancelado ou recebido.|
+| TA06.03                  | O administrador financeiro acessa a página de pagamentos e em seguida seleciona a opção 'Pesquisar pagamentos'. Na página, serão exibidos três campos para preenchimento: data, valor e cliente. Após preencher os campos, será mostrada uma lista de pagamentos de acordo com os critérios de pesquisa fornecidos. Caso o administrador deixe todos os campos em branco, o sistema não exibirá nenhum resultado de pesquisa.|
 
 ## US07 - Manter prestação
 
@@ -201,8 +212,8 @@ Descrição:
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
+| Desenvolvedor      | Adriel |
+| Revisor            | Bianca |
 | Testador           |     |
 
 | Testes de aceitação (TA) |           |

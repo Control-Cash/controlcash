@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cliente "{{ cliente.nome }}" | ControlCash</title>
+</head>
+<body>
+  <a href="{% url 'venda:cliente_listar' %}">Ir à lista de clientes</a>
+
+  <h1>{{ cliente.nome }}</h1>
+  <h2>Email: {{ cliente.email | default_if_none:"Não cadastrado" }}</h2>
+  
+  <p>
+    Esse cliente comprou {{ cliente.venda_set.count }}
+    {{ cliente.venda_set.count | pluralize:"vez,vezes" }} na loja
+  </p>
+
+  <a href="{% url 'venda:cliente_editar' cliente.id %}">Editar</a>
+</body>
+</html>

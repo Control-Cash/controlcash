@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar venda | ControlCash</title>
+  </head>
+  <body>
+    <a href="{% url 'venda:venda_listar' %}">Ir à lista de vendas</a>
+
+    <a href="{% url 'venda:cliente_criar' %}">Cadastrar cliente</a>
+
+    <h1>Cadastrar venda</h1>
+    <h2>Adicione o primeiro item da venda</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Cadastrar</button>
+    </form>
+  </body>
+</html>

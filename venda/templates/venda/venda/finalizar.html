@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar venda | ControlCash</title>
+</head>
+<body>
+  <h1>Tem certeza que deseja finalizar a venda #{{venda.id}}?</h1>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Finalizar</button>
+    <a href="{% url 'venda:venda_detalhar' pk=venda.id %}">Cancelar</a>
+  </form>
+</body>
+</html>
