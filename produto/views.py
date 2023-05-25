@@ -1,60 +1,50 @@
 from django.shortcuts import render, redirect
 from produto.models import Produto
 import datetime
+from .forms import CadastrarProduto
 
 # Create your views here.
 
-def home(request):
+redirect_response = '/produto'
+
+def home_produto(request):
     produtos = Produto.objects.all()
     return render(request, "home.html", {"produtos": produtos} )
 
-def viewCriarProduto(request):
+def view_criar_produto(request):
+    form = CadastrarProduto()
     if request.method == 'POST':
-        nome = request.POST.get('nome', None)
-        precoVenda = request.POST.get('precoVenda', None)
-        descricao = request.POST.get('descricao', None)
-        quantidadeEstoque = request.POST.get('quantidadeEstoque', None)
-        dataRegistro = datetime.date.today()
+        form = CadastrarProduto(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(redirect_response)
 
-        Produto.objects.create(nome=nome, 
-                               precoVenda=precoVenda, 
-                               descricao=descricao, 
-                               quantidadeEstoque=quantidadeEstoque,
-                               dataRegistro=dataRegistro)
-        
-        return redirect('/produto')
-
-    return render(request,'formCriarProduto.html')
+    return render(request,'formCriarProduto.html', {"form": form})
 
 
-def viewVizualizarProduto(request,id):
+def view_vizualizar_produto(request,id):
     if request.method == 'GET':
         produto = Produto.objects.get(id=id)
         return render(request,'vizualizarProduto.html', {"produto": produto})
 
 
-def viewEditarProduto(request,id):
+def view_editar_produto(request,id):
     produto = Produto.objects.get(id=id)
     return render(request,'formUpdateProduto.html', {"produto": produto})
 
-def viewAtualizarProduto(request,id):
+def view_atualizar_produto(request,id):
     produto = Produto.objects.get(id=id)
+    form = CadastrarProduto(instance=produto)
 
-    nome = request.POST.get('nome')
-    precoVenda = request.POST.get('precoVenda')
-    descricao = request.POST.get('descricao')
-    quantidadeEstoque = request.POST.get('quantidadeEstoque')
-
-    produto.nome=nome
-    produto.precoVenda=precoVenda
-    produto.descricao=descricao
-    produto.quantidadeEstoque=quantidadeEstoque
-
-    produto.save()
-
-    return redirect('/produto')
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect(redirect_response)                
+        return redirect(redirect_response)
     
-def viewDeletarProduto(request, id):
+    return render(request,'formUpdateProduto.html', {"produto": produto, "form": form})
+        
+def view_deletar_produto(request, id):
     produto = Produto.objects.get(id=id)
     produto.delete()
-    return redirect('/produto')
+    return redirect(redirect_response)
