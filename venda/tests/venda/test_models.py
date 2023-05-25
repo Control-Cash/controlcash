@@ -1,4 +1,3 @@
-from datetime import date
 from decimal import Decimal
 from django.test import TestCase
 from produto.models import Produto
@@ -51,9 +50,8 @@ class ItemModelTest(TestCase):
         self.venda = Venda.objects.create(cliente=self.cliente)
         self.produto = Produto.objects.create(
             nome='sandalia',
-            precoVenda=Decimal(20),
-            quantidadeEstoque=5,
-            dataRegistro=date(2023, 2, 1)
+            preco_venda=Decimal(20),
+            quantidade_estoque=5
         )
         self.item = Item.objects.create(
             produto=self.produto,
@@ -74,7 +72,7 @@ class ItemModelTest(TestCase):
         """Verifica se o modelo lança um erro ao tentar criar um item com uma quatidade maior do que o estoque do produto"""
 
         item = Item.objects.create(
-            quantidade=(self.produto.quantidadeEstoque + 5000),
+            quantidade=self.produto.quantidade_estoque + 1,
             produto=self.produto,
             venda=self.venda
         )

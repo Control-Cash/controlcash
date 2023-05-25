@@ -54,9 +54,8 @@ class CriarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10
         )
 
     def test_correct_form_in_context(self):
@@ -205,9 +204,8 @@ class DesativarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente
@@ -284,9 +282,8 @@ class ReativarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
@@ -364,9 +361,8 @@ class FinalizarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
@@ -443,9 +439,8 @@ class DetalharVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
