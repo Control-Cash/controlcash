@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class ProdutoConfig(AppConfig):
+class VendaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'produto'
+    name = 'venda'
 
     def ready(self):
         from . import signals

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venda #{{ venda.id }} | ControlCash</title>
+</head>
+<body>
+  <a href="{% url 'venda:venda_listar' %}">Ir a lista de vendas</a>
+
+  <h1>Venda #{{ venda.id }}</h1>
+  <h3>{{ venda.get_status_display }}</h3>
+
+  <p>Cliente: {{ venda.cliente }}</p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço unitário</th>
+        <th>Preço total</th>
+        {% if venda.status == 'ativa' %}
+          <th colspan="2">Ações</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in venda.item_set.all %}
+      <tr>
+        <td>{{ item.produto.nome }}</td>
+        <td>{{ item.quantidade }}</td>
+        <td>R$ {{ item.valor_unitario }}</td>
+        <td>R$ {{ item.valor_total }}</td>
+        {% if venda.status == 'ativa' %}
+          <td><a href="{% url 'venda:item_editar' pk=item.id %}">Editar quantidade</a></td>
+          <td><a href="{% url 'venda:item_remover' pk=item.id %}">Remover item</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <hr>
+
+  {% if venda.status == 'ativa' %}
+    <h2>Adicionar item</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Adicionar</button>
+    </form>
+  {% endif %}
+
+  <hr>
+
+  {% if venda.status == 'ativa' %}
+    <a href="{% url 'venda:venda_desativar' venda.id %}">Desativar</a>
+    <a href="{% url 'venda:venda_finalizar' venda.id %}">Finalizar</a>
+  {% elif venda.status == 'inativa' %}
+    <a href="{% url 'venda:venda_reativar' venda.id %}">Reativar</a>
+  {% endif %}
+</body>
+</html>
