@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1> Editar Produto </h1>
-    <h2>Editando Produto - {{produto.nome}} - {{produto.precoVenda}}</h2>
+    <h2>Editando Produto - {{produto.nome}} - {{produto.preco_venda}}</h2>
    
     <form action="{% url 'atualizarProduto' produto.id %}" method="POST">
         {% csrf_token %}
