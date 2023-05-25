@@ -30,6 +30,6 @@
 |     Descrição      |   Tipo   |   ALR   |   DER   |   Complexidade   |   Tamanho em PF   |
 | ------------------ | -------- | ------- | ------- | ---------------- | :---------------: |
 |Digitar Nome/Código Do Produto|    EE    |    0    |    1    |      Baixa       | 3 PF              |
-|  Exibir Lista de Produtos |    SE    |    0    |    3    |      Média       | 4 PF              |
-|  Detalhar Produto  |    SE    |    0    |    4    |      Média       | 4 PF              |
+|  Exibir Lista de Produtos |    SE    |    0    |    3    |      Baixa       | 4 PF              |
+|  Detalhar Produto  |    SE    |    0    |    4    |      Baixa       | 4 PF              |
 |   **Total**        |          |         |         |           | **11 PF**         |
