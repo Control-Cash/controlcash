@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizualizar Produto: {{produto.nome}}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'homeProduto' %}">Voltar</a>
+    </header>
+
+    <table border="1px">
+        <thead>
+        <tr><th colspan="8">Produto</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td> ID </td>
+        <td> Nome </td>
+        <td> Preço </td>
+        <td> Quantidade </td>
+        <td> Descrição </td>
+        <td> Data registro </td>
+        </tr>
+        <tr>
+            <td>
+                {{produto.id}}
+            </td>
+            <td>
+                {{produto.nome}}
+            </td>
+            <td>
+                {{produto.precoVenda}}
+            </td>
+            <td>
+                {{produto.quantidadeEstoque}}
+            </td>
+            <td>
+                {{produto.descricao}}
+            </td>
+            <td>
+                {{produto.dataRegistro}}
+            </td>
+        </tr>
+        </tbody>
+        
+    </table>
+</body>
+</html>
