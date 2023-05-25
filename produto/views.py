@@ -5,6 +5,8 @@ from .forms import CadastrarProduto
 
 # Create your views here.
 
+redirect_response = '/produto'
+
 def home(request):
     produtos = Produto.objects.all()
     return render(request, "home.html", {"produtos": produtos} )
@@ -15,7 +17,7 @@ def view_criar_produto(request):
         form = CadastrarProduto(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/produto')
+            return redirect(redirect_response)
 
     return render(request,'formCriarProduto.html', {"form": form})
 
@@ -37,12 +39,12 @@ def view_atualizar_produto(request,id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('/produto')                
-        return redirect('/produto')
+            return redirect(redirect_response)                
+        return redirect(redirect_response)
     
     return render(request,'formUpdateProduto.html', {"produto": produto, "form": form})
         
 def view_deletar_produto(request, id):
     produto = Produto.objects.get(id=id)
     produto.delete()
-    return redirect('/produto')
+    return redirect(redirect_response)
