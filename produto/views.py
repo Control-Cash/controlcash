@@ -7,7 +7,7 @@ from .forms import CadastrarProduto
 
 redirect_response = '/produto'
 
-def home(request):
+def home_produto(request):
     produtos = Produto.objects.all()
     return render(request, "home.html", {"produtos": produtos} )
 
