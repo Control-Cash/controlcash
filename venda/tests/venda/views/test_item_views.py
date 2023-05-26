@@ -1,4 +1,3 @@
-from datetime import date
 from decimal import Decimal
 
 from django.test import Client, TestCase
@@ -18,9 +17,8 @@ class EditarQuantidadeItemViewTest(TestCase):
         self.venda = Venda.objects.create(cliente=self.cliente)
         self.produto = Produto.objects.create(
             nome='sandalia',
-            precoVenda=Decimal(20),
-            quantidadeEstoque=5,
-            dataRegistro=date(2023, 2, 1)
+            preco_venda=Decimal(20),
+            quantidade_estoque=5,
         )
         self.item = Item.objects.create(
             produto=self.produto,
@@ -179,9 +177,8 @@ class RemoverItemViewTest(TestCase):
         self.venda = Venda.objects.create(cliente=self.cliente)
         self.produto = Produto.objects.create(
             nome='sandalia',
-            precoVenda=Decimal(20),
-            quantidadeEstoque=5,
-            dataRegistro=date(2023, 2, 1)
+            preco_venda=Decimal(20),
+            quantidade_estoque=5,
         )
         self.item = Item.objects.create(
             produto=self.produto,

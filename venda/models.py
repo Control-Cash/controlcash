@@ -10,7 +10,7 @@ from produto.models import Produto
 class Cliente(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField(blank=True, null=True)
-    # endereco = models.ForeignKey
+    # TODO adicionar foreign key endereco
 
     def __str__(self) -> str:
         return f"{self.nome}"
@@ -28,7 +28,7 @@ class Venda(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='ativa')
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
-    # vendedor = models.ForeignKey()
+    # TODO adicionar foreign key vendedor
 
     def __str__(self) -> str:
         return f"{self.item_set.count} itens vendidos para {self.cliente} ({self.status})"
@@ -47,10 +47,10 @@ class Item(models.Model):
 
     def clean(self):
         try:
-            if self.quantidade and self.produto.quantidadeEstoque:
-                if self.quantidade > self.produto.quantidadeEstoque:
+            if self.quantidade and self.produto.quantidade_estoque:
+                if self.quantidade > self.produto.quantidade_estoque:
                     raise ValidationError(
-                        f"Há apenas {self.produto.quantidadeEstoque} desse produto em estoque."
+                        f"Há apenas {self.produto.quantidade_estoque} desse produto em estoque."
                     )
         except Item.produto.RelatedObjectDoesNotExist:
             raise ValidationError("Esse produto não existe.")

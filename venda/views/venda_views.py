@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from venda.forms import CriarVendaForm, ItemVendaForm
 from venda.models import Item, Venda
 
+NOME_ROTA_DETALHAR_VENDA = 'venda:venda_detalhar'
 
 def criar_venda_view(request):
     form = CriarVendaForm()
@@ -17,7 +18,7 @@ def criar_venda_view(request):
             novo_item = form.save(commit=False)
             novo_item.venda = nova_venda
             novo_item.save()
-            return redirect('venda:venda_detalhar', pk=nova_venda.id)
+            return redirect(NOME_ROTA_DETALHAR_VENDA, pk=nova_venda.id)
     return render(request, 'venda/venda/criar.html', {'form': form})
 
 
@@ -48,7 +49,7 @@ def detalhar_venda_view(request, pk):
             else:
                 novo_item.venda = venda
                 novo_item.save()
-            return redirect('venda:venda_detalhar', pk=pk)
+            return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
 
     context = {
         'venda': venda,
@@ -62,7 +63,7 @@ def desativar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[1][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/desativar.html', {'venda': venda})
 
 
@@ -71,7 +72,7 @@ def finalizar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[2][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/finalizar.html', {'venda': venda})
 
 
@@ -80,5 +81,5 @@ def reativar_venda_view(request, pk):
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[0][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/reativar.html', {'venda': venda})

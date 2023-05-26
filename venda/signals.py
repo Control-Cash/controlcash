@@ -6,6 +6,6 @@ from venda.models import Item
 
 
 @receiver(pre_save, sender=Item)
-def preencher_valor_unitario(sender, instance, **kwargs):
+def preencher_valor_unitario(sender, instance: Item, **kwargs):
     if not instance.valor_unitario:
-        instance.valor_unitario = instance.produto.precoVenda
+        instance.valor_unitario = instance.produto.preco_venda

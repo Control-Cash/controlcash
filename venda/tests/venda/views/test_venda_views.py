@@ -1,4 +1,3 @@
-from datetime import date
 from decimal import Decimal
 
 from django.test import Client, TestCase
@@ -54,9 +53,8 @@ class CriarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10
         )
 
     def test_correct_form_in_context(self):
@@ -205,9 +203,8 @@ class DesativarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente
@@ -284,9 +281,8 @@ class ReativarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
@@ -364,9 +360,8 @@ class FinalizarVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
@@ -433,6 +428,7 @@ class FinalizarVendaViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
+
 class DetalharVendaViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
@@ -443,9 +439,8 @@ class DetalharVendaViewTest(TestCase):
         self.cliente = Cliente.objects.create(nome='João Silva')
         self.produto = Produto.objects.create(
             nome='Celular',
-            precoVenda=Decimal(1000),
-            quantidadeEstoque=10,
-            dataRegistro=date(2023, 2, 10)
+            preco_venda=Decimal(1000),
+            quantidade_estoque=10,
         )
         self.venda = Venda.objects.create(
             cliente=self.cliente,
@@ -496,7 +491,7 @@ class DetalharVendaViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.expected_template)
-    
+
     def test_correct_form_in_context(self):
         """Verifica se a view envia um formulário para o template e se esse formulário é da classe correta"""
 
@@ -514,7 +509,7 @@ class DetalharVendaViewTest(TestCase):
         self.venda.refresh_from_db()
         item_final_count = self.venda.item_set.count()
 
-        self.assertEqual(item_inital_count +1, item_final_count)
+        self.assertEqual(item_inital_count + 1, item_final_count)
 
     def test_doesnt_add_item_to_venda_when_not_all_data_is_send(self):
         """Verifica se o item não é adicionado a venda quando nem todos os dados necessários são enviados"""
@@ -545,7 +540,7 @@ class DetalharVendaViewTest(TestCase):
         response = self.client.post(self.target_url, self.form_data)
 
         self.assertRedirects(response, self.expected_redirect_url, 302, 200)
-    
+
     def test_add_repeated_product_updates_existing_item_quantidade(self):
         """Verifica se quando o produto ja está na venda a quantidade é somada ao item ao invés de criar um novo"""
 
@@ -556,7 +551,7 @@ class DetalharVendaViewTest(TestCase):
 
         self.assertEqual(self.venda.item_set.count(), 1)
         self.assertEqual(item.quantidade, self.form_data['quantidade'] * 2)
-    
+
     def test_intial_form_is_empty(self):
         """Verifica se a view envia um formulário vazio para o template"""
 
@@ -586,4 +581,3 @@ class DetalharVendaViewTest(TestCase):
             form['quantidade'].value(),
             form_data['quantidade']
         )
-
