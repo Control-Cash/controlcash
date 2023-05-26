@@ -1,8 +1,9 @@
 from decimal import Decimal
-from django.test import TestCase
-from produto.models import Produto
-from django.core.exceptions import ValidationError
 
+from django.core.exceptions import ValidationError
+from django.test import TestCase
+
+from produto.models import Produto
 from venda.models import Cliente, Item, Venda
 
 
@@ -71,13 +72,13 @@ class ItemModelTest(TestCase):
     def test_model_raises_error_when_quantidade_is_greater_than_estoque(self):
         """Verifica se o modelo lança um erro ao tentar criar um item com uma quatidade maior do que o estoque do produto"""
 
-        item = Item.objects.create(
+        item = Item(
             quantidade=self.produto.quantidade_estoque + 1,
             produto=self.produto,
             venda=self.venda
         )
 
-        self.assertRaises(ValidationError, item.clean)
+        self.assertRaises(ValidationError, item.full_clean)
 
     def test_valor_total_returns_multiplication_of_quantidade_and_valor_unitario(self):
         """Verifica se a chamada do método valor_total retorna o preço unitário do item multiplicado por sua quantidade"""
