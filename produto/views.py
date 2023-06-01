@@ -9,6 +9,8 @@ from .forms import CadastrarProduto
 
 redirect_response = '/produto'
 
+
+@require_http_methods(["GET"])
 def home_produto(request):
     nome_produto = request.GET.get("produto")
     produtos = Produto.objects.all()
