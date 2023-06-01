@@ -20,15 +20,6 @@ def home_produto(request):
         produtos = Produto.objects.all()
     return render(request, "home.html", {"produtos": produtos} ) 
 
-@require_http_methods(["GET"])
-def home_produto(request):
-    nome_produto = request.GET.get("produto")
-    produtos = Produto.objects.all()
-    if nome_produto: 
-        produtos = Produto.objects.filter(nome__icontains=nome_produto)  
-    elif nome_produto == " ":
-        produtos = Produto.objects.all()
-    return render(request, "home.html", {"produtos": produtos} ) 
 
 @require_http_methods(["GET", "POST"])
 def view_criar_produto(request):
