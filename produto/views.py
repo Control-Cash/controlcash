@@ -1,16 +1,22 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_http_methods
+
 from produto.models import Produto
-import datetime
+
 from .forms import CadastrarProduto
 
 # Create your views here.
 
 redirect_response = '/produto'
 
+
+@require_http_methods(["GET"])
 def home_produto(request):
     produtos = Produto.objects.all()
-    return render(request, "home.html", {"produtos": produtos} )
+    return render(request, "home.html", {"produtos": produtos})
 
+
+@require_http_methods(["GET", "POST"])
 def view_criar_produto(request):
     form = CadastrarProduto()
     if request.method == 'POST':
@@ -19,31 +25,37 @@ def view_criar_produto(request):
             form.save()
             return redirect(redirect_response)
 
-    return render(request,'formCriarProduto.html', {"form": form})
+    return render(request, 'formCriarProduto.html', {"form": form})
 
 
-def view_vizualizar_produto(request,id):
+@require_http_methods(["GET"])
+def view_vizualizar_produto(request, id):
     if request.method == 'GET':
         produto = Produto.objects.get(id=id)
-        return render(request,'vizualizarProduto.html', {"produto": produto})
+        return render(request, 'vizualizarProduto.html', {"produto": produto})
 
 
-def view_editar_produto(request,id):
+@require_http_methods(["GET"])
+def view_editar_produto(request, id):
     produto = Produto.objects.get(id=id)
-    return render(request,'formUpdateProduto.html', {"produto": produto})
+    return render(request, 'formUpdateProduto.html', {"produto": produto})
 
-def view_atualizar_produto(request,id):
+
+@require_http_methods(["GET", "POST"])
+def view_atualizar_produto(request, id):
     produto = Produto.objects.get(id=id)
     form = CadastrarProduto(instance=produto)
 
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect(redirect_response)                
+            return redirect(redirect_response)
         return redirect(redirect_response)
-    
-    return render(request,'formUpdateProduto.html', {"produto": produto, "form": form})
-        
+
+    return render(request, 'formUpdateProduto.html', {"produto": produto, "form": form})
+
+
+@require_http_methods(["GET"])
 def view_deletar_produto(request, id):
     produto = Produto.objects.get(id=id)
     produto.delete()
