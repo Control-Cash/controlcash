@@ -8,8 +8,13 @@ from .forms import CadastrarProduto
 redirect_response = '/produto'
 
 def home_produto(request):
+    nome_produto = request.GET.get("produto")
     produtos = Produto.objects.all()
-    return render(request, "home.html", {"produtos": produtos} )
+    if nome_produto: 
+        produtos = Produto.objects.filter(nome__icontains=nome_produto)  
+    elif nome_produto == " ":
+        produtos = Produto.objects.all()
+    return render(request, "home.html", {"produtos": produtos} ) 
 
 def view_criar_produto(request):
     form = CadastrarProduto()
