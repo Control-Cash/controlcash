@@ -1,9 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_http_methods
 
 from venda.forms import EditarItemVendaForm
 from venda.models import Item
 
 
+@require_http_methods(["GET", "POST"])
 def editar_quatidade_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
     form = EditarItemVendaForm(instance=item)
@@ -16,6 +18,7 @@ def editar_quatidade_item_view(request, pk):
     return render(request, 'venda/item/editar.html', {'form': form, 'item': item})
 
 
+@require_http_methods(["GET", "POST"])
 def remover_item_view(request, pk):
     item = get_object_or_404(Item, id=pk)
     venda_id = item.venda.id
