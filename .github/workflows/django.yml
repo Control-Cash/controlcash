@@ -1,4 +1,4 @@
-name: Django CI
+name: Django CI & SonarQube
 
 on:
   push:
@@ -27,3 +27,18 @@ jobs:
       - name: Run Tests
         run: |
           python manage.py test
+      - name: Run coverage
+        run: |
+          coverage run manage.py test
+          coverage xml
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: SonarQube Quality Gate check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        # Force to fail step after specific time
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
