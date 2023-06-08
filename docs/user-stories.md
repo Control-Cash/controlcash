@@ -124,7 +124,6 @@ Descrição: O sistema deve ser capaz de gerenciar formas de pagamentos aceitas 
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-| RF02                  |     |
 | RF06                  |     |
 
 |                    |     |
