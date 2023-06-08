@@ -50,8 +50,8 @@ def view_editar_produto(request, id):
 def view_atualizar_produto(request, id):
     produto = Produto.objects.get(id=id)
     form = CadastrarProduto(instance=produto)
-
     if request.method == 'POST':
+        form = CadastrarProduto(request.POST, instance=produto)
         if form.is_valid():
             form.save()
             return redirect(redirect_response)
