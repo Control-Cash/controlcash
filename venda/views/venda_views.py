@@ -1,10 +1,14 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_http_methods
 
 from venda.forms import CriarVendaForm, ItemVendaForm
 from venda.models import Item, Venda
 
+NOME_ROTA_DETALHAR_VENDA = 'venda:venda_detalhar'
 
+
+@require_http_methods(["GET", "POST"])
 def criar_venda_view(request):
     form = CriarVendaForm()
 
@@ -17,15 +21,17 @@ def criar_venda_view(request):
             novo_item = form.save(commit=False)
             novo_item.venda = nova_venda
             novo_item.save()
-            return redirect('venda:venda_detalhar', pk=nova_venda.id)
+            return redirect(NOME_ROTA_DETALHAR_VENDA, pk=nova_venda.id)
     return render(request, 'venda/venda/criar.html', {'form': form})
 
 
+@require_http_methods(["GET"])
 def listar_vendas_view(request):
     vendas = Venda.objects.all()
     return render(request, 'venda/venda/listar.html', {'vendas': vendas})
 
 
+@require_http_methods(["GET", "POST"])
 def detalhar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     item_form = ItemVendaForm()
@@ -48,7 +54,7 @@ def detalhar_venda_view(request, pk):
             else:
                 novo_item.venda = venda
                 novo_item.save()
-            return redirect('venda:venda_detalhar', pk=pk)
+            return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
 
     context = {
         'venda': venda,
@@ -57,28 +63,31 @@ def detalhar_venda_view(request, pk):
     return render(request, 'venda/venda/detalhar.html', context)
 
 
+@require_http_methods(["GET", "POST"])
 def desativar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[1][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/desativar.html', {'venda': venda})
 
 
+@require_http_methods(["GET", "POST"])
 def finalizar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[2][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/finalizar.html', {'venda': venda})
 
 
+@require_http_methods(["GET", "POST"])
 def reativar_venda_view(request, pk):
     venda = get_object_or_404(Venda, id=pk)
     if request.method == 'POST':
         venda.status = Venda.STATUS_CHOICES[0][0]
         venda.save()
-        return redirect('venda:venda_detalhar', pk=pk)
+        return redirect(NOME_ROTA_DETALHAR_VENDA, pk=pk)
     return render(request, 'venda/venda/reativar.html', {'venda': venda})
