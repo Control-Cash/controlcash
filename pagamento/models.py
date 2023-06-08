@@ -21,7 +21,6 @@ class Pagamento(models.Model):
         ('recebido', 'Recebido'),
         ('cacelado', 'Cancelado'),
     ]
-
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     data = models.DateField()
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='pendente')

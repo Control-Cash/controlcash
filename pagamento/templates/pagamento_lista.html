@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+  <h1>Lista de Pagamentos</h1>
+
+  <a href="{% url 'app:pagamento_criar' %}">Criar Novo Pagamento</a>
+
+  <ul>
+    {% for pagamento in object_list %}
+      <li>Valor: R$ {{ pagamento.valor }}</li>
+      <p>Data: {{ pagamento.data }}</p>
+      <p>Status: {{ pagamento.status }}</p>
+      <p>ID Cliente: {{ pagamento.id_cliente }}</p>
+      <p><a href="{% url 'app:pagamento_atualizar' pagamento.pk %}">Editar</a> | <a href="{% url 'app:pagamento_remover' pagamento.pk %}">Remover</a></p>
+    {% empty %}
+      <li>Nenhum pagamento encontrado.</li>
+    {% endfor %}
+  </ul>
+
+    
+</body>
+</html>
