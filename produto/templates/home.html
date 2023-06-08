@@ -10,11 +10,17 @@
     <h1>produtos</h1>
 
     <a href="{% url 'criarProduto' %}"> Criar Produto </a>
+    <form method="GET"> 
+        <input type="search" name="produto" placeholder="Nome do Produto"/> 
+        <button type="submit">Pesquisar</button>
+    </form>
     <ul>
         {% if produtos%}
             {%for produto in produtos%}
                 <li>{{ produto.id }} - {{produto.nome}} <a href="{% url 'atualizarProduto' produto.id %}">Editar</a> | <a href="{% url 'vizualizarProduto' produto.id %}">Vizualizar</a> | <a href="{% url 'deletarProduto' produto.id %}">Deletar</a></li>
             {% endfor %}
+        {% else %}
+            <h4>Não há produtos!</h4>
         {% endif %} 
     </ul>
 </body>
