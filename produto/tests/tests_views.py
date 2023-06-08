@@ -1,6 +1,5 @@
 from django.test import TestCase
 from django.urls import reverse
-
 from produto.models import Produto
 # Create your tests here.
 
