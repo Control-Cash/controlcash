@@ -1,44 +1,19 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.shortcuts import get_object_or_404, render, redirect
+from pagamento.models import FormaPagamento, Pagamento
+from pagamento.forms import FormaPagamentoForm, PagamentoForm
 
-from .models import FormaPagamento, Pagamento
+redirect_response = '/pagamento'
 
-class FormaPagamentoListView(ListView):
-    model = FormaPagamento
-    template_name = 'app/forma_pagamento_lista.html'
+def home_pagamento(request):
+    pagamentos = Pagamento.objects.all()
+    return render(request, "home.html", {"pagamentos": pagamentos} )
 
-class FormaPagamentoCreateView(CreateView):
-    model = FormaPagamento
-    template_name = 'app/forma_pagamento_form.html'
-    fields = '__all__'
+def view_criar_pagamento(request):
+    form = PagamentoForm()
+    if request.method == 'POST':
+        form = PagamentoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(redirect_response)
 
-class FormaPagamentoUpdateView(UpdateView):
-    model = FormaPagamento
-    template_name = 'app/forma_pagamento_form.html'
-    fields = '__all__'
-
-class FormaPagamentoDeleteView(DeleteView):
-    model = FormaPagamento
-    template_name = 'app/forma_pagamento_confirmar_exclusao.html'
-    success_url = reverse_lazy('app:forma_pagamento_lista')
-
-
-class PagamentoListView(ListView):
-    model = Pagamento
-    template_name = 'app/pagamento_lista.html'
-
-class PagamentoCreateView(CreateView):
-    model = Pagamento
-    template_name = 'app/pagamento_form.html'
-    fields = '__all__'
-
-class PagamentoUpdateView(UpdateView):
-    model = Pagamento
-    template_name = 'app/pagamento_form.html'
-    fields = '__all__'
-
-class PagamentoDeleteView(DeleteView):
-    model = Pagamento
-    template_name = 'app/pagamento_confirmar_exclusao.html'
-    success_url = reverse_lazy('app:pagamento_lista')
+    return render(request,'formEditarPagamento.html', {"form": form})
