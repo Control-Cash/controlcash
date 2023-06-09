@@ -6,7 +6,7 @@ redirect_response = '/pagamento'
 
 def home_pagamento(request):
     pagamentos = Pagamento.objects.all()
-    return render(request, "home.html", {"pagamentos": pagamentos} )
+    return render(request, "homePagamento.html", {"pagamentos": pagamentos} )
 
 def view_criar_pagamento(request):
     form = PagamentoForm()
