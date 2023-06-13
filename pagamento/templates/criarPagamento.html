@@ -8,13 +8,12 @@
 </head>
 <body>
 
-  <h1>{% if form.instance.pk %}Editar Pagamento{% else %}Criar Novo Pagamento{% endif %}</h1>
+  <h1>Criar Pagamento</h1>
 
-  <form method="post">
+  <form action="{% url 'home_pagamento' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Salvar">
-  </form>
-
+</form>
 </body>
 </html>

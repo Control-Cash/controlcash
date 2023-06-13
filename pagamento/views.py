@@ -5,15 +5,14 @@ from pagamento.forms import FormaPagamentoForm, PagamentoForm
 redirect_response = '/pagamento'
 
 def home_pagamento(request):
-    pagamentos = Pagamento.objects.all()
-    return render(request, "homePagamento.html", {"pagamentos": pagamentos} )
-
-def view_criar_pagamento(request):
-    form = PagamentoForm()
+    
     if request.method == 'POST':
         form = PagamentoForm(request.POST)
         if form.is_valid():
+            # Salvar os dados do formulário
             form.save()
-            return redirect(redirect_response)
-
-    return render(request,'formEditarPagamento.html', {"form": form})
+            return redirect('/pagamento')
+    else:
+        form = PagamentoForm()
+    
+    return render(request, 'criarPagamento.html', {'form': form})
