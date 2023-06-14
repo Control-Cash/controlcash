@@ -41,12 +41,15 @@ alguns tutoriais que ensinam mais sobre essa tecnologia.
 Você pode executar o projeto utilizando o mariadb através do docker ou usar o
 SQLite3 padrão do django.
 
+<<<<<<< HEAD
 - [Tutorial com o SQLite](#com-o-sqlite)
 
 - [Tutorial com docker e mariadb](#com-o-mariadb-via-docker)
 
 ### Com o SQLite
 
+=======
+>>>>>>> 8a3c294 (Formata instruções de execução do README #97)
 1. Possuir o [python](https://www.python.org/) 3.9 ou superior instalado no
   computador.
 
