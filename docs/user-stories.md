@@ -23,7 +23,7 @@ produtos.
 | Prioridade         | Essencial |
 | Estimativa         | 8h        |
 | Tempo gasto (real) | -         |
-| Tamanho funcional  | [27](./documento-pontos-de-funcao.md#us01---manter-produto) |
+| Tamanho funcional  | [14](./documento-pontos-de-funcao.md#us01---manter-produto) |
 | Analista           | Adriel    |
 | Desenvolvedor      | Guilherme |
 | Revisor            | Bianca    |
@@ -75,7 +75,7 @@ Descrição: O sistema deve permitir o registro de  vendas. Uma venda contém os
 | ------------------ | --- |
 | Prioridade         | Essencial   |
 | Estimativa         | 15h         |
-| Tempo gasto (real) |     |
+| Tempo gasto (real) | 8h |
 | Tamanho funcional  |     |
 | Analista           | Bianca    |
 | Desenvolvedor      | Adriel    |
@@ -102,7 +102,7 @@ Descrição: O sistema deverá permitir ao vendedor adicionar, editar ou remover
 |                    |                 |
 | ------------------ | --------------- |
 | Prioridade         | Média           |
-| Tempo gasto (real) | Não iniciado    |
+| Tempo gasto (real) | 8h              |
 | Tamanho funcional  | -               |
 | Analista           | Cíntia          |
 | Desenvolvedor      | Adriel          |
@@ -202,24 +202,31 @@ Descrição:
 
 Descrição:
 
-| Requisitos envolvidos |     |
-| --------------------- | --- |
-|                       |     |
+| Requisitos envolvidos |      |
+| --------------------- | ---- |
+| Cadastrar cliente     | RF09 |
+| Listar clientes       | RF34 |
+| Visualizar cliente    | RF35 |
+| Atualizar cliente     | RF36 |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
-| Tempo gasto (real) |     |
-| Tamanho funcional  |     |
-| Analista           |     |
-| Desenvolvedor      | Adriel |
-| Revisor            | Bianca |
-| Testador           |     |
+| Prioridade         | Essencial |
+| Tempo gasto (real) | 8h |
+| Tamanho funcional  | [14](./documento-pontos-de-funcao.md#us08---manter-cliente) |
+| Analista           | Adriel  |
+| Desenvolvedor      | Adriel  |
+| Revisor            | Bianca  |
+| Testador           | Hilário |
 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA08.01 | O usuário acessa a página de cadastro de cliente, não preenche todos os campos obrigatórios do fomulário e tenta submeter o fomulário. O sistema não salva o cliente e informa na tela os campos que não foram preenchidos corretamente. |
+| TA08.02 | O usuário acessa a página de cadastro de cliente, preenche todos os campos obrigatórios do fomulário e tenta submeter o fomulário. O sistema salva o novo cliente e redireciona o usuário para a página de visualização do cliente cadastrado. |
+| TA08.03 | O usuário acessa a página de listagem de clientes e vê uma lista com todos os clientes cadastrados no sistema. Apenas o nome, telefone e email aparecem. |
+| TA08.04 | O usuário acessa a página de detalhes de um cliente, lá é exibido todas as informações do cliente e um histórico de transações do cliente. |
+| TA08.05 | O usuário acessa a página de edição de cliente, que contém um fomulário já preenchido com as informações salvas no banco de dados acerca daquele cliente. O usuário modifica alguns campos conforme necessário e submete o formulário. O sistema salva as alterações no banco de dados e redireciona o usuário para a página de visualização do cliente. |
 
 ## US09 - Manter telefone
 
