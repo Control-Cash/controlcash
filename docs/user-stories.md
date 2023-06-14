@@ -200,7 +200,10 @@ Descrição:
 
 ## US08 - Manter cliente
 
-Descrição:
+Descrição: O sistema deve manter o cadastro dos clientes da loja. Um cliente tem
+código de identificação, nome, telefone, endereço e email. Os usuários gerente
+e vendedor terão acesso a edição e cadastro de clientes. Todos os usuários
+poderão visualizar a listagem e os dados dos clientes.
 
 | Requisitos envolvidos |      |
 | --------------------- | ---- |
