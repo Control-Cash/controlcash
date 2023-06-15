@@ -46,3 +46,16 @@
 | Visualizar cliente            | SE       |    0    |   10    |      Baixa       |         4         |
 | Editar cliente                | EE       |    0    |   10    |      Baixa       |         3         |
 | **Total**                     |          |         |         |                  |        14         |
+
+## US13 - Manter despesa
+
+| Descrição         | Tipo     |   RLR   |   DER   |   Complexidade   |   Tamanho em PF   |
+| ----------------- | -------- | :-----: | :-----: | :--------------: | :---------------: |
+| Despesa           | ALI      |    1    |    4    |      Baixa       |         7         |
+|                   |          |         |         |                  |                   |
+| **Descrição**     | **Tipo** | **ALR** | **DER** | **Complexidade** | **Tamanho em PF** |
+| Cadastrar despesa | EE       |    0    |    3    |      Baixa       |         3         |
+| Listar despesas   | SE       |    0    |    3    |      Baixa       |         4         |
+| Editar despesa    | EE       |    0    |    3    |      Baixa       |         3         |
+| Excluir despesa   | EE       |    0    |    0    |      Baixa       |         3         |
+| **Total**         |          |         |         |                  |        13         |

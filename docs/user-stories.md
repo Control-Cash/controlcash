@@ -340,8 +340,9 @@ criação, edição, listagem e exclusão das despesas.
 |                    |     |
 | ------------------ | --- |
 | Prioridade         | Desejável |
+| Tempo estimado | 8h |
 | Tempo gasto (real) | - |
-| Tamanho funcional  |     |
+| Tamanho funcional  | [13](./documento-pontos-de-funcao.md#us13---manter-despesa) |
 | Analista           | Adriel |
 | Desenvolvedor      | Adriel |
 | Revisor            | Hilário |
