@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'produto.apps.ProdutoConfig',
     'venda.apps.VendaConfig',
     'pagamento.apps.PagamentoConfig',
+    'despesa.apps.DespesaConfig',
 ]
 
 MIDDLEWARE = [
