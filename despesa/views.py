@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from despesa.forms import DespesaForm
 
 from despesa.models import Despesa
@@ -18,3 +18,15 @@ def criar_despesa_view(request):
             form.save()
             return redirect('despesa:despesa_listar')
     return render(request, 'despesa/criar.html', {'form': form})
+
+
+def editar_despesa_view(request, pk):
+    despesa = get_object_or_404(Despesa, id=pk)
+    form = DespesaForm(instance=despesa)
+
+    if request.method == 'POST':
+        form = DespesaForm(request.POST, instance=despesa)
+        if form.is_valid():
+            form.save()
+            return redirect('despesa:despesa_listar')
+    return render(request, 'despesa/editar.html', {'form': form})
