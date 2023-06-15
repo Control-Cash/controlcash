@@ -40,12 +40,74 @@ alguns tutoriais que ensinam mais sobre essa tecnologia.
 
 Para executar o projeto são necessários alguns requisitos.
 
-1 - possuir o python instalado no computador.
-2 - criar um ambiente virtal para instalar as dependências do projeto. Para isso execute o comando: python -m venv venv ou python3 -m venv venv.
-3 - Precisamos ativar o venv para que as depedências sejam instaladas na pasta local do projeto. para isso basta executar o comando .\venv/Scripts/activate caso esteja no Windows ou source venv/bin/activate caso esteja no Minux ou no Mac.
-3 - Agora precisamos instalar as dependências, para isso basta executar o seguinte comando. python -m pip install -r requirements.txt ou python3 -m pip install -r requirements.txt.
-4 - feito isso precisamos entrar na pasta do projeto. Para isso use o comando: cd controlcash
-5 - Feito o passo anterior agora precisamos fazer as migrações, use o comando: python manage.py makemigrations e posteriormente o comando: python manage.py migrate.
-6 - Agora podemos executar o projeto, para isso execute o comando: python manage.py runserver e acesse o link que gera gerado.
-7 - vá na url e coloque 127.0.0.1:8000/produto
-8 - Pronto, agora poderá acessar o crud feito na iteração 2.
+1. Possuir o [python](https://www.python.org/) 3.9 ou superior instalado no
+  computador.
+
+2. Criar um ambiente virtual para instalar as dependências do projeto. Para
+  isso execute um dos comandos a seguir
+
+   ```powershell
+   python -m venv venv
+   ```
+
+   ou
+
+   ```bash
+   python3 -m venv venv
+   ```
+
+3. Precisamos ativar o venv para que as depedências sejam instaladas na pasta
+  local do projeto. Para isso basta executar um dos comandos a seguir.
+
+   - Windows
+
+     ```powershell
+     .\venv/Scripts/activate
+     ```
+
+   - Linux/Mac
+
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. Agora precisamos instalar as dependências, para isso basta executar o
+  seguinte comando
+
+   - Windows
+
+     ```powershell
+     python -m pip install -r requirements.txt
+     ```
+
+   - Linux/Mac
+
+     ```bash
+     python3 -m pip install -r requirements.txt
+     ```
+
+5. Feito isso, precisamos entrar na pasta do projeto
+
+   ```bash
+   cd controlcash
+   ```
+
+6. Feito o passo anterior, agora precisamos fazer as migrações usando os
+   comandos a seguir
+
+   ```bash
+   python manage.py makemigrations
+   ```
+
+   ```bash
+   python manage.py migrate
+   ```
+
+7. Agora podemos executar o projeto
+
+   ```bash
+   python manage.py runserver
+   ```
+
+8. Agora acesse a URL mostrada no terminal:
+   - [http://localhost:8000/produto](http://localhost:8000/produto)
