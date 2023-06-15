@@ -30,3 +30,11 @@ def editar_despesa_view(request, pk):
             form.save()
             return redirect('despesa:despesa_listar')
     return render(request, 'despesa/editar.html', {'form': form})
+
+
+def remover_despesa_view(request, pk):
+    despesa = get_object_or_404(Despesa, id=pk)
+    if request.method == 'POST':
+        despesa.delete()
+        return redirect('despesa:despesa_listar')
+    return render(request, 'despesa/remover.html', {'despesa': despesa})
