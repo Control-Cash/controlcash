@@ -19,6 +19,7 @@
           {{ despesa.nome }} (R$ {{ despesa.valor | floatformat:2 }})
         </p>
         <a href="{% url 'despesa:despesa_editar' despesa.id %}">Editar</a>
+        <a href="{% url 'despesa:despesa_remover' despesa.id %}">Remover</a>
       </li>
     {% empty %}
       <li>Nenhuma despesa encontrada</li>
