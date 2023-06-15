@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listar despesas | ControlCash</title>
+</head>
+<body>
+  <h1>Listar despesas</h1>
+
+  <ul>
+    {% for despesa in despesas %}
+      <li>{{ despesa.nome }} (R$ {{ despesa.valor | floatformat:2 }})</li>
+    {% empty %}
+      <li>Nenhuma despesa encontrada</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
