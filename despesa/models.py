@@ -9,4 +9,4 @@ class Despesa(models.Model):
     periodica = models.BooleanField(verbose_name="periódica", default=False)
 
     def __str__(self) -> str:
-        return f"{self.nome} ({self.valor})"
+        return f"{self.nome}"
