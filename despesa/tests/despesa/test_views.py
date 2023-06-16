@@ -1,10 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
-<<<<<<< HEAD
 from despesa.forms import DespesaForm
-=======
->>>>>>> 49effb7 (Adiciona testes de listar_depesas_view #105)
 from despesa.models import Despesa
 
 
@@ -158,6 +155,7 @@ class CriarDespesaViewTest(TestCase):
             form['nome'].value(),
             form_data.get('nome')
         )
+<<<<<<< HEAD
 
 
 class EditarDespesaViewTest(TestCase):
@@ -399,3 +397,5 @@ class RemoverDespesaViewTest(TestCase):
             302,
             200
         )
+=======
+>>>>>>> 1994e0c (Adiciona testes de criar_depesa_view #105)
