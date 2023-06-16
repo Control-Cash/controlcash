@@ -157,6 +157,164 @@ class CriarDespesaViewTest(TestCase):
         )
 
 
+class EditarDespesaViewTest(TestCase):
+    def setUp(self) -> None:
+        self.despesa = Despesa.objects.create(
+            nome="Despesa 1",
+            valor=10.01
+        )
+        self.expected_template = 'despesa/editar.html'
+        self.view_url_name = 'despesa:despesa_editar'
+        self.success_redirect_url_name = 'despesa:despesa_listar'
+        self.expected_form_type = DespesaForm
+        self.client = Client()
+
+    def test_returns_404_when_despesa_doesnt_exist(self):
+        """Verifica se a view response com 404 quando a despesa solicitada não existe"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_uses_expected_form_type(self):
+        """Verifica se a view passa para o template o formulário correto"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+
+        self.assertIsInstance(response.context.get(
+            'form'), self.expected_form_type)
+
+    def test_view_uses_expected_template(self):
+        """Verifica se a view renderiza o template correto"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+
+        self.assertTemplateUsed(response, self.expected_template)
+
+    def test_despesa_not_updated_when_no_name_is_given(self):
+        """Verifica se a view não atualiza a despesa quando o nome está em branco"""
+
+        response = self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': '',
+                'valor': '1.50'
+            }
+        )
+        form_errors = response.context.get('form').errors
+        after_request_item = Despesa.objects.get(id=self.despesa.id)
+
+        self.assertEqual(after_request_item, self.despesa)
+        self.assertIsNotNone(form_errors)
+
+    def test_despesa_not_updated_when_valor_is_less_than_zero(self):
+        """Verifica se a view não atualiza a despesa quando o valor passado é menor que zero"""
+
+        response = self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'periodica': self.despesa.periodica,
+                'valor': -0.01,
+            }
+        )
+        form_errors = response.context.get('form').errors
+        after_request_item = Despesa.objects.get(id=self.despesa.id)
+
+        self.assertEqual(after_request_item, self.despesa)
+        self.assertIsNotNone(form_errors)
+
+    def test_despesa_not_updated_when_valor_is_zero(self):
+        """Verifica se a view não atualiza a despesa quando o valor passado é zero"""
+
+        response = self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'valor': 0
+            }
+        )
+        form_errors = response.context.get('form').errors
+        after_request_item = Despesa.objects.get(id=self.despesa.id)
+
+        self.assertEqual(after_request_item, self.despesa)
+        self.assertIsNotNone(form_errors)
+
+    def test_despesa_updates_when_valor_is_greater_than_zero(self):
+        """Verifica se a view atualiza a despesa quando o valor passado é maior que zero"""
+
+        novo_valor = '0.01'
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'valor': novo_valor,
+            }
+        )
+        despesa_atualizada = Despesa.objects.get(id=self.despesa.id)
+
+        self.assertEqual(str(despesa_atualizada.valor), novo_valor)
+
+    def test_view_redirects_to_correct_page_after_update(self):
+        """Verifica se a view redireciona para a página correta após a atualização da despesa"""
+
+        response = self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'valor': 3,
+                'periodica': self.despesa.periodica
+            }
+        )
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(self.success_redirect_url_name),
+            302,
+            200
+        )
+
+
 class RemoverDespesaViewTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
