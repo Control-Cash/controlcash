@@ -155,3 +155,86 @@ class CriarDespesaViewTest(TestCase):
             form['nome'].value(),
             form_data.get('nome')
         )
+
+
+class RemoverDespesaViewTest(TestCase):
+    def setUp(self) -> None:
+        self.despesa = Despesa.objects.create(
+            nome="Despesa 1",
+            valor=10.51
+        )
+        self.expected_template = 'despesa/remover.html'
+        self.client = Client()
+        self.view_url_name = 'despesa:despesa_remover'
+        self.success_redirect_url_name = 'despesa:despesa_listar'
+
+    def test_renders_correct_template(self):
+        """Verifica se a view renderiza o template esperado"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+
+        self.assertTemplateUsed(response, self.expected_template)
+
+    def test_response_is_404_when_despesa_doesnt_exist(self):
+        """Verifica se a view retorna 404 quando o atributo 'pk' passado não pertence a nenhuma despesa"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_sends_despesa_to_template(self):
+        """Verifica se a view envia ao template a despesa associada ao atributo 'pk' passado na request"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+        despesa_recebida = response.context.get('despesa')
+
+        self.assertIsNotNone(despesa_recebida)
+        self.assertIsInstance(despesa_recebida, Despesa)
+        self.assertEqual(self.despesa, despesa_recebida)
+
+    def removes_despesa_on_post_request(self):
+        """Verifica se a view realiza a remoção da despesa do banco de dados"""
+
+        initial_count = Despesa.objects.count()
+        self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+
+        self.assertEqual(initial_count - 1, Despesa.objects.count())
+
+    def test_redirects_to_correct_page_after_delete(self):
+        """Verifica se a view redireciona para a página correta após excluir"""
+
+        response = self.client.post(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': self.despesa.id
+            }
+        ))
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(
+                self.success_redirect_url_name
+            ),
+            302,
+            200
+        )
