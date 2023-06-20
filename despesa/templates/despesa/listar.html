@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listar despesas | ControlCash</title>
+</head>
+<body>
+  <h1>Listar despesas</h1>
+
+  <div>
+    <a href="{% url 'despesa:despesa_criar' %}">Cadastrar despesa</a>
+  </div>
+
+  <ul>
+    {% for despesa in despesas %}
+      <li>
+        <p>
+          {{ despesa.nome }} (R$ {{ despesa.valor | floatformat:2 }})
+        </p>
+        <a href="{% url 'despesa:despesa_editar' despesa.id %}">Editar</a>
+        <a href="{% url 'despesa:despesa_remover' despesa.id %}">Remover</a>
+      </li>
+    {% empty %}
+      <li>Nenhuma despesa encontrada</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

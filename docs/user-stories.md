@@ -325,26 +325,37 @@ Descrição:
 
 ## US13 - Manter despesa
 
-Descrição:
+Descrição: O sistema deve manter o cadastro das despesas da loja. Uma despesa
+tem código de identificação, nome, valor, e um indicador para dizer se a depesa
+é periódica. Os usuários gerente e administrador financeiro terão acesso a
+criação, edição, listagem e exclusão das despesas.
 
-| Requisitos envolvidos |     |
-| --------------------- | --- |
-|                       |     |
+| Requisitos envolvidos |      |
+| --------------------- | ---- |
+| Cadastrar despesa     | RF14 |
+| Listar despesas       | RF50 |
+| Editar despesa        | RF51 |
+| Excluir despesa       | RF52 |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
-| Tempo gasto (real) |     |
-| Tamanho funcional  |     |
-| Analista           |     |
-| Desenvolvedor      |     |
-| Revisor            |     |
-| Testador           |     |
+| Prioridade         | Desejável |
+| Tempo estimado | 8h |
+| Tempo gasto (real) | - |
+| Tamanho funcional  | [13](./documento-pontos-de-funcao.md#us13---manter-despesa) |
+| Analista           | Adriel |
+| Desenvolvedor      | Adriel |
+| Revisor            | Hilário |
+| Testador           | Guilherme |
 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
-| Código                   | Descrição |
-|                          |           |
+| Código | Descrição |
+| TA13.01 | O usuário acessa a tela de cadastro de despesa, onde preenche um fomulário com os campos nome, valor e despesa periódica. O usuário submete o formulário e o sistema realiza salva a despesa no banco de dados. Em seguida o sistema redireciona o usuário para a página de listagem. |
+| TA13.02 | O usuário acessa a tela de cadastro de despesa, preenche apenas parte dos campos e tenta submeter o formulário, o sistema não salva a nova despesa e informa ao usuário os problemas com o formulário. |
+| TA13.03 | O usuário acessa a tela de listagem de despesas e visualiza todas as despesas cadastradas no sistema. |
+| TA13.04 | O usuário acessa a tela de edição de despesa onde é exibido um formulário já preenchido com os dados presentes no banco de dados. O usuário modifica alguns desses dados e submete o formulário. O sistema salva as alterações e redireciona o usuário para a listagem de despesas. |
+| TA13.05 | O usuário tenta excluir uma despesa clicando no botão apagar. O sistema direciona o usuário para uma página de confirmação, lá o usuário confirma a exclusão e é redirecionado para a página de listagem de despesas. |
 
 ## US14 - Manter categoria de produto
 
