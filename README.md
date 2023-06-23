@@ -111,3 +111,35 @@ Para executar o projeto são necessários alguns requisitos.
 
 8. Agora acesse a URL mostrada no terminal:
    - [http://localhost:8000/produto](http://localhost:8000/produto)
+
+## Em caso de erro
+
+### Ao instalar os pacotes com o pip
+
+Instale os pacotes a seguir no linux
+
+```bash
+sudo apt update
+
+sudo apt install libmariadb-dev python3-dev default-libmysqlclient-dev build-essential
+```
+
+### Ao tentar executar a aplicação
+
+No arquivo `ControlCash/settings.py`, verifique se a configuração do banco de
+dados está com `HOST` igual a `localhost`, caso esteja, troque para `127.0.0.1`.
+
+- Deve estar parecido com isso:
+
+  ```python
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': 'controlcash',
+          'USER': 'controlcash',
+          'PASSWORD': 'controlcash',
+          'HOST': '127.0.0.1',
+          'PORT': 3306
+      }
+  }
+  ```
