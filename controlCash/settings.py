@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'produto.apps.ProdutoConfig',
     'venda.apps.VendaConfig',
-    'pagamento.apps.PagamentoConfig',
     'despesa.apps.DespesaConfig',
     'pagamento.apps.PagamentoConfig',
 ]
