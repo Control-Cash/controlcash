@@ -16,3 +16,4 @@ def home_pagamento(request):
         form = PagamentoForm()
     
     return render(request, 'criarPagamento.html', {'form': form})
+ 
