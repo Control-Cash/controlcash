@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mariadb:
+    container_name: controlcash-database
+    image: mariadb:latest
+    volumes:
+      - $HOME_DB/mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=
+      - MARIADB_DATABASE=
+    restart: always
+    ports:
+      - 3306:3306
+
+  web:
+    container_name: controlcash-app
+    image: controlcash-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    command: >
+      sh -c  "python manage.py collectstatic --noinput
+              python manage.py migrate --noinput
+              python manage.py initadmin
+              python manage.py initgroups
+              python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/code
+    depends_on:
+      - mariadb
+    ports:
+      - 8001:8001
+
+networks:
+  default:
+    external: true
+    name: labens-network
