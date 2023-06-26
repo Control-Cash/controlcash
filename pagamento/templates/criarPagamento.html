@@ -10,7 +10,7 @@
 
   <h1>Criar Pagamento</h1>
 
-  <form action="{% url 'home_pagamento' %}" method="POST">
+  <form action="{% url 'pagamento:pagamento_criar' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Salvar">
