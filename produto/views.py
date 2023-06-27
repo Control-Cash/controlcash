@@ -20,7 +20,6 @@ def home_produto(request):
         produtos = Produto.objects.all()
     return render(request, "home.html", {"produtos": produtos} ) 
 
-
 @require_http_methods(["GET", "POST"])
 def view_criar_produto(request):
     form = CadastrarProduto()
