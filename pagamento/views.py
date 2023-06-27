@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 
-from pagamento.models import FormaPagamento, Pagamento
-from pagamento.forms import FormaPagamentoForm, PagamentoForm
+from pagamento.models import Pagamento
+from pagamento.forms import PagamentoForm
 
 redirect_response = '/pagamento'
 
@@ -25,7 +25,7 @@ def criar_pagamento_view(request):
     else:
         form = PagamentoForm()
     
-    return render(request, 'criarPagamento.html', {'form': form})
+    return render(request, 'criar_Pagamento.html', {'form': form})
 
 @require_http_methods(["GET", "POST"])
 def editar_pagamento_view(request, pk):

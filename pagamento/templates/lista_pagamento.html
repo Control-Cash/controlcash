@@ -12,7 +12,7 @@
     <a href="{% url 'pagamento:pagamento_criar' %}">Cadastrar pagamento</a>
 
     <ul>
-        {% for pagamento in pagamentos %}
+        {% for pagamento in pagamento %}
           <li>
             <p>
               {{ pagamento.data }} (R$ {{ pagamento.valor | floatformat:2 }}) {{pagamento.status}}
