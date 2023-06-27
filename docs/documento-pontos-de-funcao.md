@@ -34,6 +34,18 @@
 | Visualizar venda | SE       |    1    |    5    |      Baixa       |         4         |
 | **Total**        |          |         |         |                  |        14         |
 
+## US04 - Manter ítem de venda
+
+| Descrição        | Tipo     |   RLR   |   DER   |   Complexidade   |   Tamanho em PF   |
+| ---------------- | -------- | :-----: | :-----: | :--------------: | :---------------: |
+| **Descrição**    | **Tipo** | **ALR** | **DER** | **Complexidade** | **Tamanho em PF** |
+| Cadastrar venda  | EE       |    0    |    4    |      Baixa       |         3         |
+| Editar venda     | EE       |    1    |    4    |      Baixa       |         3         |
+| Listar venda     | SE       |    0    |    3    |      Baixa       |         4         |
+| Visualizar venda | SE       |    1    |    5    |      Baixa       |         4         |
+| Cadastrar produto   | EE       |    0    |    4    |      Baixa       |         3         |
+| **Total**        |          |         |         |                  |        17         |
+
 ## US08 - Manter cliente
 
 | Descrição                     | Tipo     |   RLR   |   DER   |   Complexidade   |   Tamanho em PF   |
