@@ -4,14 +4,24 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from produto.models import Produto
-from venda.models import Cliente, Item, Venda
+from venda.models import Cliente, Item, Venda, Endereco
 
 
 class ClienteModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
-            email="joao@gmail.com"
+            email="joao@gmail.com",
+            endereco = Endereco.objects.create(
+                cep='12345678',
+                numero=10,
+                rua='Rua Exemplo',
+                bairro='Bairro Exemplo',
+                cidade='Cidade Exemplo',
+                estado='Estado Exemplo',
+                pais='Brasil',
+                complemento='Complemento Exemplo'
+            )
         )
 
     def test_model_string_representation_is_cliente_nome(self):
@@ -28,13 +38,22 @@ class VendaModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
-            email="joao@gmail.com"
+            email="joao@gmail.com",
+            endereco = Endereco.objects.create(
+                cep='12345678',
+                numero=10,
+                rua='Rua Exemplo',
+                bairro='Bairro Exemplo',
+                cidade='Cidade Exemplo',
+                estado='Estado Exemplo',
+                pais='Brasil',
+                complemento='Complemento Exemplo'
+            )
         )
         self.venda = Venda.objects.create(cliente=self.cliente)
 
     def test_model_string_representation_is_venda_details(self):
         """Verifica se a representação string do modelo 'Venda' é uma string com detalhes a seu respeito"""
-
         self.assertEqual(
             str(self.venda),
             f"{self.venda.item_set.count} itens vendidos para {self.venda.cliente} ({self.venda.status})",
@@ -46,7 +65,17 @@ class ItemModelTest(TestCase):
     def setUp(self) -> None:
         self.cliente = Cliente.objects.create(
             nome='João',
-            email="joao@gmail.com"
+            email="joao@gmail.com",
+            endereco = Endereco.objects.create(
+                cep='12345678',
+                numero=10,
+                rua='Rua Exemplo',
+                bairro='Bairro Exemplo',
+                cidade='Cidade Exemplo',
+                estado='Estado Exemplo',
+                pais='Brasil',
+                complemento='Complemento Exemplo'
+            )
         )
         self.venda = Venda.objects.create(cliente=self.cliente)
         self.produto = Produto.objects.create(

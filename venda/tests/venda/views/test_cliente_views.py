@@ -3,18 +3,31 @@ from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from venda.forms import ClienteForm
-from venda.models import Cliente
+from venda.models import Cliente,Endereco
 
 
 class CriarClienteViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_criar')
+        self.endereco = Endereco.objects.create(
+            cep='12345678',
+            numero=10,
+            rua='Rua Exemplo',
+            bairro='Bairro Exemplo',
+            cidade='Cidade Exemplo',
+            estado='Estado Exemplo',
+            pais='Brasil',
+            complemento='Complemento Exemplo'
+)
         self.form_data = {
             'nome': 'José Silva',
-            'email': 'josesilva@gmail.com'
+            'email': 'josesilva@gmail.com',
+            'endereco': self.endereco
+
         }
         self.expected_template = 'venda/cliente/criar.html'
+        self.cliente = Cliente.objects.create(nome="Fulano", email="fulano@teste.com", endereco=self.endereco)
 
     def test_view_sends_form_to_template(self):
         """Verifica se a view envia o formulário ao template"""
