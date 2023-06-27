@@ -18,6 +18,7 @@
               {{ pagamento.data }} (R$ {{ pagamento.valor | floatformat:2 }}) {{pagamento.status}}
             </p>
             <a href="{% url 'pagamento:pagamento_editar' pagamento.id %}">Editar</a>
+            <a href="{% url 'pagamento:pagamento_remover' pagamento.id %}">Remover</a>
           </li>
         {% empty %}
           <li>Nenhuma pagamento encontrada</li>

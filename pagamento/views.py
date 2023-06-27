@@ -10,8 +10,8 @@ SUCCESS_REDIRECT_URL = 'pagamento:home_pagamento'
 
 @require_http_methods(["GET"])
 def home_pagamento_view(request):
-    pagamentos = Pagamento.objects.all()
-    return render(request, 'lista_pagamento.html', {"pagamentos": pagamentos})
+    pagamento = Pagamento.objects.all()
+    return render(request, 'lista_pagamento.html', {"pagamento": pagamento})
 
 @require_http_methods(["GET", "POST"])
 def criar_pagamento_view(request):
@@ -38,5 +38,13 @@ def editar_pagamento_view(request, pk):
             form.save()
             return redirect(SUCCESS_REDIRECT_URL)
     return render(request, 'editar_pagamento.html', {'form': form})
+
+@require_http_methods(["GET", "POST"])
+def remover_pagamento_view(request, pk):
+    pagamento = get_object_or_404(Pagamento, id=pk)
+    if request.method == 'POST':
+        pagamento.delete()
+        return redirect(SUCCESS_REDIRECT_URL)
+    return render(request, 'remover_pagamento.html', {'pagamento': pagamento})
 
  
