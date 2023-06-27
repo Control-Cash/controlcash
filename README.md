@@ -38,7 +38,14 @@ alguns tutoriais que ensinam mais sobre essa tecnologia.
 
 ## Como executar o projeto
 
-Para executar o projeto são necessários alguns requisitos.
+Você pode executar o projeto utilizando o mariadb através do docker ou usar o
+SQLite3 padrão do django.
+
+- [Tutorial com o SQLite](#com-o-sqlite)
+
+- [Tutorial com docker e mariadb](#com-o-mariadb-via-docker)
+
+### Com o SQLite
 
 1. Possuir o [python](https://www.python.org/) 3.9 ou superior instalado no
   computador.
@@ -92,7 +99,21 @@ Para executar o projeto são necessários alguns requisitos.
    cd controlcash
    ```
 
-6. Feito o passo anterior, agora precisamos fazer as migrações usando os
+6. Copie o arquivo `.env.example` e o renomeie para `.env`
+
+   - Linux
+
+     ```bash
+     cp .env.example .env
+     ```
+  
+   - Windows
+
+     ```powershell
+     copy .env.example .env
+     ```
+
+7. Feito o passo anterior, agora precisamos fazer as migrações usando os
    comandos a seguir
 
    ```bash
@@ -103,11 +124,166 @@ Para executar o projeto são necessários alguns requisitos.
    python manage.py migrate
    ```
 
-7. Agora podemos executar o projeto
+8. Agora podemos executar o projeto
 
    ```bash
    python manage.py runserver
    ```
 
-8. Agora acesse a URL mostrada no terminal:
+9. Agora acesse a URL mostrada no terminal:
    - [http://localhost:8000/produto](http://localhost:8000/produto)
+
+### Com o MariaDB via Docker
+
+1. Possuir o [python](https://www.python.org/) 3.9 ou superior instalado no
+  computador.
+
+2. Criar um ambiente virtual para instalar as dependências do projeto. Para
+  isso execute um dos comandos a seguir
+
+   ```powershell
+   python -m venv venv
+   ```
+
+   ou
+
+   ```bash
+   python3 -m venv venv
+   ```
+
+3. Precisamos ativar o venv para que as depedências sejam instaladas na pasta
+  local do projeto. Para isso basta executar um dos comandos a seguir.
+
+   - Windows
+
+     ```powershell
+     .\venv/Scripts/activate
+     ```
+
+   - Linux/Mac
+
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. Agora precisamos instalar as dependências, para isso basta executar o
+  seguinte comando
+
+   - Windows
+
+     ```powershell
+     python -m pip install -r requirements.txt
+     ```
+
+   - Linux/Mac
+
+     ```bash
+     python3 -m pip install -r requirements.txt
+     ```
+
+5. Feito isso, precisamos entrar na pasta do projeto
+
+   ```bash
+   cd controlcash
+   ```
+
+6. Copie o arquivo `.env.example` e o renomeie para `.env`
+
+   - Linux
+
+     ```bash
+     cp .env.example .env
+     ```
+  
+   - Windows
+
+     ```powershell
+     copy .env.example .env
+     ```
+
+7. Crie um diretorio para o volume do container com o MariaDB
+
+   ```bash
+   mkdir -p $HOME/docker/volumes/controlcash-db
+   ```
+
+8. Inicie um container docker com o MariaDB
+
+   - Lembre-se de alterar o valor da variável `MARIADB_ROOT_PASSWORD` para a
+   senha que deseja utilizar em seu banco
+
+     ```bash
+     docker run --name mariadb-controlcash -v $HOME/docker/volumes/controlcash-db:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=controlcash -d -p 3306:3306 mariadb:latest
+     ```
+
+9. Acesse o MariaDB via terminal com o comando abaixo, ele solicitará a senha
+que você definiu no passo anterior
+
+   ```bash
+   docker exec -it mariadb-controlcash mariadb --user root -p
+   ```
+
+10. Crie um banco de dados para a aplicação
+
+    ```sql
+    create database controlcash;
+    ```
+
+11. Saia do terminal do MariaDB com o comando `exit`, e abra o arquivo `.env` no
+seu editor de código favorito.
+
+12. Preencha o arquivo `.env` com os dados do banco de dados que você acabou de
+criar, e altere a variável `USE_SQLITE` para `False`.
+
+13. Feito o passo anterior, agora precisamos fazer as migrações usando os
+   comandos a seguir
+
+    ```bash
+    python manage.py makemigrations
+    ```
+
+    ```bash
+    python manage.py migrate
+    ```
+
+14. Agora podemos executar o projeto
+
+    ```bash
+    python manage.py runserver
+    ```
+
+15. Agora acesse a URL mostrada no terminal:
+  
+    - [http://localhost:8000/produto](http://localhost:8000/produto)
+
+## Em caso de erro
+
+### Ao instalar os pacotes com o pip
+
+Instale os pacotes a seguir no linux
+
+```bash
+sudo apt update
+
+sudo apt install libmariadb-dev python3-dev default-libmysqlclient-dev build-essential
+```
+
+### Ao tentar executar a aplicação
+
+No arquivo `ControlCash/settings.py`, verifique se a configuração do banco de
+dados está com `HOST` igual a `localhost`, caso esteja, troque para `127.0.0.1`.
+
+- Deve estar parecido com isso:
+
+  ```python
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.mysql',
+          'NAME': 'controlcash',
+          'USER': 'controlcash',
+          'PASSWORD': 'controlcash',
+          'HOST': '127.0.0.1',
+          'PORT': 3306
+      }
+  }
+  ```

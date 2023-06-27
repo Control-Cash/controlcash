@@ -177,11 +177,13 @@ Descrição: O sistema deve permitir a visualização da lista de pagamentos pen
 
 ## US07 - Manter prestação
 
-Descrição:
+Descrição: O sistema deve permitir o gerenciamento de prestações de pagamentos realizadas pelos clientes. Isso inclui a possibilidade de criar, atualizar e remover prestações.
 
-| Requisitos envolvidos |     |
-| --------------------- | --- |
-|                       |     |
+| Requisitos envolvidos |                           |
+| --------------------- | ------------------------- |
+| RF03                  | Manter venda              |
+| RF05                  | Manter forma de pagamento |
+| RF06                  | Manter pagamento          |
 
 |                    |     |
 | ------------------ | --- |
