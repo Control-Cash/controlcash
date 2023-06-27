@@ -1,21 +1,24 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
-from venda.forms import ClienteForm
-from venda.models import Cliente
+from venda.forms import ClienteForm, EnderecoForm
+from venda.models import Cliente, Endereco
 
 
 @require_http_methods(["GET", "POST"])
 def criar_cliente_view(request):
     form = ClienteForm()
-
+    endereco_cliente_form= EnderecoForm()
     if request.method == 'POST':
         form = ClienteForm(request.POST)
-
-        if form.is_valid():
-            cliente_criado = form.save()
+        endereco_cliente_form = EnderecoForm(request.POST)
+        if form.is_valid() and endereco_cliente_form.is_valid():
+            endereco_salvo = endereco_cliente_form.save()
+            cliente_criado = form.save(commit=False)
+            cliente_criado.endereco = endereco_salvo
+            cliente_criado.save() 
             return redirect('venda:cliente_detalhar', cliente_criado.id)
-    return render(request, 'venda/cliente/criar.html', {'form': form})
+    return render(request, 'venda/cliente/criar.html', {'form': form, 'endereco_form': endereco_cliente_form})
 
 
 @require_http_methods(["GET"])
