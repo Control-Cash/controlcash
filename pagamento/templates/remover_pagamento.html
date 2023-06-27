@@ -7,7 +7,7 @@
   <title>Remover pagamento</title>
 </head>
 <body>
-  <h1>Tem certeza que deseja remover esse pagamento com valor {{pagamento.valor}} na data {{ pagamento.data }}?</h1>
+  <p>Tem certeza que deseja remover esse pagamento com valor {{pagamento.valor}} na data {{ pagamento.data }}?</p>
   <form method="post">
     {% csrf_token %}
     <button type="submit">Remover</button>
