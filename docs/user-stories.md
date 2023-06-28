@@ -103,7 +103,7 @@ Descrição: O sistema deverá permitir ao vendedor adicionar, editar ou remover
 | ------------------ | --------------- |
 | Prioridade         | Média           |
 | Tempo gasto (real) | 8h              |
-| Tamanho funcional  | -               |
+| Tamanho funcional  | 17              |
 | Analista           | Cíntia          |
 | Desenvolvedor      | Adriel          |
 | Revisor            | Bianca          |
