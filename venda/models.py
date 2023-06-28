@@ -7,7 +7,7 @@ from django.db import models
 from produto.models import Produto
 
 class Endereco(models.Model):
-    cep = models.CharField(max_length=8, default='12345678')
+    cep = models.CharField(max_length=8)
     numero = models.PositiveIntegerField(verbose_name='numero')
     rua = models.CharField(max_length=150, verbose_name='rua')
     bairro = models.CharField(max_length=150, verbose_name='bairro')
