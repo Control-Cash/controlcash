@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  mariadb:
+    container_name: controlcash-database
+    image: mariadb:latest
+    volumes:
+      - $HOME/docker/mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_DATABASE=$DB_NAME
+      - MARIADB_USER=$DB_USER
+      - MARIADB_PASSWORD=$DB_PASSWORD
+      - MARIADB_ROOT_PASSWORD=$DB_PASSWORD
+    restart: always
+    ports:
+      - 3306:3306
+
+  web:
+    container_name: controlcash
+    image: controlcash:latest
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: >
+      sh -c  "python manage.py migrate --noinput
+              python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/code
+    depends_on:
+      - mariadb
+    ports:
+      - 8001:8001

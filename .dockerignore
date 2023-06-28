@@ -1,0 +1,31 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+Dockerfile
+
+# Python
+app/__pycache__/
+app/*/__pycache__/
+app/*/*/__pycache__/
+app/*/*/*/__pycache__/
+.env/
+.venv/
+venv/
+htmlcov
+.coverage
+coverage.xml
+target/
+geckodriver.log
+docs/
+
+# Local data
+db.sqlite3
+
+# Sonar
+.scannerwork/
+
+# VS Code
+.vscode
