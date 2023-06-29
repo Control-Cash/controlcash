@@ -3,18 +3,38 @@ from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from venda.forms import ClienteForm
-from venda.models import Cliente
+from venda.models import Cliente,Endereco
 
 
 class CriarClienteViewTest(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.target_url = reverse_lazy('venda:cliente_criar')
+        self.endereco = Endereco.objects.create(
+            cep='12345678',
+            numero=10,
+            rua='Rua Exemplo',
+            bairro='Bairro Exemplo',
+            cidade='Cidade Exemplo',
+            estado='Estado Exemplo',
+            pais='Brasil',
+            complemento='Complemento Exemplo'
+)
         self.form_data = {
             'nome': 'José Silva',
-            'email': 'josesilva@gmail.com'
+            'email': 'josesilva@gmail.com',
+            'cep':'12345678',
+            'numero':10,
+            'rua':'Rua Exemplo',
+            'bairro':'Bairro Exemplo',
+            'cidade':'Cidade Exemplo',
+            'estado':'Estado Exemplo',
+            'pais':'Brasil',
+            'complemento':'Complemento Exemplo'
+
         }
         self.expected_template = 'venda/cliente/criar.html'
+        self.cliente = Cliente.objects.create(nome="Fulano", email="fulano@teste.com", endereco=self.endereco)
 
     def test_view_sends_form_to_template(self):
         """Verifica se a view envia o formulário ao template"""
@@ -99,7 +119,15 @@ class CriarClienteViewTest(TestCase):
             self.target_url,
             {
                 'nome': self.form_data.get('nome'),
-                'email': ''
+                'email': '',
+                'bairro': self.form_data.get('bairro') ,
+                'cidade': self.form_data.get('cidade') ,
+                'pais': self.form_data.get('pais') ,
+                'numero': self.form_data.get('numero') ,
+                'cep': self.form_data.get('cep') ,
+                'rua': self.form_data.get('rua') ,
+                'complemento': '',
+                'estado': self.form_data.get('estado')
             }
         )
 
@@ -391,6 +419,12 @@ class EditarClienteViewTest(TestCase):
             self.cliente_criado.email,
             self.form_data.get('email'),
             "O email do cliente não foi alterado com o formulário preenchido corretamente"
+        )
+
+        self.assertEqual(
+            self.cliente_criado.endereco,
+            self.form_data.get('endereco'),
+            "O endereço do cliente não foi alterado com o formulário preenchido corretamente"
         )
 
     def test_view_uses_correct_template(self):

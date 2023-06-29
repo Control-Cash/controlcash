@@ -1,6 +1,6 @@
 from django import forms
 
-from venda.models import Cliente, Item
+from venda.models import Cliente, Item, Endereco
 
 
 class CriarVendaForm(forms.ModelForm):
@@ -27,3 +27,8 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         fields = ['nome', 'email']
         model = Cliente
+
+class EnderecoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = '__all__'
