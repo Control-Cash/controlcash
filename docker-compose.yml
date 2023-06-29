@@ -14,6 +14,8 @@ services:
     restart: always
     ports:
       - 3306:3306
+    networks:
+      - controlcash-net
 
   web:
     container_name: controlcash
@@ -24,7 +26,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
     command: >
-      sh -c  "python manage.py migrate --noinput
+      sh -c  "python manage.py collectstatic --noinput
+              python manage.py migrate --noinput
               python manage.py runserver 0.0.0.0:8001"
     volumes:
       - .:/code
@@ -32,3 +35,8 @@ services:
       - mariadb
     ports:
       - 8001:8001
+    networks:
+      - controlcash-net
+networks:
+  controlcash-net:
+    driver: bridge
