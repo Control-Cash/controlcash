@@ -18,7 +18,7 @@ services:
       - controlcash-net
 
   web:
-    container_name: controlcash
+    container_name: controlcash-app
     image: controlcash:latest
     env_file:
       - .env
@@ -26,17 +26,30 @@ services:
       context: .
       dockerfile: ./Dockerfile
     command: >
-      sh -c  "python manage.py collectstatic --noinput
+      sh -c  "sleep 10
+              python manage.py collectstatic --noinput
               python manage.py migrate --noinput
-              python manage.py runserver 0.0.0.0:8001"
+              gunicorn controlCash.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/code
     depends_on:
       - mariadb
-    ports:
-      - 8001:8001
+    expose:
+      - 8000
     networks:
       - controlcash-net
+  
+  nginx:
+    container_name: controlcash-nginx
+    build: ./nginx 
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - controlcash-net
+    volumes:
+      - .:/code
 networks:
   controlcash-net:
     driver: bridge
