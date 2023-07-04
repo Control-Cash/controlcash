@@ -26,16 +26,11 @@ services:
       context: .
       dockerfile: ./Dockerfile
     command: >
-<<<<<<< HEAD
       sh -c  "sleep 10
               python manage.py collectstatic --noinput
               python manage.py migrate --noinput
               gunicorn controlCash.wsgi:application --bind 0.0.0.0:8000"
-=======
-      sh -c  "python manage.py collectstatic --noinput
-              python manage.py migrate --noinput
-              python manage.py runserver 0.0.0.0:8001"
->>>>>>> 06ef62c (Adiciona network #115)
+
     volumes:
       - .:/code
     depends_on:
