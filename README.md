@@ -252,9 +252,9 @@ criar, e altere a variável `USE_SQLITE` para `False`.
     python manage.py runserver
     ```
 
-15. Agora acesse a URL mostrada no terminal:
+15. Agora acesse a URL para a página de produtos:
   
-    - [http://localhost:8000/produto](http://localhost:8000/produto)
+    - [http://localhost/produto](http://localhost/produto)
 
 ## Em caso de erro
 
