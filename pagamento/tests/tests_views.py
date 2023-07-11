@@ -21,7 +21,7 @@ class PagamentoViewTestCase(TestCase):
         response = self.client.post(reverse('pagamento:pagamento_criar'), {'valor': 300.00, 'data': '2023-07-13', 'status': 'pendente', 'id_cliente': 3})
         self.assertRedirects(response, reverse('pagamento:home_pagamento'))
         self.assertEqual(Pagamento.objects.count(), 3)
- """
+    """
     def test_editar_pagamento_view(self):
         response = self.client.get(reverse('pagamento:pagamento_editar', args=[self.pagamento1.id]))
         self.assertEqual(response.status_code, 200)
