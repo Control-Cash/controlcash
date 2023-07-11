@@ -11,7 +11,7 @@ SUCCESS_REDIRECT_URL = 'pagamento:home_pagamento'
 @require_http_methods(["GET"])
 def home_pagamento_view(request):
     pagamento = Pagamento.objects.all()
-    return render(request, 'lista_pagamento.html', {"pagamento": pagamento})
+    return render(request, 'home_pagamento.html', {"pagamento": pagamento})
 
 @require_http_methods(["GET", "POST"])
 def criar_pagamento_view(request):
@@ -19,13 +19,12 @@ def criar_pagamento_view(request):
     if request.method == 'POST':
         form = PagamentoForm(request.POST)
         if form.is_valid():
-            # Salvar os dados do formulário
             form.save()
             return redirect('/pagamento')
     else:
         form = PagamentoForm()
     
-    return render(request, 'criar_Pagamento.html', {'form': form})
+    return render(request, 'criar_pagamento.html', {'form': form})
 
 @require_http_methods(["GET", "POST"])
 def editar_pagamento_view(request, pk):
