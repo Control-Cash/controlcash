@@ -11,9 +11,10 @@ class PagamentoViewTestCase(TestCase):
         response = self.client.get(reverse('pagamento:home_pagamento'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home_pagamento.html')
-       
+        self.assertContains(response, '100')
+        self.assertContains(response, '200')
 
-    """ def test_criar_pagamento_view(self):
+    def test_criar_pagamento_view(self):
         response = self.client.get(reverse('pagamento:pagamento_criar'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'criar_pagamento.html')
@@ -21,7 +22,7 @@ class PagamentoViewTestCase(TestCase):
         response = self.client.post(reverse('pagamento:pagamento_criar'), {'valor': 300.00, 'data': '2023-07-13', 'status': 'pendente', 'id_cliente': 3})
         self.assertRedirects(response, reverse('pagamento:home_pagamento'))
         self.assertEqual(Pagamento.objects.count(), 3)
-    """
+
     def test_editar_pagamento_view(self):
         response = self.client.get(reverse('pagamento:pagamento_editar', args=[self.pagamento1.id]))
         self.assertEqual(response.status_code, 200)
@@ -40,3 +41,4 @@ class PagamentoViewTestCase(TestCase):
         response = self.client.post(reverse('pagamento:pagamento_remover', args=[self.pagamento1.id]))
         self.assertRedirects(response, reverse('pagamento:home_pagamento'))
         self.assertEqual(Pagamento.objects.count(), 1)
+
