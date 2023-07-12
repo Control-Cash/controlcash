@@ -23,14 +23,11 @@ def criar_pagamento_view(request):
 
 @require_http_methods(["GET", "POST"])
 def editar_pagamento_view(request, pk):
-    pagamento_obj = get_object_or_404(Pagamento, id=pk)
-    form = PagamentoForm(instance=pagamento_obj)
-
-    if request.method == 'POST':
-        form = PagamentoForm(request.POST, instance=pagamento_obj)
-        if form.is_valid():
-            form.save()
-            return redirect(SUCCESS_REDIRECT_URL)
+    pagamento = get_object_or_404(Pagamento, id=pk)
+    form = PagamentoForm(request.POST or None, instance=pagamento)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect(SUCCESS_REDIRECT_URL)
     return render(request, 'editar_pagamento.html', {'form': form})
 
 @require_http_methods(["GET", "POST"])
