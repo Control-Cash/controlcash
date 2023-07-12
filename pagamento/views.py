@@ -11,7 +11,7 @@ SUCCESS_REDIRECT_URL = 'pagamento:home_pagamento'
 @require_http_methods(["GET"])
 def home_pagamento_view(request):
     pagamento = Pagamento.objects.all()
-    return render(request, 'lista_pagamento.html', {"pagamento": pagamento})
+    return render(request, 'home_pagamento.html', {"pagamento": pagamento})
 
 @require_http_methods(["GET", "POST"])
 def criar_pagamento_view(request):
