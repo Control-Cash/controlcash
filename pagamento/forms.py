@@ -1,10 +1,5 @@
 from django import forms
-from .models import FormaPagamento, Pagamento
-
-""" class FormaPagamentoForm(forms.ModelForm):
-    class Meta:
-        model = FormaPagamento
-        fields = '__all__' """
+from .models import Pagamento
 
 class PagamentoForm(forms.ModelForm):
     class Meta:
