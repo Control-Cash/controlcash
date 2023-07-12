@@ -15,16 +15,11 @@ def home_pagamento_view(request):
 
 @require_http_methods(["GET", "POST"])
 def criar_pagamento_view(request):
-
-    if request.method == 'POST':
-        form = PagamentoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/pagamento')
-    else:
-        form = PagamentoForm()
-    
-    return render(request, 'criar_Pagamento.html', {'form': form})
+    form = PagamentoForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect(SUCCESS_REDIRECT_URL)
+    return render(request, 'criar_pagamento.html', {'form': form})
 
 @require_http_methods(["GET", "POST"])
 def editar_pagamento_view(request, pk):
