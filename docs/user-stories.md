@@ -187,7 +187,7 @@ Descrição: O sistema deve permitir o gerenciamento de prestações de pagament
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         |  Essencial   |
 | Tempo gasto (real) |     |
 | Tamanho funcional  |     |
 | Analista           |     |
@@ -198,7 +198,9 @@ Descrição: O sistema deve permitir o gerenciamento de prestações de pagament
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA07.01                  | O administrador financeiro acessa a página de prestações e seleciona a opção "Visualizar prestações". Na página, é exibido um campo de filtro que permite selecionar entre as opções de prestações pendentes, pagas ou atrasadas |
+| TA07.02                  |O administrador financeiro acessa a página de prestações e seleciona a opção "Visualizar prestações". Na página, é mostrado um filtro onde ele deve selecionar a opção de prestações pendentes. Em seguida, ele seleciona uma prestação específica, onde são exibidos todos os detalhes da prestação, incluindo um botão para atualizar o status.          |
+| TA07.03                  | O administrador financeiro acessa a página de prestações e seleciona a opção "Pesquisar prestações". Na página, são exibidos três campos para preenchimento: data, valor e cliente. Após preencher os campos, é exibida uma lista de prestações de acordo com os critérios de pesquisa fornecidos.   |
 
 ## US08 - Manter cliente
 
