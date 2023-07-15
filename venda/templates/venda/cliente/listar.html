@@ -17,6 +17,7 @@
   </div>
 
   <div class="col-12">
+    {% if clientes.count > 0 %}
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
       {% for cliente in clientes %}
       <div class="col">
@@ -42,13 +43,14 @@
           </a>
         </div>
       </div>
-      {% empty %}
-      <div class="d-flex flex-column justify-content-center align-items-center my-3">
-        <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
-        <h3 class="d-inline-block fs-3 text-center mt-3">Nenhum cliente encontrado</h3>
-      </div>
       {% endfor %}
     </div>
+    {% else %}
+    <div class="d-flex flex-column justify-content-center align-items-center my-3">
+      <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+      <h3 class="d-inline-block fs-3 text-center mt-3">Nenhum cliente encontrado</h3>
+    </div>
+    {% endif %}
   </div>
 </main>
 {% endblock %}
