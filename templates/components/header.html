@@ -50,76 +50,6 @@
       <div class="offcanvas-body">
         {% with url_name=request.resolver_match.url_name %}
         <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-          <!-- Venda -->
-          <li class="nav-item dropdown">
-            <button
-            class="nav-link dropdown-toggle
-            {% if 'venda_' in url_name or 'item_' in url_name %}active fw-bold{% endif %}"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="true"
-            >
-              <img
-                src="{% static '/img/icons/vendas.svg' %}"
-                alt=""
-                height="28px"
-              />
-              Vendas
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a
-                  class="dropdown-item {% if url_name == 'venda_listar' %}active fw-bold{% endif %}"
-                  href="{% url 'venda:venda_listar' %}"
-                >
-                  Mostrar todas
-                </a>
-              </li>
-              <li>
-                <a
-                  class="dropdown-item {% if url_name == 'venda_criar' %}active fw-bold{% endif %}"
-                  href="{% url 'venda:venda_criar' %}"
-                >
-                  Cadastrar
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- Produto -->
-          <li class="nav-item dropdown">
-            <button
-            class="nav-link dropdown-toggle
-            {% if 'Produto' in url_name %}active fw-bold{% endif %}"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="true"
-            >
-              <img
-                src="{% static '/img/icons/produtos.svg' %}"
-                alt=""
-                height="28px"
-              />
-              Produtos
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a
-                  class="dropdown-item {% if url_name == 'homeProduto' %}active fw-bold{% endif %}"
-                  href="{% url 'homeProduto' %}"
-                >
-                  Mostrar todos
-                </a>
-              </li>
-              <li>
-                <a
-                  class="dropdown-item {% if url_name == 'criarProduto' %}active fw-bold{% endif %}"
-                  href="{% url 'criarProduto' %}"
-                >
-                  Cadastrar
-                </a>
-              </li>
-            </ul>
-          </li>
           <!-- Cliente -->
           <li class="nav-item dropdown">
             <button
@@ -136,10 +66,10 @@
               />
               Clientes
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu border-0">
               <li>
                 <a
-                  class="dropdown-item {% if url_name == 'cliente_listar' %}active fw-bold{% endif %}"
+                  class="dropdown-item rounded-2 {% if url_name == 'cliente_listar' %}active fw-bold{% endif %}"
                   href="{% url 'venda:cliente_listar' %}"
                 >
                   Mostrar todos
@@ -147,7 +77,7 @@
               </li>
               <li>
                 <a
-                  class="dropdown-item {% if url_name == 'cliente_criar' %}active fw-bold{% endif %}"
+                  class="dropdown-item rounded-2 {% if url_name == 'cliente_criar' %}active fw-bold{% endif %}"
                   href="{% url 'venda:cliente_criar' %}"
                 >
                   Cadastrar
@@ -171,10 +101,10 @@
               />
               Despesas
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu border-0">
               <li>
                 <a
-                  class="dropdown-item {% if url_name == 'despesa_listar' %}active fw-bold{% endif %}"
+                  class="dropdown-item rounded-2 {% if url_name == 'despesa_listar' %}active fw-bold{% endif %}"
                   href="{% url 'despesa:despesa_listar' %}"
                 >
                   Mostrar todas
@@ -182,8 +112,78 @@
               </li>
               <li>
                 <a
-                  class="dropdown-item {% if url_name == 'despesa_criar' %}active fw-bold{% endif %}"
+                  class="dropdown-item rounded-2 {% if url_name == 'despesa_criar' %}active fw-bold{% endif %}"
                   href="{% url 'despesa:despesa_criar' %}"
+                >
+                  Cadastrar
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Produto -->
+          <li class="nav-item dropdown">
+            <button
+            class="nav-link dropdown-toggle
+            {% if 'Produto' in url_name %}active fw-bold{% endif %}"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <img
+                src="{% static '/img/icons/produtos.svg' %}"
+                alt=""
+                height="28px"
+              />
+              Produtos
+            </button>
+            <ul class="dropdown-menu border-0">
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'homeProduto' %}active fw-bold{% endif %}"
+                  href="{% url 'homeProduto' %}"
+                >
+                  Mostrar todos
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'criarProduto' %}active fw-bold{% endif %}"
+                  href="{% url 'criarProduto' %}"
+                >
+                  Cadastrar
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Venda -->
+          <li class="nav-item dropdown">
+            <button
+            class="nav-link dropdown-toggle
+            {% if 'venda_' in url_name or 'item_' in url_name %}active fw-bold{% endif %}"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <img
+                src="{% static '/img/icons/vendas.svg' %}"
+                alt=""
+                height="28px"
+              />
+              Vendas
+            </button>
+            <ul class="dropdown-menu border-0">
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'venda_listar' %}active fw-bold{% endif %}"
+                  href="{% url 'venda:venda_listar' %}"
+                >
+                  Mostrar todas
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'venda_criar' %}active fw-bold{% endif %}"
+                  href="{% url 'venda:venda_criar' %}"
                 >
                   Cadastrar
                 </a>
