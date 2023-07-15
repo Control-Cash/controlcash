@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
 from venda.forms import ClienteForm, EnderecoForm
-from venda.models import Cliente, Endereco
+from venda.models import Cliente, Venda
 
 
 @require_http_methods(["GET", "POST"])
@@ -30,7 +30,9 @@ def listar_clientes_view(request):
 @require_http_methods(["GET"])
 def detalhar_cliente_view(request, pk):
     cliente = get_object_or_404(Cliente, id=pk)
-    return render(request, 'venda/cliente/detalhar.html', {'cliente': cliente})
+    vendas = Venda.objects.filter(
+        cliente=cliente).order_by('-data', '-hora')[:6]
+    return render(request, 'venda/cliente/detalhar.html', {'cliente': cliente, 'vendas': vendas})
 
 
 @require_http_methods(["GET", "POST"])
