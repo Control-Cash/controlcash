@@ -39,11 +39,14 @@ def detalhar_cliente_view(request, pk):
 def editar_cliente_view(request, pk):
     cliente = get_object_or_404(Cliente, id=pk)
     form = ClienteForm(instance=cliente)
+    endereco_cliente_form = EnderecoForm(instance=cliente.endereco)
 
     if request.method == 'POST':
         form = ClienteForm(request.POST, instance=cliente)
-
-        if form.is_valid():
+        endereco_cliente_form = EnderecoForm(
+            request.POST, instance=cliente.endereco)
+        if form.is_valid() and endereco_cliente_form.is_valid():
             form.save()
+            endereco_cliente_form.save()
             return redirect('venda:cliente_detalhar', pk=pk)
-    return render(request, 'venda/cliente/editar.html', {'form': form})
+    return render(request, 'venda/cliente/editar.html', {'cliente': cliente, 'form': form, 'endereco_form': endereco_cliente_form})
