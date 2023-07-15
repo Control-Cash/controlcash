@@ -54,7 +54,7 @@
           <li class="nav-item dropdown">
             <button
             class="nav-link dropdown-toggle
-            {% if 'venda' or 'item' in url_name %}active fw-bold{% endif %}"
+            {% if 'venda_' in url_name or 'item_' in url_name %}active fw-bold{% endif %}"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="true"
