@@ -11,7 +11,7 @@
           <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Vendas</a>
         </li>
         <li class="breadcrumb-item">
-          <a href="{% url 'venda:venda_detalhar' item.venda.id %}" class="text-decoration-none">#{{ venda.id }}</a>
+          <a href="{% url 'venda:venda_detalhar' item.venda.id %}" class="text-decoration-none">#{{ item.venda.id }}</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Remover "{{ item.produto.nome }}"</li>
       </ol>
