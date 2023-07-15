@@ -1,22 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastrar venda | ControlCash</title>
-  </head>
-  <body>
-    <a href="{% url 'venda:venda_listar' %}">Ir à lista de vendas</a>
+{% extends 'base.html' %}
 
-    <a href="{% url 'venda:cliente_criar' %}">Cadastrar cliente</a>
+{% load widget_tweaks %}
 
-    <h1>Cadastrar venda</h1>
-    <h2>Adicione o primeiro item da venda</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Cadastrar</button>
-    </form>
-  </body>
-</html>
+{% block title %}Cadastrar venda | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Vendas</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
+      </ol>
+    </nav>
+
+    <h2 class="fs-2">Cadastrar venda</h2>
+
+    <div class="col-12 mb-5">
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {% include 'form_render.html' %}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+
+    <section class="col-12">
+      <h3 class="fs-4">Outras opções</h3>
+      
+      <a href="{% url 'criarProduto' %}" class="btn btn-sm btn-outline-secondary">Cadastrar produto</a>
+      <a href="{% url 'venda:cliente_criar' %}" class="btn btn-sm btn-outline-secondary">Cadastrar cliente</a>
+    </section>
+  </div>
+</main>
+  
+{% endblock %}
