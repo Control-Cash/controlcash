@@ -31,6 +31,9 @@ class Cliente(models.Model):
     def __str__(self) -> str:
         return f"{self.nome}"
 
+    def gasto_total(self):
+        return sum(venda.valor_total() for venda in self.venda_set.filter(status='finalizada'))
+
 
 class Venda(models.Model):
     STATUS_CHOICES = (
