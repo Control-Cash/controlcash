@@ -1,24 +1,69 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listar vendas | ControlCash</title>
-  </head>
-  <body>
-    <h1>Listar vendas</h1>
+{% extends 'base.html' %}
 
-    <a href="{% url 'venda:venda_criar' %}">Cadastrar venda</a>
+{% load static %}
 
-    <ul>
+{% block title %}Listar vendas | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12 mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fs-2">Vendas</h2>
+      <a href="{% url 'venda:venda_criar' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i>
+        Cadastrar
+      </a>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
       {% for venda in vendas %}
-      <li>
-        <a href="{% url 'venda:venda_detalhar' venda.id %}">
-          {{ venda.item_set.count }} {{ venda.item_set.count | pluralize:"item,itens" }} - {{ venda.cliente }} - ({{venda.get_status_display}}) 
-        </a>
-      </li>
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'venda:venda_detalhar' venda.id %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <h5 class="card-title fs-2 text-center">
+                <span class="fs-6">R$ </span>{{ venda.valor_total }}
+              </h5>
+              <div class="text-center mb-3">
+                {% if venda.status == 'finalizada' %}
+                <span class="badge text-bg-primary">
+                  <i class="bi bi-bag-check fs-6"></i> Finalizada
+                </span>
+                {% elif venda.status == 'ativa' %}
+                <span class="badge text-bg-info">
+                  <i class="bi bi-bag fs-6"></i> Em andamento
+                </span>
+                {% elif venda.status == 'inativa' %}
+                <span class="badge text-bg-secondary">
+                  <i class="bi bi-bag-x fs-6"></i> Descartada
+                </span>
+                {% endif %}
+              </div>
+              <p class="card-text mb-0">
+                <i class="bi bi-person-fill text-primary" title="Cliente"></i>
+                {{ venda.cliente.nome }}
+              </p>
+              <p class="card-text mb-0">
+                <i class="bi bi-calendar-week text-primary" title="Data"></i>
+                {{ venda.data|date:"d/m/y" }}
+              </p>
+              <p class="card-text mb-0">
+                <i class="bi bi-clock text-primary" title="Horário"></i>
+                {{ venda.hora }}
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="d-flex flex-column justify-content-center align-items-center my-3">
+        <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+        <h3 class="d-inline-block fs-3 text-center mt-3">Nenhuma venda encontrada</h3>
+      </div>
       {% endfor %}
-    </ul>
-  </body>
-</html>
+    </div>
+  </div>
+</main>
+{% endblock %}
