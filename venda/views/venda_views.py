@@ -27,7 +27,7 @@ def criar_venda_view(request):
 
 @require_http_methods(["GET"])
 def listar_vendas_view(request):
-    vendas = Venda.objects.all()
+    vendas = Venda.objects.all().order_by("status", "-data", "-hora")
     return render(request, 'venda/venda/listar.html', {'vendas': vendas})
 
 
