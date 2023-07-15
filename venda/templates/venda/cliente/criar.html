@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
-{% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Cadastrar cliente | {% endblock %}
+
+{% block head %}
+<script src="{% static '/js/venda/cep-cliente.js' %}" defer></script>
+{% endblock %}
 
 {% block content %}
 <main class="row my-3">
