@@ -17,9 +17,9 @@
   </div>
 
   <div class="col-12">
-    {% if vendas.count > 0 %}
+    {% if page_obj.object_list|length > 0 %}
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
-      {% for venda in vendas %}
+      {% for venda in page_obj %}
       <div class="col">
         <div class="card border-primary">
           <a href="{% url 'venda:venda_detalhar' venda.id %}" class="text-decoration-none text-dark">
@@ -59,6 +59,11 @@
         </div>
       </div>
       {% endfor %}
+    </div>
+    <div class="col-12 mt-3">
+      <div class="d-flex justify-content-center align-items-center">
+        {% include 'components/pagination.html' %}
+      </div>
     </div>
     {% else %}
      <div class="d-flex flex-column justify-content-center align-items-center my-3">
