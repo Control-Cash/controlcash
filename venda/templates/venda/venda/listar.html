@@ -23,9 +23,9 @@
         <div class="card border-primary">
           <a href="{% url 'venda:venda_detalhar' venda.id %}" class="text-decoration-none text-dark">
             <div class="card-body">
-              <h5 class="card-title fs-2 text-center">
-                <span class="fs-6">R$ </span>{{ venda.valor_total }}
-              </h5>
+              <h3 class="card-title fs-3 text-center">
+                #{%if venda.id < 100 %}0{% endif %}{%if venda.id < 10 %}0{% endif %}{{ venda.id }}
+              </h3>
               <div class="text-center mb-3">
                 {% if venda.status == 'finalizada' %}
                 <span class="badge text-bg-primary">

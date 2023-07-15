@@ -121,6 +121,12 @@
               </tr>
               {% endfor %}
             </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="{% if venda.status == 'ativa' %}4{% else %}3{% endif %}">Total</th>
+                <td>R$ {{ venda.valor_total | floatformat:2 }}</td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
