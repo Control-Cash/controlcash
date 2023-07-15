@@ -1,65 +1,130 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Venda #{{ venda.id }} | ControlCash</title>
-</head>
-<body>
-  <a href="{% url 'venda:venda_listar' %}">Ir a lista de vendas</a>
+{% extends 'base.html' %}
 
-  <h1>Venda #{{ venda.id }}</h1>
-  <h3>{{ venda.get_status_display }}</h3>
+{% block title %}Venda #{{ venda.id }} | {% endblock %}
 
-  <p>Cliente: {{ venda.cliente }}</p>
+{% block content %}
+<main class="row my-3 g-1">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Vendas</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">#{{ venda.id }}</li>
+      </ol>
+    </nav>
+  </div>
 
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Preço unitário</th>
-        <th>Preço total</th>
+  <!-- Dados da venda -->
+  <section class="col-lg-4 mt-1">
+    <div class="card col h-100">
+      <div class="card-body">
+        <h2 class="fs-4 mb-3">Dados da venda</h2>
+        <a class="mb-1 text-decoration-none text-dark d-block" href="{% url 'venda:cliente_detalhar' venda.cliente.id %}">
+          <i class="bi bi-person-fill text-primary" title="Cliente"></i>
+          {{ venda.cliente.nome }}
+        </a>
+        <p class="mb-1">
+          <i class="bi bi-calendar-week text-primary" title="Data"></i>
+          {{ venda.data|date:"d/m/y" }}
+        </p>
+        <p class="mb-1">
+          <i class="bi bi-clock text-primary" title="Horário"></i>
+          {{ venda.hora }}
+        </p>
+        <p class="mb-1">
+          <i class="bi bi-info-circle text-primary" title="Status"></i>
+          {{ venda.get_status_display }}
+        </p>
         {% if venda.status == 'ativa' %}
-          <th colspan="2">Ações</th>
+          <div class="btn-group mt-3 w-100" role="group">
+            <a class="btn btn-primary" href="{% url 'venda:venda_finalizar' venda.id %}">
+              Finalizar
+            </a>
+            <a class="btn btn-outline-primary" href="{% url 'venda:venda_desativar' venda.id %}">
+              Desativar
+            </a>
+          </div>
+        {% elif venda.status == 'inativa' %}
+          <a class="btn btn-outline-primary w-100" href="{% url 'venda:venda_reativar' venda.id %}">
+            Reativar
+          </a>
         {% endif %}
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in venda.item_set.all %}
-      <tr>
-        <td>{{ item.produto.nome }}</td>
-        <td>{{ item.quantidade }}</td>
-        <td>R$ {{ item.valor_unitario }}</td>
-        <td>R$ {{ item.valor_total }}</td>
-        {% if venda.status == 'ativa' %}
-          <td><a href="{% url 'venda:item_editar' pk=item.id %}">Editar quantidade</a></td>
-          <td><a href="{% url 'venda:item_remover' pk=item.id %}">Remover item</a></td>
-        {% endif %}
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <hr>
+      </div>
+    </div>
+  </section>
 
   {% if venda.status == 'ativa' %}
-    <h2>Adicionar item</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Adicionar</button>
-    </form>
+    <!-- Formulário de adição de item -->
+    <section class="col-lg-8 mt-1">
+      <div class="card col h-100">
+        <div class="card-body">
+          <h2 class="fs-4 mb-3">Adicionar itens</h2>
+
+          <form method="post">
+            {% csrf_token %}
+
+            {% include 'form_render.html' %}
+
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </form>
+        </div>
+      </div>
+    </section>
   {% endif %}
 
-  <hr>
+  <div class="col-12 col-lg mt-1">
+    <div class="card col h-100">
+      <div class="card-body">
+        <h2 class="fs-4">Itens</h2>
 
-  {% if venda.status == 'ativa' %}
-    <a href="{% url 'venda:venda_desativar' venda.id %}">Desativar</a>
-    <a href="{% url 'venda:venda_finalizar' venda.id %}">Finalizar</a>
-  {% elif venda.status == 'inativa' %}
-    <a href="{% url 'venda:venda_reativar' venda.id %}">Reativar</a>
-  {% endif %}
-</body>
-</html>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Preço unidade</th>
+                <th scope="col">Subtotal</th>
+                {% if venda.status == 'ativa' %}
+                <th scope="col">Ações</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in venda.item_set.all %}
+              <tr>
+                <td>{{ item.quantidade }}</td>
+                <td>{{ item.produto.nome }}</td>
+                <td>R$ {{ item.valor_unitario }}</td>
+                <td>R$ {{ item.valor_total }}</td>
+                {% if venda.status == 'ativa' %}
+                  <td>
+                    <div class="btn-group" role="group">
+                      <a
+                        href="{% url 'venda:item_editar' pk=item.id %}"
+                        class="btn btn-sm btn-outline-primary"
+                        title="Editar quantidade"
+                      >
+                        <i class="bi bi-pen"></i>
+                      </a>
+                      <a
+                        href="{% url 'venda:item_remover' pk=item.id %}"
+                        title="Remover item"
+                        class="btn btn-sm btn-outline-danger"
+                      >
+                        <i class="bi bi-trash"></i>
+                      </a>
+                    </div>
+                  </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
