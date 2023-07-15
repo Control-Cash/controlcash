@@ -8,7 +8,7 @@ from venda.models import Cliente, Endereco
 @require_http_methods(["GET", "POST"])
 def criar_cliente_view(request):
     form = ClienteForm()
-    endereco_cliente_form= EnderecoForm()
+    endereco_cliente_form = EnderecoForm()
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         endereco_cliente_form = EnderecoForm(request.POST)
@@ -16,14 +16,14 @@ def criar_cliente_view(request):
             endereco_salvo = endereco_cliente_form.save()
             cliente_criado = form.save(commit=False)
             cliente_criado.endereco = endereco_salvo
-            cliente_criado.save() 
+            cliente_criado.save()
             return redirect('venda:cliente_detalhar', cliente_criado.id)
     return render(request, 'venda/cliente/criar.html', {'form': form, 'endereco_form': endereco_cliente_form})
 
 
 @require_http_methods(["GET"])
 def listar_clientes_view(request):
-    clientes = Cliente.objects.all()
+    clientes = Cliente.objects.all().order_by('-id')
     return render(request, 'venda/cliente/listar.html', {'clientes': clientes})
 
 
