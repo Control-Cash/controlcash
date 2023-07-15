@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
@@ -24,7 +25,11 @@ def criar_cliente_view(request):
 @require_http_methods(["GET"])
 def listar_clientes_view(request):
     clientes = Cliente.objects.all().order_by('-id')
-    return render(request, 'venda/cliente/listar.html', {'clientes': clientes})
+    paginator = Paginator(clientes, 20)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'venda/cliente/listar.html', {'page_obj': page_obj})
 
 
 @require_http_methods(["GET"])
