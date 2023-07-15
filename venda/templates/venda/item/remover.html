@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remover item de venda | ControlCash</title>
-</head>
-<body>
-  <h1>Tem certeza que deseja remover o item {{ item.produto.nome }} da venda #{{item.venda.id}}?</h1>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Remover</button>
-    <a href="{% url 'venda:venda_detalhar' pk=item.venda.id %}">Cancelar</a>
-  </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Remover item de venda | {% endblock %}
+
+{% block content %}
+<main class="row my-3 g-1">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Vendas</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_detalhar' item.venda.id %}" class="text-decoration-none">#{{ venda.id }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Remover "{{ item.produto.nome }}"</li>
+      </ol>
+    </nav>
+  </div>
+
+  <col-12>
+    <h2 class="fs-2">Tem certeza que deseja remover o produto "{{ item.produto.nome }}" da venda?</h2>
+    
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Remover</button>
+      <a
+        href="{% url 'venda:venda_detalhar' pk=item.venda.id %}"
+        class="btn btn-outline-primary"
+      >
+        Cancelar
+      </a>
+    </form>
+  </col-12>
+</main>
+{% endblock %}
