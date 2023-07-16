@@ -241,22 +241,27 @@ Descrição:
 
 | Requisitos envolvidos |     |
 | --------------------- | --- |
-|                       |     |
+| Cadastrar telefone    | RF10 |
+| Consultar telefone    | RF37 |
+| Atualizar telefone    | RF38 |
 
 |                    |     |
 | ------------------ | --- |
-| Prioridade         |     |
+| Prioridade         | Essencial  |
 | Tempo gasto (real) |     |
-| Tamanho funcional  |     |
+| Tamanho funcional  | 13 |
 | Analista           |     |
-| Desenvolvedor      |     |
+| Desenvolvedor      | Cintia |
 | Revisor            |     |
 | Testador           |     |
 
 | Testes de aceitação (TA) |           |
 | ------------------------ | --------- |
 | Código                   | Descrição |
-|                          |           |
+| TA09.01                  | O usuário insere os detalhes do novo telefone no campo apropriado durante a criação/edição de uma entidade (como cliente, fornecedor etc.) e clica para salvar. Se o telefone for inválido, o sistema exibe a mensagem "Telefone inválido". |
+| TA09.02                  | O usuário insere os detalhes do novo telefone no campo apropriado durante a criação/edição de uma entidade (como cliente, fornecedor etc.) e clica para salvar. Se o telefone for válido, o sistema grava a nova entidade com o telefone. |
+| TA09.03                  | O usuário visualiza a página de detalhes de uma determinada entidade e vê todos os telefones vinculados a essa entidade. |
+| TA09.04                  | O usuário vai para a página de edição de uma entidade específica, altera os detalhes do telefone e clica para salvar. Se o telefone for inválido, o sistema exibe a mensagem "Telefone inválido". Se o telefone for válido, o sistema grava as alterações e o usuário é direcionado para a página de visualização da entidade, com a mensagem de confirmação "Telefone atualizado com sucesso". |
 
 ## US10 - Manter endereço
 
