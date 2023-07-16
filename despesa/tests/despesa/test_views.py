@@ -321,6 +321,61 @@ class EditarDespesaViewTest(TestCase):
             200
         )
 
+    def test_despesa_criada_quando_despesa_periodica_eh_paga(self):
+        """Verifica se uma nova despesa é criada quando um despesa que tem periódica como True é editada como paga"""
+
+        quantidade_despesas_antes = Despesa.objects.count()
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'valor': 3,
+                'periodica': True,
+                'vencimento': self.despesa.vencimento,
+                'paga': True
+            }
+        )
+        quantidade_despesas_depois = Despesa.objects.count()
+
+        self.assertEqual(quantidade_despesas_antes+1,
+                         quantidade_despesas_depois)
+
+    def test_despesa_nao_criada_quando_despesa_periodica_paga_eh_salva(self):
+        """Verifica se uma nova despesa não é criada quando um despesa periódica já paga é salva novamente"""
+
+        despesa = Despesa.objects.create(
+            nome="Despesa 1",
+            valor=10.01,
+            vencimento='2023-07-19',
+            periodica=True,
+            paga=True
+        )
+        quantidade_despesas_antes = Despesa.objects.count()
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': despesa.id
+                }
+            ),
+            {
+                'nome': despesa.nome,
+                'valor': despesa.valor,
+                'periodica': True,
+                'vencimento': despesa.vencimento,
+                'paga': True
+            }
+        )
+        quantidade_despesas_depois = Despesa.objects.count()
+
+        self.assertEqual(quantidade_despesas_antes,
+                         quantidade_despesas_depois)
+
 
 class RemoverDespesaViewTest(TestCase):
     def setUp(self) -> None:
