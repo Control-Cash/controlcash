@@ -244,6 +244,7 @@ Descrição:
 | Cadastrar telefone    | RF10 |
 | Consultar telefone    | RF37 |
 | Atualizar telefone    | RF38 |
+| Cadastrar fornecedor    | RF12 |
 
 |                    |     |
 | ------------------ | --- |
