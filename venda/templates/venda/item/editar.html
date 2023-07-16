@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar quantidade de item | ControlCash</title>
-</head>
-<body>
-  <h1>Editando quantidade de item "{{ item.produto.nome }}" na venda #{{ item.venda.id }}</h1>
+{% extends 'base.html' %}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-  </form>
-</body>
-</html>
+{% block title %}Editar item de venda | {% endblock %}
+
+{% block content %}
+<main class="row my-3 g-1">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Vendas</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_detalhar' item.venda.id %}" class="text-decoration-none">#{{ item.venda.id }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Item "{{ item.produto.nome }}"</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="col-12">
+    <h2 class="fs-2">Editando item "{{ item.produto.nome }}" </h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% include 'form_render.html' %}
+
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+  </div>
+</main>
+{% endblock %}

@@ -1,24 +1,61 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listar clientes | ControlCash</title>
-  </head>
-  <body>
-    <h1>Listar clientes</h1>
+{% extends 'base.html' %}
 
-    <a href="{% url 'venda:cliente_criar' %}">Cadastrar cliente</a>
+{% load static %}
 
-    <ul>
-      {% for cliente in clientes %}
-      <li>
-        <a href="{% url 'venda:cliente_detalhar' cliente.id %}">
-          {{ cliente.nome }} {{ cliente.email | default_if_none:"" }} ({{ cliente.venda_set.count }} {{ cliente.venda_set.count | pluralize:"compra,compras" }})
-        </a>
-      </li>
+{% block title %}Clientes | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12 mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fs-2">Clientes</h2>
+      <a href="{% url 'venda:cliente_criar' %}" class="btn btn-primary">
+        <i class="bi bi-plus-lg"></i>
+        Cadastrar
+      </a>
+    </div>
+  </div>
+
+  <div class="col-12">
+    {% if page_obj.object_list|length > 0 %}
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
+      {% for cliente in page_obj %}
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'venda:cliente_detalhar' cliente.id %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <h3 class="card-title fs-3 text-center">
+                #{%if cliente.id < 100 %}0{% endif %}{%if cliente.id < 10 %}0{% endif %}{{ cliente.id }}
+              </h3>
+              <p class="card-text mb-0">
+                <i class="bi bi-person-fill text-primary" title="Nome"></i>
+                {{ cliente.nome }}
+              </p>
+              <p class="card-text mb-0">
+                <i class="bi bi-envelope-at text-primary" title="Email"></i>
+                {{ cliente.email }}
+              </p>
+              <p class="card-text mb-0">
+                <i class="bi bi-bag text-primary"></i>
+                {{ cliente.venda_set.count }} compras
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
       {% endfor %}
-    </ul>
-  </body>
-</html>
+    </div>
+     <div class="col-12 mt-3">
+      <div class="d-flex justify-content-center align-items-center">
+        {% include 'components/pagination.html' %}
+      </div>
+    </div>
+    {% else %}
+    <div class="d-flex flex-column justify-content-center align-items-center my-3">
+      <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+      <h3 class="d-inline-block fs-3 text-center mt-3">Nenhum cliente encontrado</h3>
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

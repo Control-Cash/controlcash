@@ -1,18 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar cliente | ControlCash</title>
-</head>
-<body>
-  <h1>Editar cliente</h1>
+{% extends 'base.html' %}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-  </form>
-</body>
-</html>
+{% load static %}
+
+{% block title %}Editar cliente | {% endblock %}
+
+{% block head %}
+<script src="{% static '/js/venda/cep-cliente.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:cliente_listar' %}" class="text-decoration-none">Clientes</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:cliente_detalhar' cliente.id %}" class="text-decoration-none">#{{ cliente.id }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+      </ol>
+    </nav>
+
+    <h2 class="fs-2">Editar cliente</h2>
+
+    <div class="col-12 mb-5">
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {% include 'form_render.html' %}
+
+        <h4 class="fs-3 mt-4">Endereço</h4>
+
+        {% include 'form_render.html' with form=endereco_form %}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
+

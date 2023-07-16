@@ -32,7 +32,7 @@ class ListarVendasViewTest(TestCase):
         """Verifica se a view envia os objetos Venda para o template"""
 
         response = self.client.get(self.target_url)
-        vendas = response.context.get('vendas')
+        vendas = response.context.get('page_obj').object_list
 
         self.assertIsNotNone(vendas)
         self.assertIn(self.vendas[0], vendas)

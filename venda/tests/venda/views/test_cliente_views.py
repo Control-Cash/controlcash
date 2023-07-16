@@ -1,9 +1,8 @@
-from django.db.models import QuerySet
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
 
 from venda.forms import ClienteForm
-from venda.models import Cliente,Endereco
+from venda.models import Cliente, Endereco
 
 
 class CriarClienteViewTest(TestCase):
@@ -19,22 +18,23 @@ class CriarClienteViewTest(TestCase):
             estado='Estado Exemplo',
             pais='Brasil',
             complemento='Complemento Exemplo'
-)
+        )
         self.form_data = {
             'nome': 'José Silva',
             'email': 'josesilva@gmail.com',
-            'cep':'12345678',
-            'numero':10,
-            'rua':'Rua Exemplo',
-            'bairro':'Bairro Exemplo',
-            'cidade':'Cidade Exemplo',
-            'estado':'Estado Exemplo',
-            'pais':'Brasil',
-            'complemento':'Complemento Exemplo'
+            'cep': '12345678',
+            'numero': 10,
+            'rua': 'Rua Exemplo',
+            'bairro': 'Bairro Exemplo',
+            'cidade': 'Cidade Exemplo',
+            'estado': 'Estado Exemplo',
+            'pais': 'Brasil',
+            'complemento': 'Complemento Exemplo'
 
         }
         self.expected_template = 'venda/cliente/criar.html'
-        self.cliente = Cliente.objects.create(nome="Fulano", email="fulano@teste.com", endereco=self.endereco)
+        self.cliente = Cliente.objects.create(
+            nome="Fulano", email="fulano@teste.com", endereco=self.endereco)
 
     def test_view_sends_form_to_template(self):
         """Verifica se a view envia o formulário ao template"""
@@ -120,12 +120,12 @@ class CriarClienteViewTest(TestCase):
             {
                 'nome': self.form_data.get('nome'),
                 'email': '',
-                'bairro': self.form_data.get('bairro') ,
-                'cidade': self.form_data.get('cidade') ,
-                'pais': self.form_data.get('pais') ,
-                'numero': self.form_data.get('numero') ,
-                'cep': self.form_data.get('cep') ,
-                'rua': self.form_data.get('rua') ,
+                'bairro': self.form_data.get('bairro'),
+                'cidade': self.form_data.get('cidade'),
+                'pais': self.form_data.get('pais'),
+                'numero': self.form_data.get('numero'),
+                'cep': self.form_data.get('cep'),
+                'rua': self.form_data.get('rua'),
                 'complemento': '',
                 'estado': self.form_data.get('estado')
             }
@@ -212,14 +212,14 @@ class ListarClientesViewTest(TestCase):
         ]
         self.expected_template = 'venda/cliente/listar.html'
 
-    def test_view_sends_clientes_to_template(self):
-        """Verifica se a view envia uma variavel 'clientes' ao template"""
+    def test_view_sends_page_obj_to_template(self):
+        """Verifica se a view envia uma variavel 'page_obj' ao template"""
 
         response = self.client.get(self.target_url)
 
         self.assertIsNotNone(
-            response.context.get('clientes'),
-            "'clientes' não é enviado pela view"
+            response.context.get('page_obj'),
+            "'page_obj' não é enviado pela view"
         )
 
     def test_clientes_sended_to_template_contains_clientes_data(self):
@@ -231,13 +231,8 @@ class ListarClientesViewTest(TestCase):
         )
 
         response = self.client.get(self.target_url)
-        clientes = response.context.get('clientes')
+        clientes = response.context.get('page_obj').object_list
 
-        self.assertIsInstance(
-            clientes,
-            QuerySet,
-            "'clientes' enviado pela view não é conjunto de modelos"
-        )
         self.assertTrue(
             all(isinstance(cliente, Cliente) for cliente in clientes),
             "Os objetos retornados não são do modelo 'Cliente'"
@@ -271,7 +266,7 @@ class ListarClientesViewTest(TestCase):
         )
 
         response = self.client.get(self.target_url)
-        clientes = response.context.get('clientes')
+        clientes = response.context.get('page_obj').object_list
 
         self.assertIn(cliente1, clientes)
         self.assertIn(cliente2, clientes)
@@ -348,13 +343,32 @@ class EditarClienteViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.expected_template = 'venda/cliente/editar.html'
+        self.endereco_criado = Endereco.objects.create(
+            rua='Rua do limoeiro',
+            bairro='Centro',
+            cidade='Sao Paulo',
+            estado='SP',
+            pais='Brasil',
+            cep='01001000',
+            numero=123,
+            complemento=''
+        )
         self.cliente_criado = Cliente.objects.create(
             nome='João Silva',
-            email='joaosilva@gmail.com'
+            email='joaosilva@gmail.com',
+            endereco=self.endereco_criado
         )
         self.form_data = {
             'nome': 'João Silva 2',
-            'email': 'joaosilva@outlook.com'
+            'email': 'joaosilva@outlook.com',
+            'rua': 'Rua do limoeiro',
+            'bairro': 'Centro',
+            'cidade': 'Sao Paulo',
+            'estado': 'SP',
+            'pais': 'Brasil',
+            'cep': '01001000',
+            'numero': '321',
+            'complemento': '',
         }
         self.target_url = reverse_lazy(
             'venda:cliente_editar',
@@ -422,8 +436,8 @@ class EditarClienteViewTest(TestCase):
         )
 
         self.assertEqual(
-            self.cliente_criado.endereco,
-            self.form_data.get('endereco'),
+            str(self.cliente_criado.endereco.numero),
+            self.form_data.get('numero'),
             "O endereço do cliente não foi alterado com o formulário preenchido corretamente"
         )
 
@@ -468,7 +482,19 @@ class EditarClienteViewTest(TestCase):
     def test_empty_optional_fields_saves(self):
         """Verifica se a view atualiza um cliente quando um post request tem os dados opcionais em branco"""
 
-        self.client.post(self.target_url, {'nome': self.form_data.get('nome')})
+        self.client.post(self.target_url, {
+            'nome': self.form_data.get('nome'),
+            'email': '',
+            'rua': self.form_data.get('rua'),
+            'bairro': self.form_data.get('bairro'),
+            'cidade': self.form_data.get('cidade'),
+            'estado': self.form_data.get('estado'),
+            'pais': self.form_data.get('pais'),
+            'numero': self.form_data.get('numero'),
+            'cep': self.form_data.get('cep'),
+            'complemento': '',
+        }
+        )
         cliente_atualizado = Cliente.objects.get(id=self.cliente_criado.id)
 
         self.assertEqual(

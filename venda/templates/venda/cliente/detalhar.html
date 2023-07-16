@@ -1,22 +1,118 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cliente "{{ cliente.nome }}" | ControlCash</title>
-</head>
-<body>
-  <a href="{% url 'venda:cliente_listar' %}">Ir à lista de clientes</a>
+{% extends 'base.html' %}
 
-  <h1>{{ cliente.nome }}</h1>
-  <h2>Email: {{ cliente.email | default_if_none:"Não cadastrado" }}</h2>
-  
-  <p>
-    Esse cliente comprou {{ cliente.venda_set.count }}
-    {{ cliente.venda_set.count | pluralize:"vez,vezes" }} na loja
-  </p>
+{% load static %}
 
-  <a href="{% url 'venda:cliente_editar' cliente.id %}">Editar</a>
-</body>
-</html>
+{% block title %}Cliente #{{ cliente.id }} | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:cliente_listar' %}" class="text-decoration-none">Clientes</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">#{{ cliente.id }}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="row">
+      <section class="col-12 mb-4">
+        <div class="d-flex justify-content-start align-items-center gap-2">
+          <h2 class="fs-2">{{ cliente.nome }}</h2>
+          <a
+            href="{% url 'venda:cliente_editar' cliente.id %}"
+            class="btn btn-sm btn-outline-primary d-block mb-2"
+            title="Editar cliente"
+          >
+            <i class="bi bi-pen"></i>
+          </a>
+        </div>
+        <p class="d-flex align-items-center gap-1 mb-0">
+          <i class="bi bi-envelope-at text-primary fs-5 mr-1" title="Email"></i>
+          <span>{{ cliente.email | default_if_none:"Não cadastrado" }}</span>
+        </p>
+        <p class="d-flex align-items-center gap-1 mb-0">
+          <i class="bi bi-bag text-primary fs-5 mr-1"></i>
+          <span>
+            Comprou {{ cliente.venda_set.count }} {{ cliente.venda_set.count | pluralize:"vez,vezes" }} na loja
+          </span>
+        </p>
+        <p class="d-flex align-items-center gap-1 mb-0">
+          <i class="bi bi-currency-dollar text-primary fs-5 mr-1"></i>
+          <span>Gastou R$ {{ cliente.gasto_total | floatformat:2 }} na loja</span>
+        </p>
+      </section>
+      
+      <section class="col-12">
+        <h3 class="fs-4">Endereço</h3>
+        <p class="mb-1">Logradouro: {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}</p>
+        {% if cliente.endereco.complemento %}<p class="mb-1">Complemento: {{ cliente.endereco.complemento }}</p>{% endif %}
+        <p class="mb-1">Bairro: {{ cliente.endereco.bairro }}</p>
+        <p class="mb-1">Cidade: {{ cliente.endereco.cidade }} - {{ cliente.endereco.estado }}</p>
+        <p class="mb-1">CEP: {{ cliente.endereco.cep }}</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="col-lg-8 mt-5 mt-lg-0">
+    <h2 class="fs-2">Últimas compras</h2>
+
+    <div class="row">
+      <div class="col-12">
+        {% if vendas.count > 0 %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
+          {% for venda in vendas %}
+          <div class="col">
+            <div class="card border-primary">
+              <a href="{% url 'venda:venda_detalhar' venda.id %}" class="text-decoration-none text-dark">
+                <div class="card-body">
+                  <h3 class="card-title fs-3 text-center">
+                    #{%if venda.id < 100 %}0{% endif %}{%if venda.id < 10 %}0{% endif %}{{ venda.id }}
+                  </h3>
+                  <div class="text-center mb-3">
+                    {% if venda.status == 'finalizada' %}
+                    <span class="badge text-bg-primary">
+                      <i class="bi bi-bag-check fs-6"></i> Finalizada
+                    </span>
+                    {% elif venda.status == 'ativa' %}
+                    <span class="badge text-bg-info">
+                      <i class="bi bi-bag fs-6"></i> Em andamento
+                    </span>
+                    {% elif venda.status == 'inativa' %}
+                    <span class="badge text-bg-secondary">
+                      <i class="bi bi-bag-x fs-6"></i> Descartada
+                    </span>
+                    {% endif %}
+                  </div>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-person-fill text-primary" title="Cliente"></i>
+                    {{ venda.cliente.nome }}
+                  </p>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-calendar-week text-primary" title="Data"></i>
+                    {{ venda.data|date:"d/m/y" }}
+                  </p>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-clock text-primary" title="Horário"></i>
+                    {{ venda.hora }}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="d-flex flex-column justify-content-center align-items-center my-3">
+          <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+          <h3 class="d-inline-block fs-3 text-center mt-3">Nenhuma compra encontrada</h3>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
