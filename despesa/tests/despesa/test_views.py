@@ -9,9 +9,12 @@ class ListarDespesasViewTest(TestCase):
     def setUp(self) -> None:
         self.target_url = reverse_lazy('despesa:despesa_listar')
         self.despesas = [
-            Despesa.objects.create(nome="Depesa 1", valor=10.51),
-            Despesa.objects.create(nome="Depesa 2", valor=10.52),
-            Despesa.objects.create(nome="Depesa 3", valor=10.53),
+            Despesa.objects.create(
+                nome="Depesa 1", valor=10.51, vencimento='2023-07-19'),
+            Despesa.objects.create(
+                nome="Depesa 2", valor=10.52, vencimento='2023-07-19'),
+            Despesa.objects.create(
+                nome="Depesa 3", valor=10.53, vencimento='2023-07-19'),
         ]
         self.client = Client()
         self.expected_template = 'despesa/listar.html'
@@ -28,7 +31,7 @@ class ListarDespesasViewTest(TestCase):
         """Verifica se a view envia os objetos Despesa para o template"""
 
         response = self.client.get(self.target_url)
-        despesas = response.context.get('despesas')
+        despesas = response.context.get('page_obj').object_list
 
         self.assertIsNotNone(despesas)
         self.assertIn(self.despesas[0], despesas)
@@ -81,9 +84,9 @@ class CriarDespesaViewTest(TestCase):
         form_data = {
             'nome': "Despesa 1",
             'valor': 10.51,
+            'vencimento': '2023-07-19'
         }
         response = self.client.post(self.target_url, data=form_data)
-        despesa_criada = Despesa.objects.last()
 
         self.assertRedirects(
             response,
@@ -109,7 +112,8 @@ class CriarDespesaViewTest(TestCase):
 
         form_data = {
             'nome': 'Despesa 1',
-            'valor': 10.51
+            'valor': 10.51,
+            'vencimento': '2023-07-19'
         }
         self.client.post(self.target_url, data=form_data)
 
@@ -161,7 +165,8 @@ class EditarDespesaViewTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
             nome="Despesa 1",
-            valor=10.01
+            valor=10.01,
+            vencimento='2023-07-19'
         )
         self.expected_template = 'despesa/editar.html'
         self.view_url_name = 'despesa:despesa_editar'
@@ -284,6 +289,7 @@ class EditarDespesaViewTest(TestCase):
             {
                 'nome': self.despesa.nome,
                 'valor': novo_valor,
+                'vencimento': self.despesa.vencimento
             }
         )
         despesa_atualizada = Despesa.objects.get(id=self.despesa.id)
@@ -303,7 +309,8 @@ class EditarDespesaViewTest(TestCase):
             {
                 'nome': self.despesa.nome,
                 'valor': 3,
-                'periodica': self.despesa.periodica
+                'periodica': self.despesa.periodica,
+                'vencimento': self.despesa.vencimento
             }
         )
 
@@ -319,7 +326,8 @@ class RemoverDespesaViewTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
             nome="Despesa 1",
-            valor=10.51
+            valor=10.51,
+            vencimento='2023-07-19'
         )
         self.expected_template = 'despesa/remover.html'
         self.client = Client()
