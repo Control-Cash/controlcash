@@ -30,3 +30,19 @@ def cadastrar_fornecedor(request):
             return redirect(redirect_response)
 
     return render(request, 'formCriarForcedor.html', {"form": form, 'endereco_form': form_endereco})
+
+def atualizar_fornecedor(request,id):
+    fornecedor = Fornecedor.objects.get(id=id)
+    endereco = fornecedor.endereco
+    form = CadastrarFornecedor(instance=fornecedor)
+    form_endereco = EnderecoForm(instance=endereco)
+    if request.method == 'POST':
+        form = CadastrarFornecedor(request.POST, instance= fornecedor)
+        form_endereco = EnderecoForm(request.POST, instance= endereco)
+        if form.is_valid() and form_endereco.is_valid():
+            endereco_salvo = form_endereco.save()
+            fornecedor_atualizado = form.save(commit=False)
+            fornecedor_atualizado.endereco = endereco_salvo
+            fornecedor_atualizado.save()
+            return redirect(redirect_response)
+    return render(request,'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
