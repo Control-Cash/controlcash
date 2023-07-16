@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar despesa | ControlCash</title>
-</head>
-<body>
-  <h1>Editar despesa</h1>
+{% extends 'base.html' %}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_div }}
-    <button type="submit">Salvar</button>
-  </form>
-</body>
-</html>
+{% block title %}Editar despesa | {% endblock %}
+
+
+{% block content %}
+<main class="row my-3">
+  <div class="col">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'despesa:despesa_listar' %}" class="text-decoration-none">Despesas</a>
+        </li>
+        <li class="breadcrumb-item active">{{ despesa.nome|capfirst }}</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+      </ol>
+    </nav>
+
+    <h2 class="fs-2">Editar despesa</h2>
+
+    <div class="col-12 mb-5">
+      <form action="" method="post">
+        {% csrf_token %}
+
+        {% include 'form_render.html' %}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
