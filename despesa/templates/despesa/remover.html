@@ -1,17 +1,35 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remover despesa | ControlCash</title>
-</head>
-<body>
-  <h1>Tem certeza que deseja remover a despesa {{ despesa.nome }}?</h1>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Remover</button>
-    <a href="{% url 'despesa:despesa_listar' %}">Cancelar</a>
-  </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Remover despesa | {% endblock %}
+
+{% block content %}
+<main class="row my-3 g-1">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none">Despesas</a>
+        </li>
+        <li class="breadcrumb-item active">{{ despesa.nome|capfirst }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Remover despesa</li>
+      </ol>
+    </nav>
+  </div>
+
+  <col-12>
+    <h2 class="fs-2">Tem certeza que deseja remover a despesa "{{ despesa.nome }}"?</h2>
+    
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Remover</button>
+      <a
+        href="{% url 'despesa:despesa_listar' %}"
+        class="btn btn-outline-primary"
+      >
+        Cancelar
+      </a>
+    </form>
+  </col-12>
+</main>
+{% endblock %}
