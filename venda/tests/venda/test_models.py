@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from produto.models import Produto
-from venda.models import Cliente, Item, Venda, Endereco
+from venda.models import Cliente, Endereco, Item, Venda
 
 
 class ClienteModelTest(TestCase):
@@ -12,7 +12,7 @@ class ClienteModelTest(TestCase):
         self.cliente = Cliente.objects.create(
             nome='João',
             email="joao@gmail.com",
-            endereco = Endereco.objects.create(
+            endereco=Endereco.objects.create(
                 cep='12345678',
                 numero=10,
                 rua='Rua Exemplo',
@@ -39,7 +39,7 @@ class VendaModelTest(TestCase):
         self.cliente = Cliente.objects.create(
             nome='João',
             email="joao@gmail.com",
-            endereco = Endereco.objects.create(
+            endereco=Endereco.objects.create(
                 cep='12345678',
                 numero=10,
                 rua='Rua Exemplo',
@@ -66,7 +66,7 @@ class ItemModelTest(TestCase):
         self.cliente = Cliente.objects.create(
             nome='João',
             email="joao@gmail.com",
-            endereco = Endereco.objects.create(
+            endereco=Endereco.objects.create(
                 cep='12345678',
                 numero=10,
                 rua='Rua Exemplo',
@@ -122,4 +122,25 @@ class ItemModelTest(TestCase):
             item.quantidade *
             item.valor_unitario, item.valor_total(),
             "O método 'valor_total' não retornou o valor esperado"
+        )
+
+
+class EnderecoModelTest(TestCase):
+    def setUp(self) -> None:
+        self.endereco = Endereco.objects.create(
+            rua='Avenida Brasil',
+            numero=123,
+            cidade="São Paulo",
+            estado="SP",
+            pais="Brasil",
+            cep="12345000"
+        )
+
+    def test_model_string_representation_is_as_expected(self):
+        """Verifica se a representação string do modelo 'Endereço' é o esperado"""
+
+        self.assertEqual(
+            str(self.endereco),
+            f"{self.endereco.numero, self.endereco.cidade, self.endereco.bairro}",
+            "A representação string do modelo 'Endereço' está incorreta"
         )

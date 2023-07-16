@@ -6,26 +6,33 @@ from django.db import models
 
 from produto.models import Produto
 
+
 class Endereco(models.Model):
-    cep = models.CharField(max_length=8)
-    numero = models.PositiveIntegerField(verbose_name='numero')
+    cep = models.CharField(max_length=8, verbose_name='CEP')
+    numero = models.PositiveIntegerField(verbose_name='número')
     rua = models.CharField(max_length=150, verbose_name='rua')
     bairro = models.CharField(max_length=150, verbose_name='bairro')
-    cidade = models.CharField(max_length=150,verbose_name='cidade')
-    estado = models.CharField(max_length=150,verbose_name='estado')
-    pais = models.CharField(max_length=150, verbose_name='país', default='Brasil')
+    cidade = models.CharField(max_length=150, verbose_name='cidade')
+    estado = models.CharField(max_length=150, verbose_name='estado')
+    pais = models.CharField(
+        max_length=150, verbose_name='país', default='Brasil')
     complemento = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return f"{self.numero, self.cidade, self.bairro}"
 
+
 class Cliente(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField(blank=True, null=True)
-    # TODO adicionar foreign key endereco
-    endereco = models.ForeignKey(Endereco, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    endereco = models.ForeignKey(
+        Endereco, on_delete=models.CASCADE, default=None, null=True, blank=True, verbose_name='Endereço')
+
     def __str__(self) -> str:
         return f"{self.nome}"
+
+    def gasto_total(self):
+        return sum(venda.valor_total() for venda in self.venda_set.filter(status='finalizada'))
 
 
 class Venda(models.Model):
@@ -44,6 +51,9 @@ class Venda(models.Model):
 
     def __str__(self) -> str:
         return f"{self.item_set.count} itens vendidos para {self.cliente} ({self.status})"
+
+    def valor_total(self):
+        return sum(item.valor_total() for item in self.item_set.all())
 
 
 class Item(models.Model):
