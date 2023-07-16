@@ -2,5 +2,5 @@ projectKey=controlcash
 serverUrl=http://labens.dct.ufrn.br/sonarqube
 serverVersion=9.9.1.69595
 dashboardUrl=http://labens.dct.ufrn.br/sonarqube/dashboard?id=controlcash
-ceTaskId=AYlf9msMNJzN3wxCnDTO
-ceTaskUrl=http://labens.dct.ufrn.br/sonarqube/api/ce/task?id=AYlf9msMNJzN3wxCnDTO
+ceTaskId=AYlgBQY-NJzN3wxCnDUD
+ceTaskUrl=http://labens.dct.ufrn.br/sonarqube/api/ce/task?id=AYlgBQY-NJzN3wxCnDUD
