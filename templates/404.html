@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Página não encontrada | {% endblock %}
+
+{% block content %}
+<main class="d-flex flex-column justify-content-center align-items-center py-4">
+  <img src="{% static '/img/404.svg' %}" alt="" class="w-100" style="max-width: 600px;">
+  <h2 class="text-center fs-2 mt-4">Página não encontrada</h2>
+</main>
+{% endblock %}
