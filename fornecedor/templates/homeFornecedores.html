@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Fornecedores</title>
+</head>
+<body>
+    <h1>Fornecedores</h1>
+
+    <a href="{% url 'fornecedor_criar' %}"> Cadastrar fornecedor </a>
+    <form method="GET"> 
+        <input type="search" name="fornecedor" placeholder="Nome do fornecedor"/> 
+        <button type="submit">Pesquisar</button>
+    </form>
+    <ul>
+        {% if fornecedores %}
+            {%for fornecedor in fornecedores%}
+                <li>{{ fornecedor.id }} - {{fornecedor.nome}}</li>
+                    {% comment %} <a href="{% url 'atualizarProduto' produto.id %}">Editar</a> | <a href="{% url 'vizualizarProduto' produto.id %}">Vizualizar</a> | <a href="{% url 'deletarProduto' produto.id %}">Deletar</a></li> {% endcomment %}
+            {% endfor %}
+        {% else %}
+            <h4>Não há Fornecedores!</h4>
+        {% endif %} 
+    </ul>
+</body>
+</html>
