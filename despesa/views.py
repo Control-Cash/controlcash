@@ -36,7 +36,7 @@ def editar_despesa_view(request, pk):
         if form.is_valid():
             form.save()
             return redirect(SUCCESS_REDIRECT_URL)
-    return render(request, 'despesa/editar.html', {'form': form})
+    return render(request, 'despesa/editar.html', {'despesa': despesa, 'form': form})
 
 
 @require_http_methods(["GET", "POST"])
