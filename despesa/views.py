@@ -1,5 +1,6 @@
 from dateutil.relativedelta import relativedelta
 from django.core.paginator import Paginator
+from django.http import Http404, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_GET, require_http_methods
 
@@ -57,6 +58,10 @@ def editar_despesa_view(request, pk):
 @require_http_methods(["GET", "POST"])
 def remover_despesa_view(request, pk):
     despesa = get_object_or_404(Despesa, id=pk)
+
+    if despesa.paga:
+        raise Http404
+
     if request.method == 'POST':
         despesa.delete()
         return redirect(SUCCESS_REDIRECT_URL)

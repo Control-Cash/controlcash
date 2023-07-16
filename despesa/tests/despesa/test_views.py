@@ -413,6 +413,24 @@ class RemoverDespesaViewTest(TestCase):
 
         self.assertEqual(response.status_code, 404)
 
+    def test_response_is_400_when_despesa_is_paga(self):
+        """Verifica se a view retorna 404 quando o usuário tenta apagar uma despesa já paga"""
+
+        despesa = Despesa.objects.create(
+            nome="despesa",
+            valor=2.55,
+            vencimento='2023-06-30',
+            paga=True
+        )
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': despesa.id
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
     def test_view_sends_despesa_to_template(self):
         """Verifica se a view envia ao template a despesa associada ao atributo 'pk' passado na request"""
 
