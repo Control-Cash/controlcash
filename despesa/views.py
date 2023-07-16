@@ -37,10 +37,13 @@ def editar_despesa_view(request, pk):
     form = DespesaForm(instance=despesa)
 
     if request.method == 'POST':
+        despesa_nao_foi_paga = not bool(despesa.paga)
         form = DespesaForm(request.POST, instance=despesa)
+
         if form.is_valid():
             despesa_salva = form.save()
-            if despesa_salva.periodica and despesa_salva.paga:
+
+            if despesa_nao_foi_paga and despesa_salva.periodica and despesa_salva.paga:
                 Despesa.objects.create(
                     nome=despesa_salva.nome,
                     valor=despesa_salva.valor,
