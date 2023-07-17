@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'produto.apps.ProdutoConfig',
     'venda.apps.VendaConfig',
     'despesa.apps.DespesaConfig',
-    'pagamento.apps.PagamentoConfig',
     'fornecedor.apps.FornecedorConfig',
 ]
 
