@@ -13,7 +13,7 @@
       <i class="bi bi-list" style="font-size: 24px"></i>
     </button>
 
-    <a href="" class="navbar-brand" class="m-0" title="ControlCash">
+    <a href="{% url 'pagina_inicial' %}" class="navbar-brand" class="m-0" title="ControlCash">
       <h1 class="mb-0">
         <img src="{% static '/img/logo.svg' %}" alt="" style="height: 38px" />
       </h1>
@@ -31,11 +31,13 @@
     <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarPrincipal">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title">
-          <img
+          <a href="{% url 'pagina_inicial' %}">
+            <img
             src="{% static 'img/logo.svg' %}"
             alt="Logo do ControlCash"
             height="40px"
-          />
+            />
+          </a>
         </h5>
         <button
           type="button"
