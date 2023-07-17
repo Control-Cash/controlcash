@@ -21,10 +21,12 @@ WORKDIR /code
 
 COPY controlCash/ .
 COPY despesa/ .
+COPY fornecedor/ .
 COPY produto/ .
+COPY static/ .
+COPY templates/ .
 COPY venda/ .
 COPY manage.py .
-
 
 ENV PATH="/code:$PATH"
 
