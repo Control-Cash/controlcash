@@ -47,6 +47,7 @@ SQLite3 padrão do django.
 
 ### Com o SQLite
 
+
 1. Possuir o [python](https://www.python.org/) 3.9 ou superior instalado no
   computador.
 

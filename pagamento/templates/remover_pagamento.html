@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remover pagamento</title>
+</head>
+<body>
+  <p>Tem certeza que deseja remover esse pagamento com valor {{pagamento.valor}} na data {{ pagamento.data }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Remover</button>
+    <a href="{% url 'pagamento:home_pagamento' %}">Cancelar</a>
+  </form>
+</body>
+</html>
