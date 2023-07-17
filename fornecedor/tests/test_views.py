@@ -371,3 +371,80 @@ class ListarFornecedoresViewTest(TestCase):
         fornecedores = response.context.get('page_obj').object_list
 
         self.assertEqual(len(fornecedores), 1)
+
+
+class DetalharFornecedorViewTest(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.expected_template = 'vizualizarFornecedor.html'
+        self.endereco = Endereco.objects.create(
+            cep='12345678',
+            numero=10,
+            rua='Rua Exemplo',
+            bairro='Bairro Exemplo',
+            cidade='Cidade Exemplo',
+            estado='Estado Exemplo',
+            pais='Brasil',
+            complemento='Complemento Exemplo'
+        )
+        self.fornecedor_criado = Fornecedor.objects.create(
+            nome='Americanas',
+            email='americanas@varejo.com',
+            endereco=self.endereco,
+        )
+
+    def test_view_returns_fornecedor_requested(self):
+        """Veriica se a view retorna ao template o fornecedor solicitado"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'fornecedor_vizualizar',
+                kwargs={
+                    'id': self.fornecedor_criado.id
+                }
+            )
+        )
+        fornecedor_retornado = response.context.get('fornecedor')
+
+        self.assertIsNotNone(
+            fornecedor_retornado,
+            "A view não retorna a variável 'fornecedor'"
+        )
+        self.assertEqual(
+            self.fornecedor_criado,
+            fornecedor_retornado,
+            "A view não retornou o fornecedor solicitado"
+        )
+
+    def test_view_returns_404_when_fornecedor_is_unknown(self):
+        """Verifica se a view retorna uma resposta 404 quando o fornecedor solicitado não existe"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'fornecedor_vizualizar',
+                kwargs={
+                    'id': 50
+                }
+            )
+        )
+
+        self.assertIsNone(response.context.get('fornecedor'))
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderização"""
+
+        response = self.client.get(
+            reverse_lazy(
+                'fornecedor_vizualizar',
+                kwargs={
+                    'id': self.fornecedor_criado.id
+                }
+            )
+        )
+
+        self.assertTemplateUsed(
+            response,
+            self.expected_template,
+            'A view usou um template diferente do esperado'
+        )
