@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fornecedor Produto: {{produto.nome}}</title>
+</head>
+<body>
+    <header><h1>Vizualizando fornecedor: {{fornecedor.nome}}</h1></header>
+    <table border="1px">
+        <thead>
+        <tr><th colspan="8">Fornecedor</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td> ID </td>
+        <td> Nome </td>
+        <td> Email </td>
+        <td> Bairro </td>
+        <td> Número </td>
+        <td> Cidade </td>
+        <td> Estado </td>
+        <td> Pais </td>
+        </tr>
+        <tr>
+            <td>
+                {{fornecedor.id}}
+            </td>
+            <td>
+                {{fornecedor.nome}}
+            </td>
+            <td>
+                {{fornecedor.email}}
+            </td>
+            <td>
+                {{fornecedor.endereco.bairro}}
+            </td>
+            <td>
+                {{fornecedor.endereco.numero}}
+            </td>
+            <td>
+                {{fornecedor.endereco.cidade}}
+            </td>
+            <td>
+                {{fornecedor.endereco.estado}}
+            </td>
+            <td>
+                {{fornecedor.endereco.pais}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button type="button"><a href="/fornecedor">Voltar</a></button>
+</body>
+</html>

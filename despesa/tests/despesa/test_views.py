@@ -9,9 +9,12 @@ class ListarDespesasViewTest(TestCase):
     def setUp(self) -> None:
         self.target_url = reverse_lazy('despesa:despesa_listar')
         self.despesas = [
-            Despesa.objects.create(nome="Depesa 1", valor=10.51),
-            Despesa.objects.create(nome="Depesa 2", valor=10.52),
-            Despesa.objects.create(nome="Depesa 3", valor=10.53),
+            Despesa.objects.create(
+                nome="Depesa 1", valor=10.51, vencimento='2023-07-19'),
+            Despesa.objects.create(
+                nome="Depesa 2", valor=10.52, vencimento='2023-07-19'),
+            Despesa.objects.create(
+                nome="Depesa 3", valor=10.53, vencimento='2023-07-19'),
         ]
         self.client = Client()
         self.expected_template = 'despesa/listar.html'
@@ -28,7 +31,7 @@ class ListarDespesasViewTest(TestCase):
         """Verifica se a view envia os objetos Despesa para o template"""
 
         response = self.client.get(self.target_url)
-        despesas = response.context.get('despesas')
+        despesas = response.context.get('page_obj').object_list
 
         self.assertIsNotNone(despesas)
         self.assertIn(self.despesas[0], despesas)
@@ -81,9 +84,9 @@ class CriarDespesaViewTest(TestCase):
         form_data = {
             'nome': "Despesa 1",
             'valor': 10.51,
+            'vencimento': '2023-07-19'
         }
         response = self.client.post(self.target_url, data=form_data)
-        despesa_criada = Despesa.objects.last()
 
         self.assertRedirects(
             response,
@@ -109,7 +112,8 @@ class CriarDespesaViewTest(TestCase):
 
         form_data = {
             'nome': 'Despesa 1',
-            'valor': 10.51
+            'valor': 10.51,
+            'vencimento': '2023-07-19'
         }
         self.client.post(self.target_url, data=form_data)
 
@@ -161,7 +165,8 @@ class EditarDespesaViewTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
             nome="Despesa 1",
-            valor=10.01
+            valor=10.01,
+            vencimento='2023-07-19'
         )
         self.expected_template = 'despesa/editar.html'
         self.view_url_name = 'despesa:despesa_editar'
@@ -284,6 +289,7 @@ class EditarDespesaViewTest(TestCase):
             {
                 'nome': self.despesa.nome,
                 'valor': novo_valor,
+                'vencimento': self.despesa.vencimento
             }
         )
         despesa_atualizada = Despesa.objects.get(id=self.despesa.id)
@@ -303,7 +309,8 @@ class EditarDespesaViewTest(TestCase):
             {
                 'nome': self.despesa.nome,
                 'valor': 3,
-                'periodica': self.despesa.periodica
+                'periodica': self.despesa.periodica,
+                'vencimento': self.despesa.vencimento
             }
         )
 
@@ -314,12 +321,68 @@ class EditarDespesaViewTest(TestCase):
             200
         )
 
+    def test_despesa_criada_quando_despesa_periodica_eh_paga(self):
+        """Verifica se uma nova despesa é criada quando um despesa que tem periódica como True é editada como paga"""
+
+        quantidade_despesas_antes = Despesa.objects.count()
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': self.despesa.id
+                }
+            ),
+            {
+                'nome': self.despesa.nome,
+                'valor': 3,
+                'periodica': True,
+                'vencimento': self.despesa.vencimento,
+                'paga': True
+            }
+        )
+        quantidade_despesas_depois = Despesa.objects.count()
+
+        self.assertEqual(quantidade_despesas_antes+1,
+                         quantidade_despesas_depois)
+
+    def test_despesa_nao_criada_quando_despesa_periodica_paga_eh_salva(self):
+        """Verifica se uma nova despesa não é criada quando um despesa periódica já paga é salva novamente"""
+
+        despesa = Despesa.objects.create(
+            nome="Despesa 1",
+            valor=10.01,
+            vencimento='2023-07-19',
+            periodica=True,
+            paga=True
+        )
+        quantidade_despesas_antes = Despesa.objects.count()
+        self.client.post(
+            reverse_lazy(
+                self.view_url_name,
+                kwargs={
+                    'pk': despesa.id
+                }
+            ),
+            {
+                'nome': despesa.nome,
+                'valor': despesa.valor,
+                'periodica': True,
+                'vencimento': despesa.vencimento,
+                'paga': True
+            }
+        )
+        quantidade_despesas_depois = Despesa.objects.count()
+
+        self.assertEqual(quantidade_despesas_antes,
+                         quantidade_despesas_depois)
+
 
 class RemoverDespesaViewTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
             nome="Despesa 1",
-            valor=10.51
+            valor=10.51,
+            vencimento='2023-07-19'
         )
         self.expected_template = 'despesa/remover.html'
         self.client = Client()
@@ -345,6 +408,24 @@ class RemoverDespesaViewTest(TestCase):
             self.view_url_name,
             kwargs={
                 'pk': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_response_is_400_when_despesa_is_paga(self):
+        """Verifica se a view retorna 404 quando o usuário tenta apagar uma despesa já paga"""
+
+        despesa = Despesa.objects.create(
+            nome="despesa",
+            valor=2.55,
+            vencimento='2023-06-30',
+            paga=True
+        )
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'pk': despesa.id
             }
         ))
 

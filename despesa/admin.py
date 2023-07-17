@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from despesa.models import Despesa
+
+admin.site.register(Despesa)

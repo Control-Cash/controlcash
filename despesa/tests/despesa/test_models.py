@@ -7,7 +7,8 @@ class DespesaModelTest(TestCase):
     def setUp(self) -> None:
         self.despesa = Despesa.objects.create(
             nome='Despesa teste',
-            valor=10.52
+            valor=10.52,
+            vencimento='2023-07-19'
         )
 
     def test_model_string_representation(self):
