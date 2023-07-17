@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Remover fornecedor | {% endblock %}
+
+{% block content %}
+<main class="row my-3 g-1">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'fornecedor_listar' %}" class="text-decoration-none">Fornecedores</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'fornecedor_vizualizar' fornecedor.id %}" class="text-decoration-none">{{ fornecedor.nome|capfirst }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Remover</li>
+      </ol>
+    </nav>
+  </div>
+
+  <col-12>
+    <h2 class="fs-2">Tem certeza que deseja remover o fornecedor?</h2>
+    <p>
+      Não será visualizar o endereço ou dados de contato do fornecedor {{ fornecedor.nome|capfirst }}.
+    </p>
+    
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Remover</button>
+      <a
+        href="{% url 'fornecedor_vizualizar' fornecedor.id %}"
+        class="btn btn-outline-primary"
+      >
+        Cancelar
+      </a>
+    </form>
+  </col-12>
+
+</main>
+{% endblock %}
