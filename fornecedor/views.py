@@ -7,7 +7,7 @@ from venda.forms import EnderecoForm
 from .forms import CadastrarFornecedor
 from .models import *
 
-redirect_response = '/fornecedor'
+redirect_response = 'fornecedor_listar'
 
 
 @require_http_methods(["GET"])
@@ -32,8 +32,8 @@ def listar_fornecedores(request):
 
 @require_http_methods(["GET", "POST"])
 def cadastrar_fornecedor(request):
-    form = CadastrarFornecedor
-    form_endereco = EnderecoForm
+    form = CadastrarFornecedor()
+    form_endereco = EnderecoForm()
     if request.method == 'POST':
         form = CadastrarFornecedor(request.POST)
         form_endereco = EnderecoForm(request.POST)
