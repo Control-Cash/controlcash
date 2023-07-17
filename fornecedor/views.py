@@ -3,9 +3,11 @@ from .models import *
 from venda.models import Endereco
 from venda.forms import EnderecoForm
 from .forms import CadastrarFornecedor
+from django.views.decorators.http import require_http_methods
 
 redirect_response = '/fornecedor'
 
+@require_http_methods(["GET"])
 def listar_fornecedores(request):
     nome_do_fornecedor = request.GET.get('fornecedor')
     fornecedores = Fornecedor.objects.all()
@@ -16,6 +18,7 @@ def listar_fornecedores(request):
         fornecedores = Fornecedor.objects.all()
     return render(request, 'homeFornecedores.html', {'fornecedores': fornecedores})
 
+@require_http_methods(["GET", "POST"])
 def cadastrar_fornecedor(request):
     form = CadastrarFornecedor
     form_endereco = EnderecoForm
@@ -31,6 +34,7 @@ def cadastrar_fornecedor(request):
 
     return render(request, 'formCriarForcedor.html', {"form": form, 'endereco_form': form_endereco})
 
+@require_http_methods(["GET", "POST"])
 def atualizar_fornecedor(request,id):
     fornecedor = Fornecedor.objects.get(id=id)
     endereco = fornecedor.endereco
@@ -47,12 +51,13 @@ def atualizar_fornecedor(request,id):
             return redirect(redirect_response)
     return render(request,'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
 
-
+@require_http_methods(["GET"])
 def vizualizar_fornecedor(request, id):
     if request.method == 'GET':
         fornecedor = Fornecedor.objects.get(id=id)
         return render(request, 'vizualizarFornecedor.html', {'fornecedor': fornecedor})
 
+@require_http_methods(["GET", "POST"])
 def deletar_fornecedor(request,id):
     fornecedor = Fornecedor.objects.get(id=id)
     fornecedor.delete()
