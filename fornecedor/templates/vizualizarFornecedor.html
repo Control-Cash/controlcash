@@ -17,18 +17,27 @@
     </nav>
   </div>
 
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <div class="row">
       <section class="col-12 mb-4">
-        <div class="d-flex justify-content-start align-items-center gap-2">
+        <div class="d-flex justify-content-start align-items-center gap-3">
           <h2 class="fs-2">{{ fornecedor.nome }}</h2>
-          <a
-            href="{% url 'fornecedor_atualizar' fornecedor.id %}"
-            class="btn btn-sm btn-outline-primary d-block mb-2"
-            title="Editar fornecedor"
-          >
-            <i class="bi bi-pen"></i>
-          </a>
+          <div class="btn-group" role="group">
+            <a
+              href="{% url 'fornecedor_atualizar' fornecedor.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Editar fornecedor"
+              >
+              <i class="bi bi-pen"></i>
+            </a>
+            <a
+              href="{% url 'fornecedor_deletar' fornecedor.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Remover fornecedor"
+              >
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
         </div>
         <p class="d-flex align-items-center gap-1 mb-0">
           <i class="bi bi-envelope-at text-primary fs-5 mr-1" title="Email"></i>
