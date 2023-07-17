@@ -1,11 +1,14 @@
-from django.shortcuts import render,redirect
-from .models import *
-from venda.models import Endereco
-from venda.forms import EnderecoForm
-from .forms import CadastrarFornecedor
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 
+from venda.forms import EnderecoForm
+
+from .forms import CadastrarFornecedor
+from .models import *
+
 redirect_response = '/fornecedor'
+
 
 @require_http_methods(["GET"])
 def listar_fornecedores(request):
@@ -13,10 +16,19 @@ def listar_fornecedores(request):
     fornecedores = Fornecedor.objects.all()
 
     if nome_do_fornecedor:
-        fornecedores = Fornecedor.objects.filter(nome__icontains=nome_do_fornecedor)
-    elif nome_do_fornecedor == " ":
+        nome_do_fornecedor = nome_do_fornecedor.strip()
+        fornecedores = Fornecedor.objects.filter(
+            nome__icontains=nome_do_fornecedor
+        )
+    else:
         fornecedores = Fornecedor.objects.all()
-    return render(request, 'homeFornecedores.html', {'fornecedores': fornecedores})
+
+    paginator = Paginator(fornecedores, 20)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'homeFornecedores.html', {'page_obj': page_obj, 'pesquisa': nome_do_fornecedor})
+
 
 @require_http_methods(["GET", "POST"])
 def cadastrar_fornecedor(request):
@@ -29,13 +41,14 @@ def cadastrar_fornecedor(request):
             endereco_salvo = form_endereco.save()
             fornecedor_criado = form.save(commit=False)
             fornecedor_criado.endereco = endereco_salvo
-            fornecedor_criado.save() 
+            fornecedor_criado.save()
             return redirect(redirect_response)
 
     return render(request, 'formCriarForcedor.html', {"form": form, 'endereco_form': form_endereco})
 
+
 @require_http_methods(["GET", "POST"])
-def atualizar_fornecedor(request,id):
+def atualizar_fornecedor(request, id):
     fornecedor = Fornecedor.objects.get(id=id)
     endereco = fornecedor.endereco
     form = CadastrarFornecedor(instance=fornecedor)
@@ -49,7 +62,8 @@ def atualizar_fornecedor(request,id):
             fornecedor_atualizado.endereco = endereco_salvo
             fornecedor_atualizado.save()
             return redirect(redirect_response)
-    return render(request,'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
+    return render(request, 'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
+
 
 @require_http_methods(["GET"])
 def vizualizar_fornecedor(request, id):
@@ -57,8 +71,9 @@ def vizualizar_fornecedor(request, id):
         fornecedor = Fornecedor.objects.get(id=id)
         return render(request, 'vizualizarFornecedor.html', {'fornecedor': fornecedor})
 
+
 @require_http_methods(["GET", "POST"])
-def deletar_fornecedor(request,id):
+def deletar_fornecedor(request, id):
     fornecedor = Fornecedor.objects.get(id=id)
     fornecedor.delete()
     return redirect(redirect_response)
