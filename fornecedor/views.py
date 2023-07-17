@@ -47,6 +47,12 @@ def atualizar_fornecedor(request,id):
             return redirect(redirect_response)
     return render(request,'formAtualizaFornecedor.html', {'fornecedor': fornecedor, 'form': form, 'endereco_form': form_endereco})
 
+
+def vizualizar_fornecedor(request, id):
+    if request.method == 'GET':
+        fornecedor = Fornecedor.objects.get(id=id)
+        return render(request, 'vizualizarFornecedor.html', {'fornecedor': fornecedor})
+
 def deletar_fornecedor(request,id):
     fornecedor = Fornecedor.objects.get(id=id)
     fornecedor.delete()

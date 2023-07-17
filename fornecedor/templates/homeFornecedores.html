@@ -16,7 +16,7 @@
     <ul>
         {% if fornecedores %}
             {%for fornecedor in fornecedores%}
-                <li>{{ fornecedor.id }} - {{fornecedor.nome}}</li> <a href="{% url 'fornecedor_atualizar' fornecedor.id %}"> Atualizar </a> {% comment "" %}Editar</a> | <a href="{% url 'vizualizarProduto' produto.id %}">Vizualizar</a> | <a href="{% url 'deletarProduto' produto.id %}">Deletar</a>{% endcomment %}</li>
+                <li>{{ fornecedor.id }} - {{fornecedor.nome}}</li> <a href="{% url 'fornecedor_atualizar' fornecedor.id %}"> Atualizar </a> <a href="{% url 'fornecedor_vizualizar' fornecedor.id %}">Vizualizar</a> <a href="{% url 'fornecedor_deletar' fornecedor.id %}">Deletar</a></li>
             {% endfor %}
         {% else %}
             <h4>Não há Fornecedores!</h4>
