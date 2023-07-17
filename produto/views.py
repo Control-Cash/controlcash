@@ -15,11 +15,12 @@ def home_produto(request):
     nome_produto = request.GET.get("produto")
     produtos = Produto.objects.all()
 
-    if nome_produto: 
-        produtos = Produto.objects.filter(nome__icontains=nome_produto)  
+    if nome_produto:
+        produtos = Produto.objects.filter(nome__icontains=nome_produto)
     elif nome_produto == " ":
         produtos = Produto.objects.all()
-    return render(request, "home.html", {"produtos": produtos} ) 
+    return render(request, "produto/home.html", {"produtos": produtos})
+
 
 @require_http_methods(["GET", "POST"])
 def view_criar_produto(request):
@@ -30,20 +31,20 @@ def view_criar_produto(request):
             form.save()
             return redirect(redirect_response)
 
-    return render(request, 'formCriarProduto.html', {"form": form})
+    return render(request, 'produto/formCriarProduto.html', {"form": form})
 
 
 @require_http_methods(["GET"])
 def view_vizualizar_produto(request, id):
     if request.method == 'GET':
         produto = Produto.objects.get(id=id)
-        return render(request, 'vizualizarProduto.html', {"produto": produto})
+        return render(request, 'produto/vizualizarProduto.html', {"produto": produto})
 
 
 @require_http_methods(["GET"])
 def view_editar_produto(request, id):
     produto = Produto.objects.get(id=id)
-    return render(request, 'formUpdateProduto.html', {"produto": produto})
+    return render(request, 'produto/formUpdateProduto.html', {"produto": produto})
 
 
 @require_http_methods(["GET", "POST"])
@@ -57,7 +58,7 @@ def view_atualizar_produto(request, id):
             return redirect(redirect_response)
         return redirect(redirect_response)
 
-    return render(request, 'formUpdateProduto.html', {"produto": produto, "form": form})
+    return render(request, 'produto/formUpdateProduto.html', {"produto": produto, "form": form})
 
 
 @require_http_methods(["GET"])
