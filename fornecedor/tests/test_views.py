@@ -1,9 +1,10 @@
+from http import client
 from django.test import Client, TestCase
 from django.urls import reverse_lazy
+
 from fornecedor.forms import CadastrarFornecedor
 from fornecedor.models import Fornecedor
 from venda.forms import EnderecoForm
-
 from venda.models import Endereco
 
 
@@ -226,3 +227,147 @@ class CriarFornecedorViewTest(TestCase):
             302,
             200
         )
+
+
+class ListarFornecedoresViewTest(TestCase):
+    def setUp(self) -> None:
+        self.client = Client()
+        self.target_url = reverse_lazy('fornecedor_listar')
+        self.fornecedores_data = [
+            {
+                'nome': 'Havaianas',
+                'email': 'havaianas@chinelo.com',
+                'cep': '12345678',
+                'numero': 10,
+                'rua': 'Rua Exemplo',
+                'bairro': 'Bairro Exemplo',
+                'cidade': 'Cidade Exemplo',
+                'estado': 'Estado Exemplo',
+                'pais': 'Brasil',
+                'complemento': 'Complemento Exemplo'
+            },
+            {
+                'nome': 'Magalu',
+                'email': 'magalu@gmail.com',
+                'cep': '12345678',
+                'numero': 10,
+                'rua': 'Rua Exemplo',
+                'bairro': 'Bairro Exemplo',
+                'cidade': 'Cidade Exemplo',
+                'estado': 'Estado Exemplo',
+                'pais': 'Brasil',
+                'complemento': 'Complemento Exemplo'
+            },
+            {
+                'nome': 'Americanas',
+                'email': 'americanas@varejo.com',
+                'cep': '12345678',
+                'numero': 10,
+                'rua': 'Rua Exemplo',
+                'bairro': 'Bairro Exemplo',
+                'cidade': 'Cidade Exemplo',
+                'estado': 'Estado Exemplo',
+                'pais': 'Brasil',
+                'complemento': 'Complemento Exemplo'
+            },
+        ]
+        self.endereco = Endereco.objects.create(
+            cep='12345678',
+            numero=10,
+            rua='Rua Exemplo',
+            bairro='Bairro Exemplo',
+            cidade='Cidade Exemplo',
+            estado='Estado Exemplo',
+            pais='Brasil',
+            complemento='Complemento Exemplo'
+        )
+        self.expected_template = 'homeFornecedores.html'
+
+    def test_view_sends_page_obj_to_template(self):
+        """Verifica se a view envia uma variavel 'page_obj' ao template"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertIsNotNone(
+            response.context.get('page_obj'),
+            "'page_obj' não é enviado pela view"
+        )
+
+    def test_fornecedores_sended_to_template_contains_fornecedores_data(self):
+        """Verifica se a view envia os dados dos fornecedores ao template"""
+
+        Fornecedor.objects.create(
+            nome=self.fornecedores_data[0].get('nome'),
+            email=self.fornecedores_data[0].get('email'),
+            endereco=self.endereco,
+        )
+
+        response = self.client.get(self.target_url)
+        fornecedores = response.context.get('page_obj').object_list
+
+        self.assertTrue(
+            all(isinstance(fornecedor, Fornecedor)
+                for fornecedor in fornecedores),
+            "Os objetos retornados não são do modelo 'Fornecedor'"
+        )
+
+    def test_view_uses_correct_template(self):
+        """Verifica se a view usa o template correto na renderização"""
+
+        response = self.client.get(self.target_url)
+
+        self.assertTemplateUsed(
+            response,
+            self.expected_template,
+            'A view usou um template diferente do esperado'
+        )
+
+    def test_all_fornecedores_are_sended_to_template(self):
+        """Verifica se a view envia todos os fornecedores ao template"""
+
+        fornecedor1 = Fornecedor.objects.create(
+            nome=self.fornecedores_data[0].get('nome'),
+            email=self.fornecedores_data[0].get('email'),
+            endereco=self.endereco,
+        )
+        fornecedor2 = Fornecedor.objects.create(
+            nome=self.fornecedores_data[1].get('nome'),
+            email=self.fornecedores_data[1].get('email'),
+            endereco=self.endereco,
+        )
+        fornecedor3 = Fornecedor.objects.create(
+            nome=self.fornecedores_data[2].get('nome'),
+            email=self.fornecedores_data[2].get('email'),
+            endereco=self.endereco,
+        )
+
+        response = self.client.get(self.target_url)
+        fornecedores = response.context.get('page_obj').object_list
+
+        self.assertIn(fornecedor1, fornecedores)
+        self.assertIn(fornecedor2, fornecedores)
+        self.assertIn(fornecedor3, fornecedores)
+
+    def test_search_returns_only_matching_objects(self):
+        """Verifica de a busca retorna apenas os objetos que correspondem"""
+
+        Fornecedor.objects.create(
+            nome=self.fornecedores_data[0].get('nome'),
+            email=self.fornecedores_data[0].get('email'),
+            endereco=self.endereco,
+        )
+        Fornecedor.objects.create(
+            nome=self.fornecedores_data[1].get('nome'),
+            email=self.fornecedores_data[1].get('email'),
+            endereco=self.endereco,
+        )
+        Fornecedor.objects.create(
+            nome=self.fornecedores_data[2].get('nome'),
+            email=self.fornecedores_data[2].get('email'),
+            endereco=self.endereco,
+        )
+
+        response = self.client.get(f"{self.target_url}?fornecedor=ame")
+        fornecedores = response.context.get('page_obj').object_list
+
+        self.assertEqual(len(fornecedores), 1)
