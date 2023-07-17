@@ -578,7 +578,7 @@ class EditarFornecedorViewTest(TestCase):
         )
 
     def test_view_returns_404_when_fornecedor_is_unknown(self):
-        """Verifica se a view retorna uma resposta 404 quando o cliente solicitado não existe"""
+        """Verifica se a view retorna uma resposta 404 quando o fornecedor solicitado não existe"""
 
         response = self.client.get(
             reverse_lazy(
@@ -682,3 +682,95 @@ class EditarFornecedorViewTest(TestCase):
         self.assertEqual(form.initial.get('nome'), self.fornecedor_criado.nome)
         self.assertEqual(form.initial.get('email'),
                          self.fornecedor_criado.email)
+
+
+class RemoverFornecedorViewTest(TestCase):
+    def setUp(self) -> None:
+        self.endereco_criado = Endereco.objects.create(
+            rua='Rua do limoeiro',
+            bairro='Centro',
+            cidade='Sao Paulo',
+            estado='SP',
+            pais='Brasil',
+            cep='01001000',
+            numero=123,
+            complemento=''
+        )
+        self.fornecedor = Fornecedor.objects.create(
+            nome='João',
+            email="joao@gmail.com",
+            endereco=self.endereco_criado,
+        )
+        self.expected_template = 'excluir_fornecedor.html'
+        self.client = Client()
+        self.view_url_name = 'fornecedor_deletar'
+        self.success_redirect_url_name = 'fornecedor_listar'
+
+    def test_renders_correct_template(self):
+        """Verifica se a view renderiza o template esperado"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'id': self.fornecedor.id
+            }
+        ))
+
+        self.assertTemplateUsed(response, self.expected_template)
+
+    def test_response_is_404_when_fornecedor_doesnt_exist(self):
+        """Verifica se a view retorna 404 quando o atributo 'id' passado não pertence a nenhum fornecedor"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'id': 8000
+            }
+        ))
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_view_sends_fornecedor_to_template(self):
+        """Verifica se a view envia ao template o fornecedor associado ao atributo 'id' passado na request"""
+
+        response = self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'id': self.fornecedor.id
+            }
+        ))
+        fornecedor_recebido = response.context.get('fornecedor')
+
+        self.assertIsNotNone(fornecedor_recebido)
+        self.assertIsInstance(fornecedor_recebido, Fornecedor)
+        self.assertEqual(self.fornecedor, fornecedor_recebido)
+
+    def removes_fornecedor_on_post_request(self):
+        """Verifica se a view realiza a remoção do fornecedor do banco de dados"""
+
+        initial_count = Fornecedor.objects.count()
+        self.client.get(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'id': self.fornecedor.id
+            }
+        ))
+
+        self.assertEqual(initial_count - 1, Fornecedor.objects.count())
+
+    def test_redirects_to_correct_page_after_delete(self):
+        """Verifica se a view redireciona para a página correta após excluir"""
+
+        response = self.client.post(reverse_lazy(
+            self.view_url_name,
+            kwargs={
+                'id': self.fornecedor.id
+            }
+        ))
+
+        self.assertRedirects(
+            response,
+            reverse_lazy(self.success_redirect_url_name),
+            302,
+            200
+        )
