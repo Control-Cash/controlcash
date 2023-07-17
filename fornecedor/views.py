@@ -13,15 +13,15 @@ redirect_response = '/fornecedor'
 @require_http_methods(["GET"])
 def listar_fornecedores(request):
     nome_do_fornecedor = request.GET.get('fornecedor')
-    fornecedores = Fornecedor.objects.all()
+    fornecedores = None
 
     if nome_do_fornecedor:
         nome_do_fornecedor = nome_do_fornecedor.strip()
         fornecedores = Fornecedor.objects.filter(
             nome__icontains=nome_do_fornecedor
-        )
+        ).order_by('-id')
     else:
-        fornecedores = Fornecedor.objects.all()
+        fornecedores = Fornecedor.objects.all().order_by('-id')
 
     paginator = Paginator(fornecedores, 20)
 
