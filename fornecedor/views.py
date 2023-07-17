@@ -49,7 +49,7 @@ def cadastrar_fornecedor(request):
 
 @require_http_methods(["GET", "POST"])
 def atualizar_fornecedor(request, id):
-    fornecedor = Fornecedor.objects.get(id=id)
+    fornecedor = get_object_or_404(Fornecedor, id=id)
     endereco = fornecedor.endereco
     form = CadastrarFornecedor(instance=fornecedor)
     form_endereco = EnderecoForm(instance=endereco)
