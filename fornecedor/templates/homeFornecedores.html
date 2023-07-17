@@ -1,26 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Fornecedores</title>
-</head>
-<body>
-    <h1>Fornecedores</h1>
+{% extends 'base.html' %}
 
-    <a href="{% url 'fornecedor_criar' %}"> Cadastrar fornecedor </a>
-    <form method="GET"> 
-        <input type="search" name="fornecedor" placeholder="Nome do fornecedor"/> 
-        <button type="submit">Pesquisar</button>
+{% load static %}
+
+{% block title %}Fornecedores | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12 mb-2 mb-lg-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fs-2">Fornecedores</h2>
+      
+      <div class="d-flex gap-2">
+        <!-- Formulário de pesquisa -->
+        <form class="row row-cols-lg-auto g-1 align-items-center d-none d-lg-flex" method="get" action="">
+          <div class="col-12">
+            <label class="visually-hidden" for="fornecedor">Buscar fornecedor</label>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="Busque um fornecedor..."
+            name="fornecedor"
+            id="fornecedor"
+            value="{{ pesquisa|default_if_none:'' }}"
+            >
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary" title="Pesquisar">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+        <a href="{% url 'fornecedor_criar' %}" class="btn btn-primary">
+          <i class="bi bi-plus-lg"></i>
+          Cadastrar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mb-3 d-lg-none">
+    <!-- Formulário de pesquisa -->
+    <form class="d-flex gap-1" method="get" action="">
+      <div style="flex-grow: 1;">
+        <label class="visually-hidden" for="fornecedor">Buscar fornecedor</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Busque um fornecedor..."
+          name="fornecedor"
+          id="fornecedor"
+          value="{{ pesquisa|default_if_none:'' }}"
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" title="Pesquisar">
+        <i class="bi bi-search"></i>
+      </button>
     </form>
-    <ul>
-        {% if fornecedores %}
-            {%for fornecedor in fornecedores%}
-                <li>{{ fornecedor.id }} - {{fornecedor.nome}}</li> <a href="{% url 'fornecedor_atualizar' fornecedor.id %}"> Atualizar </a> <a href="{% url 'fornecedor_vizualizar' fornecedor.id %}">Vizualizar</a> <a href="{% url 'fornecedor_deletar' fornecedor.id %}">Deletar</a></li>
-            {% endfor %}
-        {% else %}
-            <h4>Não há Fornecedores!</h4>
-        {% endif %} 
-    </ul>
-</body>
-</html>
+  </div>
+      
+  <div class="col-12">
+    {% if page_obj.object_list|length > 0 %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
+      {% for fornecedor in page_obj %}
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'fornecedor_vizualizar' fornecedor.id %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+                <h3 class="card-title fs-4">{{ fornecedor.nome }}</h3>
+                <p class="card-text">
+                    <i class="bi bi-envelope-at text-primary"></i>
+                    <span> {{ fornecedor.email|default_if_none:"Não informado" }}</span>
+                </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-12 mt-3">
+      <div class="d-flex justify-content-center align-items-center">
+        {% include 'components/pagination.html' %}
+      </div>
+    </div>
+    {% else %}
+     <div class="d-flex flex-column justify-content-center align-items-center my-3">
+      <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+      <h3 class="d-inline-block fs-3 text-center mt-3">Nenhum fornecedor encontrado</h3>
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}
