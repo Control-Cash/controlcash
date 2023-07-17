@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.decorators.http import require_http_methods
 
 from venda.forms import EnderecoForm
@@ -68,7 +68,7 @@ def atualizar_fornecedor(request, id):
 @require_http_methods(["GET"])
 def vizualizar_fornecedor(request, id):
     if request.method == 'GET':
-        fornecedor = Fornecedor.objects.get(id=id)
+        fornecedor = get_object_or_404(Fornecedor, id=id)
         return render(request, 'vizualizarFornecedor.html', {'fornecedor': fornecedor})
 
 
