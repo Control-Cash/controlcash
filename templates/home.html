@@ -9,35 +9,8 @@
   <div class="col-12">
     <h2 class="fs-2 mb-3">Olá, vamos trabalhar?</h2>
 
-     <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-2">
-      <div class="col">
-        <div class="card border-primary">
-          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none text-dark">
-            <div class="card-body">
-              <div class="px-3">
-                <div class="px-lg-2 mb-3">
-                  <img src="{% static 'img/icons/vendas.svg' %}" alt="" class="w-100" style="min-height: 80px;">
-                </div>
-              </div>
-              <h3 class="fs-4 text-center">Vendas</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card border-primary">
-          <a href="{% url 'homeProduto' %}" class="text-decoration-none text-dark">
-            <div class="card-body">
-              <div class="px-3">
-                <div class="px-lg-2 mb-3">
-                  <img src="{% static 'img/icons/produtos.svg' %}" alt="" class="w-100" style="min-height: 80px;">
-                </div>
-              </div>
-              <h3 class="fs-4 text-center">Produtos</h3>
-            </div>
-          </a>
-        </div>
-      </div>
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-2">
+      <!-- Clientes -->
       <div class="col">
         <div class="card border-primary">
           <a href="{% url 'venda:cliente_listar' %}" class="text-decoration-none text-dark">
@@ -52,6 +25,7 @@
           </a>
         </div>
       </div>
+      <!-- Despesas -->
       <div class="col">
         <div class="card border-primary">
           <a href="{% url 'despesa:despesa_listar' %}" class="text-decoration-none text-dark">
@@ -62,6 +36,51 @@
                 </div>
               </div>
               <h3 class="fs-4 text-center">Despesas</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Fornecedores -->
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'fornecedor_listar' %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <div class="px-3">
+                <div class="px-lg-2 mb-3">
+                  <img src="{% static 'img/icons/fornecedores.svg' %}" alt="" class="w-100" style="min-height: 80px;">
+                </div>
+              </div>
+              <h3 class="fs-4 text-center">Fornecedores</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Produtos -->
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'homeProduto' %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <div class="px-3">
+                <div class="px-lg-2 mb-3">
+                  <img src="{% static 'img/icons/produtos.svg' %}" alt="" class="w-100" style="min-height: 80px;">
+                </div>
+              </div>
+              <h3 class="fs-4 text-center">Produtos</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Vendas -->
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'venda:venda_listar' %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <div class="px-3">
+                <div class="px-lg-2 mb-3">
+                  <img src="{% static 'img/icons/vendas.svg' %}" alt="" class="w-100" style="min-height: 80px;">
+                </div>
+              </div>
+              <h3 class="fs-4 text-center">Vendas</h3>
             </div>
           </a>
         </div>

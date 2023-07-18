@@ -1,20 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar fornecedor</title>
-</head>
-<body>
-    <h1>Cadastrar fornecedor</h1>
-    <form action="{% url 'fornecedor_criar' %}" method="POST">
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Cadastrar fornecedor | {% endblock %}
+
+{% block head %}
+<script src="{% static '/js/venda/cep-cliente.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'fornecedor_listar' %}" class="text-decoration-none">Fornecedores</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
+      </ol>
+    </nav>
+
+    <h2 class="fs-2">Cadastrar fornecedor</h2>
+
+    <div class="col-12 mb-5">
+      <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        {{ endereco_form.as_p }}
-        <input type="submit" value="Salvar">
-        <button type="button"><a href="/fornecedor">Voltar</a></button>
-    </form>
-    <br>
-</body>
-</html>
+
+        {% include 'form_render.html' %}
+
+        <h4 class="fs-3 mt-4">Endereço</h4>
+
+        {% include 'form_render.html' with form=endereco_form %}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
+

@@ -1,57 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fornecedor Produto: {{produto.nome}}</title>
-</head>
-<body>
-    <header><h1>Vizualizando fornecedor: {{fornecedor.nome}}</h1></header>
-    <table border="1px">
-        <thead>
-        <tr><th colspan="8">Fornecedor</th></tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td> ID </td>
-        <td> Nome </td>
-        <td> Email </td>
-        <td> Bairro </td>
-        <td> Número </td>
-        <td> Cidade </td>
-        <td> Estado </td>
-        <td> Pais </td>
-        </tr>
-        <tr>
-            <td>
-                {{fornecedor.id}}
-            </td>
-            <td>
-                {{fornecedor.nome}}
-            </td>
-            <td>
-                {{fornecedor.email}}
-            </td>
-            <td>
-                {{fornecedor.endereco.bairro}}
-            </td>
-            <td>
-                {{fornecedor.endereco.numero}}
-            </td>
-            <td>
-                {{fornecedor.endereco.cidade}}
-            </td>
-            <td>
-                {{fornecedor.endereco.estado}}
-            </td>
-            <td>
-                {{fornecedor.endereco.pais}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <button type="button"><a href="/fornecedor">Voltar</a></button>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ fornecedor.nome }} | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'fornecedor_listar' %}" class="text-decoration-none">Fornecedores</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ fornecedor.nome|capfirst }}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="row">
+      <section class="col-12 mb-4">
+        <div class="d-flex justify-content-start align-items-center gap-3">
+          <h2 class="fs-2">{{ fornecedor.nome }}</h2>
+          <div class="btn-group" role="group">
+            <a
+              href="{% url 'fornecedor_atualizar' fornecedor.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Editar fornecedor"
+              >
+              <i class="bi bi-pen"></i>
+            </a>
+            <a
+              href="{% url 'fornecedor_deletar' fornecedor.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Remover fornecedor"
+              >
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
+        </div>
+        <p class="d-flex align-items-center gap-1 mb-0">
+          <i class="bi bi-envelope-at text-primary fs-5 mr-1" title="Email"></i>
+          <span>{{ fornecedor.email | default_if_none:"Não cadastrado" }}</span>
+        </p>
+      </section>
+      
+      <section class="col-12">
+        <h3 class="fs-4">Endereço</h3>
+        <p class="mb-1">Logradouro: {{ fornecedor.endereco.rua }}, {{ fornecedor.endereco.numero }}</p>
+        {% if fornecedor.endereco.complemento %}<p class="mb-1">Complemento: {{ fornecedor.endereco.complemento }}</p>{% endif %}
+        <p class="mb-1">Bairro: {{ fornecedor.endereco.bairro }}</p>
+        <p class="mb-1">Cidade: {{ fornecedor.endereco.cidade }} - {{ fornecedor.endereco.estado }}</p>
+        <p class="mb-1">CEP: {{ fornecedor.endereco.cep }}</p>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}

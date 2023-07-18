@@ -1,7 +1,7 @@
 {% load static %}
 
 <header class="navbar bg-light shadow-sm">
-  <div class="container-fluid">
+  <div class="container">
     <button
       class="btn btn-link"
       type="button"
@@ -116,6 +116,41 @@
                 <a
                   class="dropdown-item rounded-2 {% if url_name == 'despesa_criar' %}active fw-bold{% endif %}"
                   href="{% url 'despesa:despesa_criar' %}"
+                >
+                  Cadastrar
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- Fornecedores -->
+          <li class="nav-item dropdown">
+            <button
+            class="nav-link dropdown-toggle
+            {% if 'fornecedor' in url_name %}active fw-bold{% endif %}"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              <img
+                src="{% static '/img/icons/fornecedores.svg' %}"
+                alt=""
+                height="28px"
+              />
+              Fornecedores
+            </button>
+            <ul class="dropdown-menu border-0">
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'fornecedor_listar' %}active fw-bold{% endif %}"
+                  href="{% url 'fornecedor_listar' %}"
+                >
+                  Mostrar todos
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item rounded-2 {% if url_name == 'fornecedor_criar' %}active fw-bold{% endif %}"
+                  href="{% url 'fornecedor_criar' %}"
                 >
                   Cadastrar
                 </a>
