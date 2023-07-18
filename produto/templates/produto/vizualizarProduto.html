@@ -1,49 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vizualizar Produto: {{produto.nome}}</title>
-</head>
-<body>
-    <header><h1>Vizualizando produto: {{produto.nome}}</h1></header>
-    <table border="1px">
-        <thead>
-        <tr><th colspan="8">Produto</th></tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td> ID </td>
-        <td> Nome </td>
-        <td> Preço </td>
-        <td> Quantidade </td>
-        <td> Descrição </td>
-        <td> Data registro </td>
-        </tr>
-        <tr>
-            <td>
-                {{produto.id}}
-            </td>
-            <td>
-                {{produto.nome}}
-            </td>
-            <td>
-                {{produto.preco_venda}}
-            </td>
-            <td>
-                {{produto.quantidade_estoque}}
-            </td>
-            <td>
-                {{produto.descricao}}
-            </td>
-            <td>
-                {{produto.data_registro}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <button type="button"><a href="{% url 'homeProduto' %}">Voltar</a></button>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ produto.nome }} | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'homeProduto' %}" class="text-decoration-none">Produtos</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ produto.nome|capfirst }}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="row">
+      <section class="col-12 mb-4">
+        <div class="d-flex justify-content-start align-items-center gap-3">
+          <h2 class="fs-2">{{ produto.nome }}</h2>
+          <div class="btn-group" role="group">
+            <a
+              href="{% url 'atualizarProduto' produto.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Editar produto"
+              >
+              <i class="bi bi-pen"></i>
+            </a>
+            <a
+              href="{% url 'deletarProduto' produto.id %}"
+              class="btn btn-sm btn-outline-primary d-block mb-2"
+              title="Remover produto"
+              >
+              <i class="bi bi-trash"></i>
+            </a>
+          </div>
+        </div>
+        {% if produto.descricao|length > 0 %}
+        <p class="text-muted mb-2">Descrição: {{ produto.descricao }}</p>
+        {% endif %}
+        <p class="mb-0 align-middle">
+            <i class="bi bi-coin text-primary" style="font-size: 18px;" title="Preço de venda"></i>
+            <span>R$ {{ produto.preco_venda|floatformat:2 }}</span>
+        </p>
+        <p class="mb-0 align-middle">
+            <i class="bi bi-database text-primary" style="font-size: 18px;" title="Estoque"></i>
+            <span>{{ produto.quantidade_estoque }} em estoque</span>
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <div class="col-lg-8 mt-5 mt-lg-0">
+    <h2 class="fs-2">Últimas vendas com esse produto</h2>
+
+    <div class="row">
+      <div class="col-12">
+        {% if vendas.count > 0 %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
+          {% for venda in vendas %}
+          <div class="col">
+            <div class="card border-primary">
+              <a href="{% url 'venda:venda_detalhar' venda.id %}" class="text-decoration-none text-dark">
+                <div class="card-body">
+                  <h3 class="card-title fs-3 text-center">
+                    #{%if venda.id < 100 %}0{% endif %}{%if venda.id < 10 %}0{% endif %}{{ venda.id }}
+                  </h3>
+                  <div class="text-center mb-3">
+                    {% if venda.status == 'finalizada' %}
+                    <span class="badge text-bg-primary">
+                      <i class="bi bi-bag-check fs-6"></i> Finalizada
+                    </span>
+                    {% elif venda.status == 'ativa' %}
+                    <span class="badge text-bg-info">
+                      <i class="bi bi-bag fs-6"></i> Em andamento
+                    </span>
+                    {% elif venda.status == 'inativa' %}
+                    <span class="badge text-bg-secondary">
+                      <i class="bi bi-bag-x fs-6"></i> Descartada
+                    </span>
+                    {% endif %}
+                  </div>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-person-fill text-primary" title="Cliente"></i>
+                    {{ venda.cliente.nome }}
+                  </p>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-calendar-week text-primary" title="Data"></i>
+                    {{ venda.data|date:"d/m/y" }}
+                  </p>
+                  <p class="card-text mb-0">
+                    <i class="bi bi-clock text-primary" title="Horário"></i>
+                    {{ venda.hora }}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="d-flex flex-column justify-content-center align-items-center my-3">
+          <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+          <h3 class="d-inline-block fs-3 text-center mt-3">Nenhuma venda encontrada</h3>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
