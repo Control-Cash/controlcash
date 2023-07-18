@@ -1,27 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ControlCash - Produtos</title>
-</head>
-<body>
-    <h1>produtos</h1>
+{% extends 'base.html' %}
 
-    <a href="{% url 'criarProduto' %}"> Criar Produto </a>
-    <form method="GET"> 
-        <input type="search" name="produto" placeholder="Nome do Produto"/> 
-        <button type="submit">Pesquisar</button>
+{% load static %}
+
+{% block title %}Produtos | {% endblock %}
+
+{% block content %}
+<main class="row my-3">
+  <div class="col-12 mb-2 mb-lg-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="fs-2">Produtos</h2>
+      
+      <div class="d-flex gap-2">
+        <!-- Formulário de pesquisa -->
+        <form class="row row-cols-lg-auto g-1 align-items-center d-none d-lg-flex" method="get" action="">
+          <div class="col-12">
+            <label class="visually-hidden" for="produto">Buscar produto</label>
+            <input
+            type="text"
+            class="form-control"
+            placeholder="Busque um produto..."
+            name="produto"
+            id="produto"
+            value="{{ pesquisa|default_if_none:'' }}"
+            >
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary" title="Pesquisar">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+        <a href="{% url 'criarProduto' %}" class="btn btn-primary">
+          <i class="bi bi-plus-lg"></i>
+          Cadastrar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 mb-3 d-lg-none">
+    <!-- Formulário de pesquisa -->
+    <form class="d-flex gap-1" method="get" action="">
+      <div style="flex-grow: 1;">
+        <label class="visually-hidden" for="produto">Buscar produto</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Busque um produto..."
+          name="produto"
+          id="produto"
+          value="{{ pesquisa|default_if_none:'' }}"
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" title="Pesquisar">
+        <i class="bi bi-search"></i>
+      </button>
     </form>
-    <ul>
-        {% if produtos%}
-            {%for produto in produtos%}
-                <li>{{ produto.id }} - {{produto.nome}} <a href="{% url 'atualizarProduto' produto.id %}">Editar</a> | <a href="{% url 'vizualizarProduto' produto.id %}">Vizualizar</a> | <a href="{% url 'deletarProduto' produto.id %}">Deletar</a></li>
-            {% endfor %}
-        {% else %}
-            <h4>Não há produtos!</h4>
-        {% endif %} 
-    </ul>
-</body>
-</html>
+  </div>
+      
+  <div class="col-12">
+    {% if page_obj.object_list|length > 0 %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
+      {% for produto in page_obj %}
+      <div class="col">
+        <div class="card border-primary">
+          <a href="{% url 'vizualizarProduto' produto.id %}" class="text-decoration-none text-dark">
+            <div class="card-body">
+              <h3 class="card-title fs-4">{{ produto.nome }}</h3>
+              <p class="mb-0 align-middle">
+                <i class="bi bi-coin text-primary" style="font-size: 18px;" title="Preço de venda"></i>
+                <span>R$ {{ produto.preco_venda|floatformat:2 }}</span>
+              </p>
+              <p class="mb-0 align-middle">
+                <i class="bi bi-database text-primary" style="font-size: 18px;" title="Estoque"></i>
+                <span>{{ produto.quantidade_estoque }} em estoque</span>
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-12 mt-3">
+      <div class="d-flex justify-content-center align-items-center">
+        {% include 'components/pagination.html' %}
+      </div>
+    </div>
+    {% else %}
+     <div class="d-flex flex-column justify-content-center align-items-center my-3">
+      <img src="{% static '/img/404.svg' %}" alt="" style="max-width: 500px;" class="mx-auto w-100">
+      <h3 class="d-inline-block fs-3 text-center mt-3">Nenhum produto encontrado</h3>
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

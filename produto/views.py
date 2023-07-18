@@ -1,7 +1,9 @@
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 
 from produto.models import Produto
+from venda.models import Venda
 
 from .forms import CadastrarProduto
 
@@ -13,13 +15,20 @@ redirect_response = '/produto'
 @require_http_methods(["GET"])
 def home_produto(request):
     nome_produto = request.GET.get("produto")
-    produtos = Produto.objects.all()
+    produtos = None
 
     if nome_produto:
-        produtos = Produto.objects.filter(nome__icontains=nome_produto)
-    elif nome_produto == " ":
-        produtos = Produto.objects.all()
-    return render(request, "produto/home.html", {"produtos": produtos})
+        nome_produto = nome_produto.strip()
+        produtos = Produto.objects.filter(
+            nome__icontains=nome_produto).order_by('-id')
+    else:
+        produtos = Produto.objects.all().order_by('-id')
+
+    paginator = Paginator(produtos, 20)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, "produto/home.html", {"page_obj": page_obj, "pesquisa": nome_produto})
 
 
 @require_http_methods(["GET", "POST"])
@@ -38,7 +47,9 @@ def view_criar_produto(request):
 def view_vizualizar_produto(request, id):
     if request.method == 'GET':
         produto = Produto.objects.get(id=id)
-        return render(request, 'produto/vizualizarProduto.html', {"produto": produto})
+        vendas = Venda.objects.filter(
+            item__produto=produto).order_by('-id')[:6]
+        return render(request, 'produto/vizualizarProduto.html', {"produto": produto, "vendas": vendas})
 
 
 @require_http_methods(["GET"])
